@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MILAR — Invitación Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Josefin+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose: #B98A6C;
+    --rose-deep: #8C5A3F;
+    --black: #2B211B;
+    --cream: #FBF4EC;
+    --pale-rose: #EAD9C8;
+    --gold: #C9A66B;
+    --line: rgba(140,90,63,0.25);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background: var(--cream); color: var(--black); font-family:'Josefin Sans', sans-serif; font-weight:300; overflow-x:hidden; }
+  .serif{ font-family:'Cormorant Garamond', serif; }
+  .eyebrow{ text-transform: uppercase; letter-spacing: 0.35em; font-size: 11px; color: var(--rose); font-weight: 400; text-align:center; }
+
+  .corner{ position:absolute; width: 64px; height: 64px; opacity: 0.55; }
+  .corner.tl{ top:24px; left:24px; }
+  .corner.tr{ top:24px; right:24px; transform: scaleX(-1); }
+  .corner.bl{ bottom:24px; left:24px; transform: scaleY(-1); }
+  .corner.br{ bottom:24px; right:24px; transform: scale(-1,-1); }
+
+  .divider-flourish{ display:flex; align-items:center; justify-content:center; gap: 14px; margin: 20px auto; color: var(--gold); }
+  .divider-flourish svg{ width: 90px; height: 14px; }
+  .divider-flourish::before, .divider-flourish::after{ content:''; width: 24px; height:1px; background: var(--gold); }
+
+  .portada{ min-height: 100svh; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 60px 28px;
+    background: radial-gradient(circle at 50% 0%, rgba(139,58,82,0.06), transparent 55%), var(--cream); }
+
+  .badge-xv{ width: 92px; height: 92px; border-radius: 50%; border: 1px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 34px; color: var(--rose-deep); margin-bottom: 26px; }
+
+  .brand-mark-top{ font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--rose-deep); letter-spacing: 0.1em; margin-bottom: 40px; }
+  .portada-welcome{ font-size: 13px; letter-spacing: 0.08em; opacity: 0.65; margin-bottom: 6px; }
+  .portada-title{ font-family:'Cormorant Garamond', serif; font-weight: 400; font-style: italic; font-size: clamp(46px, 11vw, 72px); color: var(--rose-deep); line-height: 1.05; }
+  .portada-sub{ font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; margin-top: 14px; opacity: 0.6; }
+  .music-choice{ margin-top: 46px; display:flex; gap: 18px; }
+  .music-choice button{ font-family:'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 22px; border: 1px solid var(--rose); background: transparent; color: var(--rose-deep); cursor:pointer; }
+  .music-choice button.solid{ background: var(--rose); color: var(--cream); }
+
+  section{ padding: 90px 28px; text-align:center; position:relative; }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-weight:400; font-style: italic; font-size: clamp(30px, 7vw, 42px); color: var(--rose-deep); margin-bottom: 6px; }
+  .section-sub{ font-size: 14px; opacity: 0.6; max-width: 380px; margin: 0 auto 40px; line-height:1.6; }
+
+  .countdown-grid{ display:flex; justify-content:center; gap: 14px; flex-wrap: wrap; }
+  .countdown-cell{ width: 84px; padding: 18px 0; border: 1px solid var(--line); background: rgba(255,255,255,0.5); }
+  .countdown-num{ font-family:'Cormorant Garamond', serif; font-size: 34px; color: var(--rose-deep); }
+  .countdown-label{ font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; margin-top: 4px; }
+
+  .invitados-card{ max-width: 380px; margin: 0 auto; border: 1px solid var(--line); padding: 40px 30px; background: rgba(255,255,255,0.45); }
+  .invitados-list{ list-style:none; }
+  .invitados-list li{ font-family:'Cormorant Garamond', serif; font-size: 22px; font-style: italic; padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--rose-deep); }
+  .invitados-list li:last-child{ border-bottom:none; }
+  .invitados-note{ margin-top: 20px; font-size: 12px; opacity: 0.55; line-height: 1.6; }
+
+  .detail-cards{ display:flex; flex-direction:column; gap: 18px; max-width: 420px; margin: 0 auto; }
+  .detail-card{ border: 1px solid var(--line); padding: 30px 24px; background: rgba(255,255,255,0.45); position:relative; }
+  .detail-card .eyebrow{ margin-bottom: 10px; }
+  .detail-card-title{ font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 24px; color: var(--rose-deep); }
+  .detail-card-sub{ font-size: 13px; opacity: 0.6; margin-top: 6px; }
+  .link-underline{ display:inline-block; margin-top: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--rose); border-bottom: 1px solid var(--rose); padding-bottom: 2px; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; font-family:'Josefin Sans', sans-serif; }
+
+  .rsvp{ background: var(--rose); color: var(--cream); }
+  .rsvp .eyebrow{ color: var(--pale-rose); }
+  .rsvp .section-title{ color: var(--cream); }
+  .rsvp .section-sub{ color: rgba(248,243,238,0.8); }
+  .btn-primary{ display:inline-block; background: var(--cream); color: var(--rose-deep); padding: 16px 40px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; border:none; cursor:pointer; }
+  .rsvp-status{ margin-top: 18px; font-size: 13px; min-height: 18px; }
+
+  .galeria-grid{ display:flex; justify-content:center; gap: 20px; flex-wrap: wrap; }
+  .galeria-item{ width: 130px; height: 130px; border-radius: 50%; background: linear-gradient(155deg, var(--pale-rose), var(--rose) 140%); border: 1px solid var(--gold); }
+  .galeria-item:nth-child(2n){ background: linear-gradient(155deg, var(--gold), var(--rose-deep) 140%); }
+
+  .info-grid{ display:flex; flex-direction:column; gap: 16px; max-width: 420px; margin: 0 auto; }
+  .info-card{ border: 1px solid var(--line); padding: 26px; background: rgba(255,255,255,0.45); cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; }
+  .info-card-title{ font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--rose-deep); }
+  .info-card-sub{ font-size: 12px; opacity: 0.55; margin-top: 4px; }
+
+  footer{ padding: 60px 28px 46px; text-align:center; }
+  .footer-mark{ font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 26px; color: var(--rose-deep); margin-bottom: 10px; }
+  .footer-tag{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.4; }
+
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+  @media (min-width: 720px){ section{ padding: 120px 60px; } }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0;
+    background: rgba(36,27,27,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding: 24px;
+    z-index: 100;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{
+    background: var(--cream);
+    max-width: 420px;
+    width:100%;
+    padding: 40px 30px;
+    position:relative;
+    border: 1px solid var(--gold);
+    text-align:center;
+    max-height: 85vh;
+    overflow-y:auto;
+  }
+  .modal-close{
+    position:absolute; top:16px; right:18px;
+    background:none; border:none;
+    font-size: 20px;
+    color: var(--rose-deep);
+    cursor:pointer;
+    line-height:1;
+  }
+  .modal-title{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--rose-deep);
+    margin: 10px 0 20px;
+  }
+  .modal-body{ font-size: 14px; line-height:1.7; text-align:left; opacity:0.8; }
+  .modal-body p{ margin-bottom: 12px; }
+
+  .form-field{ text-align:left; margin-bottom: 16px; }
+  .form-field label{ font-size: 11px; text-transform:uppercase; letter-spacing:0.1em; opacity:0.6; display:block; margin-bottom: 6px; }
+  .form-field input, .form-field select, .form-field textarea{
+    width:100%;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    padding: 8px 2px;
+    font-family:'Josefin Sans', sans-serif;
+    font-size: 15px;
+    color: var(--black);
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus{
+    outline:none;
+    border-bottom-color: var(--rose);
+  }
+  .form-submit{
+    width:100%;
+    margin-top: 10px;
+    background: var(--rose);
+    color: var(--cream);
+    border:none;
+    padding: 14px;
+    font-size: 11px;
+    text-transform:uppercase;
+    letter-spacing: 0.2em;
+    cursor:pointer;
+  }
+  .form-submit:disabled{ opacity:0.5; cursor:not-allowed; }
+  .form-status{ margin-top: 14px; font-size: 13px; text-align:center; min-height:18px; }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<section class="portada">
+  <svg class="corner tl" viewBox="0 0 64 64" fill="none" stroke="currentColor" style="color:var(--gold)"><path d="M4 4 Q 4 34 34 34" stroke-width="1"/><path d="M4 4 Q 34 4 34 34" stroke-width="1"/><circle cx="4" cy="4" r="3" fill="var(--gold)" stroke="none"/></svg>
+  <svg class="corner tr" viewBox="0 0 64 64" fill="none" stroke="currentColor" style="color:var(--gold)"><path d="M4 4 Q 4 34 34 34" stroke-width="1"/><path d="M4 4 Q 34 4 34 34" stroke-width="1"/><circle cx="4" cy="4" r="3" fill="var(--gold)" stroke="none"/></svg>
+  <svg class="corner bl" viewBox="0 0 64 64" fill="none" stroke="currentColor" style="color:var(--gold)"><path d="M4 4 Q 4 34 34 34" stroke-width="1"/><path d="M4 4 Q 34 4 34 34" stroke-width="1"/><circle cx="4" cy="4" r="3" fill="var(--gold)" stroke="none"/></svg>
+  <svg class="corner br" viewBox="0 0 64 64" fill="none" stroke="currentColor" style="color:var(--gold)"><path d="M4 4 Q 4 34 34 34" stroke-width="1"/><path d="M4 4 Q 34 4 34 34" stroke-width="1"/><circle cx="4" cy="4" r="3" fill="var(--gold)" stroke="none"/></svg>
+
+  <div class="reveal is-visible">
+    <div class="brand-mark-top">milar</div>
+    <div class="badge-xv">XV</div>
+    <div class="portada-welcome">Bienvenidos a la invitación de</div>
+    <h1 class="portada-title">Matilda</h1>
+    <div class="portada-sub">Mis quince años</div>
+    <div class="music-choice">
+      <button class="solid" id="withMusic">Ingresar con música</button>
+      <button id="withoutMusic">Sin música</button>
+    </div>
+  </div>
+</section>
+
+<audio id="bgMusic" loop>
+  <!-- Acá va el link mp3 real cuando lo tengas -->
+</audio>
+
+<!-- COUNTDOWN -->
+<section class="reveal">
+  <div class="eyebrow">Falta poco</div>
+  <div class="section-title">12 de septiembre, 2026</div>
+  <div class="divider-flourish"><svg viewBox="0 0 90 14"><path d="M0 7 H30 M60 7 H90" stroke="var(--gold)" stroke-width="1"/><circle cx="45" cy="7" r="3" fill="var(--gold)"/></svg></div>
+  <div class="countdown-grid">
+    <div class="countdown-cell"><div class="countdown-num" id="cd-dias">--</div><div class="countdown-label">Días</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-horas">--</div><div class="countdown-label">Hs</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-min">--</div><div class="countdown-label">Min</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-seg">--</div><div class="countdown-label">Seg</div></div>
+  </div>
+</section>
+
+<!-- INVITADOS (se personaliza con la URL) -->
+<section class="reveal">
+  <div class="eyebrow">Personalizado para vos</div>
+  <div class="section-title">Invitados</div>
+  <div class="invitados-card">
+    <ul class="invitados-list" id="invitadosList">
+      <li>Valentina Ruiz</li>
+      <li>Agustín Ruiz</li>
+    </ul>
+    <p class="invitados-note">Probá agregar <code>?invitado=Camila+Gómez&acompanantes=2</code> al final de la URL de esta página y vas a ver cómo cambia este bloque — así funciona el link personalizado por invitado.</p>
+  </div>
+</section>
+
+<!-- FIESTA -->
+<section class="reveal">
+  <div class="eyebrow">La fiesta</div>
+  <div class="section-title">Todos los detalles</div>
+  <div class="divider-flourish"><svg viewBox="0 0 90 14"><path d="M0 7 H30 M60 7 H90" stroke="var(--gold)" stroke-width="1"/><circle cx="45" cy="7" r="3" fill="var(--gold)"/></svg></div>
+  <div class="detail-cards">
+    <div class="detail-card">
+      <div class="eyebrow">Día</div>
+      <div class="detail-card-title">Sábado 12 de septiembre</div>
+      <div class="detail-card-sub">Desde las 20:30 hs</div>
+      <button class="link-underline" data-cal>Agendar</button>
+    </div>
+    <div class="detail-card">
+      <div class="eyebrow">Lugar</div>
+      <div class="detail-card-title">Salón Alma</div>
+      <div class="detail-card-sub">Devoto, CABA</div>
+      <a class="link-underline" href="https://www.google.com/maps/search/?api=1&query=Salon+Alma+Devoto+CABA" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="detail-card">
+      <div class="eyebrow">Dress code</div>
+      <div class="detail-card-title">Formal elegante</div>
+      <div class="detail-card-sub">Colores cálidos sugeridos</div>
+      <button class="link-underline" data-modal="dresscode">Ver más</button>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="rsvp reveal">
+  <div class="eyebrow">Confirmación</div>
+  <div class="section-title">¿Vas a acompañarme?</div>
+  <p class="section-sub">Necesitamos saber si vas a estar esa noche con nosotros.</p>
+  <button class="btn-primary" data-modal="rsvp">Confirmar asistencia</button>
+</section>
+
+<!-- GALERIA -->
+<section class="reveal">
+  <div class="eyebrow">Un poco de mí</div>
+  <div class="section-title">Este recorrido</div>
+  <div class="galeria-grid">
+    <div class="galeria-item"></div><div class="galeria-item"></div><div class="galeria-item"></div><div class="galeria-item"></div>
+  </div>
+</section>
+
+<!-- INFO CARDS -->
+<section class="reveal">
+  <div class="eyebrow">Para tener en cuenta</div>
+  <div class="section-title">Antes de venir</div>
+  <div class="info-grid">
+    <button class="info-card" data-modal="cancion">
+      <span><span class="info-card-title">Sugerí una canción</span><br><span class="info-card-sub">Para que no falte en la playlist</span></span>
+    </button>
+    <button class="info-card" data-modal="regalos">
+      <span><span class="info-card-title">Regalos</span><br><span class="info-card-sub">Si querés hacerme un regalo</span></span>
+    </button>
+    <a class="info-card" href="https://www.instagram.com/explore/tags/matilda15/" target="_blank" rel="noopener">
+      <span><span class="info-card-title">#matilda15</span><br><span class="info-card-sub">Compartí tus fotos de esa noche</span></span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-mark">Matilda · Mis 15</div>
+  <div class="footer-tag">Hecho con MILAR</div>
+</footer>
+
+<!-- ===== MODALES ===== -->
+
+<!-- RSVP -->
+<div class="modal-overlay" id="modal-rsvp">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Confirmación</div>
+    <div class="modal-title">Confirmar asistencia</div>
+    <form id="rsvpForm">
+      <div class="form-field">
+        <label>Nombre</label>
+        <input type="text" id="rsvpNombre" required>
+      </div>
+      <div class="form-field">
+        <label>¿Vas a venir?</label>
+        <select id="rsvpAsistencia" required>
+          <option value="">Elegí una opción</option>
+          <option value="si">Sí, ahí estaré</option>
+          <option value="no">No voy a poder ir</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Cantidad de acompañantes</label>
+        <input type="number" id="rsvpAcompanantes" min="0" value="0">
+      </div>
+      <button type="submit" class="form-submit">Enviar confirmación</button>
+      <div class="form-status" id="rsvpStatus"></div>
+    </form>
+  </div>
+</div>
+
+<!-- Sugerir canción -->
+<div class="modal-overlay" id="modal-cancion">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Playlist</div>
+    <div class="modal-title">Sugerí una canción</div>
+    <form id="cancionForm">
+      <div class="form-field">
+        <label>Tu nombre</label>
+        <input type="text" id="cancionNombre" required>
+      </div>
+      <div class="form-field">
+        <label>Canción y artista</label>
+        <input type="text" id="cancionTema" placeholder="Ej: Bad Bunny — Título" required>
+      </div>
+      <button type="submit" class="form-submit">Enviar sugerencia</button>
+      <div class="form-status" id="cancionStatus"></div>
+    </form>
+  </div>
+</div>
+
+<!-- Dress code -->
+<div class="modal-overlay" id="modal-dresscode">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Vestuario</div>
+    <div class="modal-title">Dress code</div>
+    <div class="modal-body">
+      <p>Formal elegante. Colores cálidos y tierra son bienvenidos — nada de blanco, ese color me lo reservo para la noche.</p>
+      <p>Para ellas: vestido largo o midi. Para ellos: traje o pantalón de vestir con camisa.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Regalos -->
+<div class="modal-overlay" id="modal-regalos">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Un gesto</div>
+    <div class="modal-title">Regalos</div>
+    <div class="modal-body">
+      <p>Tu presencia esa noche ya es un montón. Si además querés hacerme un regalo, estoy armando mi luna de miel de xv, así que un aporte para eso lo voy a atesorar.</p>
+      <p>Alias: matilda.xv.mp</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Countdown
+  const target = new Date('2026-09-12T20:30:00');
+  function tick(){
+    const now = new Date();
+    let diff = target - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-dias').textContent = d;
+    document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Música
+  const audio = document.getElementById('bgMusic');
+  document.getElementById('withMusic').addEventListener('click', () => {
+    audio.play().catch(()=>{});
+    document.getElementById('cd-dias').closest('section').scrollIntoView({behavior:'smooth'});
+  });
+  document.getElementById('withoutMusic').addEventListener('click', () => {
+    document.getElementById('cd-dias').closest('section').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Personalización por URL: ?invitado=Nombre&acompanantes=2
+  const params = new URLSearchParams(window.location.search);
+  const invitadoParam = params.get('invitado');
+  const acompParam = params.get('acompanantes');
+  if(invitadoParam){
+    const list = document.getElementById('invitadosList');
+    list.innerHTML = '';
+    const li = document.createElement('li');
+    li.textContent = invitadoParam;
+    list.appendChild(li);
+    const n = parseInt(acompParam || '0', 10);
+    for(let i=0; i<n; i++){
+      const li2 = document.createElement('li');
+      li2.textContent = 'Acompañante ' + (i+1);
+      list.appendChild(li2);
+    }
+    document.getElementById('rsvpNombre').value = invitadoParam;
+  }
+
+  // Modales
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = 'modal-' + btn.getAttribute('data-modal');
+      document.getElementById(id).classList.add('open');
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.modal-overlay').classList.remove('open');
+    });
+  });
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if(e.target === overlay) overlay.classList.remove('open');
+    });
+  });
+
+  // Agendar (descarga .ics simple)
+  document.querySelector('[data-cal]').addEventListener('click', () => {
+    const ics = [
+      'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
+      'DTSTART:20260912T203000','DTEND:20260913T020000',
+      'SUMMARY:Mis 15 — Matilda','LOCATION:Salón Alma, Devoto, CABA',
+      'END:VEVENT','END:VCALENDAR'
+    ].join('\n');
+    const blob = new Blob([ics], {type:'text/calendar'});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'mis-15-matilda.ics';
+    link.click();
+  });
+
+  // ====== ACÁ SE CONECTA GOOGLE SHEETS ======
+  // Reemplazar por la URL real del Google Apps Script cuando esté desplegado
+  const APPS_SCRIPT_URL = 'PEGAR_ACA_LA_URL_DEL_APPS_SCRIPT';
+
+  function enviarAGoogleSheets(payload, statusEl, successMsg){
+    statusEl.textContent = 'Enviando...';
+    if(APPS_SCRIPT_URL.includes('PEGAR_ACA')){
+      // Modo demo: todavía no hay backend conectado
+      setTimeout(() => {
+        statusEl.textContent = successMsg + ' (demo — falta conectar la Sheet real)';
+      }, 500);
+      return;
+    }
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {'Content-Type': 'text/plain'}
+    })
+    .then(() => { statusEl.textContent = successMsg; })
+    .catch(() => { statusEl.textContent = 'Hubo un error, probá de nuevo.'; });
+  }
+
+  document.getElementById('rsvpForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const payload = {
+      tipo: 'rsvp',
+      nombre: document.getElementById('rsvpNombre').value,
+      asistencia: document.getElementById('rsvpAsistencia').value,
+      acompanantes: document.getElementById('rsvpAcompanantes').value
+    };
+    enviarAGoogleSheets(payload, document.getElementById('rsvpStatus'), 'Gracias, quedó confirmado.');
+  });
+
+  document.getElementById('cancionForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const payload = {
+      tipo: 'cancion',
+      nombre: document.getElementById('cancionNombre').value,
+      tema: document.getElementById('cancionTema').value
+    };
+    enviarAGoogleSheets(payload, document.getElementById('cancionStatus'), 'Gracias por la sugerencia.');
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
