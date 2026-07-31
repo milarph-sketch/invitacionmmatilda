@@ -7,6 +7,8 @@
 <title>MILAR — Fotografía & Video</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Josefin+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
   :root{
     color-scheme: light;
@@ -16,6 +18,7 @@
     --cream: #F7F1EC;
     --pale-rose: #E8D2D0;
     --line: rgba(36,27,27,0.15);
+    --gold-zona: #B98A6C;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -108,6 +111,12 @@
 
   .zonas{ display:flex; flex-wrap:wrap; gap: 10px; }
   .zona-pill{ border: 1px solid var(--rose); color: var(--rose-deep); font-size: 11px; text-transform:uppercase; letter-spacing:0.1em; padding: 8px 16px; }
+  .mapa-leyenda{ display:flex; flex-wrap:wrap; gap: 18px; margin: 22px 0 18px; }
+  .mapa-leyenda span{ display:flex; align-items:center; gap: 7px; font-size: 12px; opacity:0.75; }
+  .mapa-leyenda i{ width: 10px; height: 10px; border-radius: 50%; display:inline-block; }
+  #mapa-zonas{ height: 380px; width: 100%; border: 1px solid var(--line); }
+  .leaflet-popup-content-wrapper{ border-radius:0; font-family:'Josefin Sans', sans-serif; }
+  .leaflet-popup-content{ margin: 10px 14px; font-size: 13px; }
 
   .contacto{ background: var(--rose); color: var(--cream); }
   .contacto .eyebrow{ color: var(--pale-rose); }
@@ -208,8 +217,8 @@
 
 <section class="reveal">
   <div class="section-head">
-    <div class="eyebrow">Qué incluyo</div>
-    <div class="section-title">Servicios</div>
+    <div class="eyebrow">Qué hago</div>
+    <div class="section-title">Servicios ofrecidos</div>
   </div>
   <div class="servicios-list">
     <div class="servicio-item">
@@ -241,6 +250,7 @@
       <p class="servicio-item-desc">Un clip corto con los mejores momentos de la noche, para revivir el cierre de la fiesta.</p>
     </div>
   </div>
+  <p class="portfolio-hint">Cada Colección incluye una combinación distinta de estos servicios — consultá cuál te conviene por WhatsApp.</p>
 </section>
 
 <section class="reveal">
@@ -293,6 +303,12 @@
     <div class="zona-pill">Zona Norte</div>
     <div class="zona-pill">Zona Oeste</div>
   </div>
+  <div class="mapa-leyenda">
+    <span><i style="background:var(--rose)"></i> CABA</span>
+    <span><i style="background:var(--rose-deep)"></i> Zona Norte</span>
+    <span><i style="background:var(--gold-zona)"></i> Zona Oeste</span>
+  </div>
+  <div id="mapa-zonas"></div>
 </section>
 
 <section class="contacto reveal">
@@ -332,6 +348,92 @@
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   reveals.forEach(r => io.observe(r));
+
+  // ---------- MAPA DE ZONAS ----------
+  const localidades = [
+    // CABA
+    {n:"Palermo", z:"caba", lat:-34.5744, lng:-58.4171},
+    {n:"Recoleta", z:"caba", lat:-34.5875, lng:-58.3933},
+    {n:"Belgrano", z:"caba", lat:-34.5627, lng:-58.4583},
+    {n:"Núñez", z:"caba", lat:-34.5453, lng:-58.4633},
+    {n:"Colegiales", z:"caba", lat:-34.5744, lng:-58.4508},
+    {n:"Chacarita", z:"caba", lat:-34.5850, lng:-58.4547},
+    {n:"Villa Crespo", z:"caba", lat:-34.5989, lng:-58.4386},
+    {n:"Caballito", z:"caba", lat:-34.6178, lng:-58.4386},
+    {n:"Villa Urquiza", z:"caba", lat:-34.5697, lng:-58.4914},
+    {n:"Saavedra", z:"caba", lat:-34.5522, lng:-58.4889},
+    {n:"Coghlan", z:"caba", lat:-34.5622, lng:-58.4736},
+    {n:"Devoto", z:"caba", lat:-34.5978, lng:-58.5211},
+    {n:"Villa del Parque", z:"caba", lat:-34.6011, lng:-58.4956},
+    {n:"Agronomía", z:"caba", lat:-34.5911, lng:-58.4894},
+    {n:"Paternal", z:"caba", lat:-34.5978, lng:-58.4694},
+    {n:"Almagro", z:"caba", lat:-34.6089, lng:-58.4211},
+    {n:"Boedo", z:"caba", lat:-34.6294, lng:-58.4178},
+    {n:"Parque Chas", z:"caba", lat:-34.5883, lng:-58.4783},
+    {n:"Puerto Madero", z:"caba", lat:-34.6083, lng:-58.3628},
+    {n:"Retiro (eventos)", z:"caba", lat:-34.5925, lng:-58.3747},
+    // ZONA NORTE
+    {n:"Vicente López", z:"norte", lat:-34.5267, lng:-58.4783},
+    {n:"Olivos", z:"norte", lat:-34.5083, lng:-58.4767},
+    {n:"La Lucila", z:"norte", lat:-34.4931, lng:-58.4894},
+    {n:"Florida", z:"norte", lat:-34.5347, lng:-58.4894},
+    {n:"Munro", z:"norte", lat:-34.5322, lng:-58.5153},
+    {n:"San Isidro", z:"norte", lat:-34.4708, lng:-58.5122},
+    {n:"Martínez", z:"norte", lat:-34.4894, lng:-58.5058},
+    {n:"Acassuso", z:"norte", lat:-34.4808, lng:-58.5069},
+    {n:"Beccar", z:"norte", lat:-34.4675, lng:-58.5439},
+    {n:"San Fernando", z:"norte", lat:-34.4444, lng:-58.5589},
+    {n:"Victoria", z:"norte", lat:-34.4508, lng:-58.5544},
+    {n:"Tigre", z:"norte", lat:-34.4264, lng:-58.5797},
+    {n:"Rincón de Milberg", z:"norte", lat:-34.4064, lng:-58.6111},
+    {n:"Nordelta", z:"norte", lat:-34.4025, lng:-58.6572},
+    {n:"Benavídez", z:"norte", lat:-34.4014, lng:-58.6667},
+    {n:"General Pacheco", z:"norte", lat:-34.4667, lng:-58.6386},
+    {n:"Don Torcuato", z:"norte", lat:-34.5017, lng:-58.6236},
+    {n:"Pilar", z:"norte", lat:-34.4586, lng:-58.9142},
+    {n:"Escobar", z:"norte", lat:-34.3486, lng:-58.7928},
+    {n:"Ingeniero Maschwitz", z:"norte", lat:-34.3789, lng:-58.7333},
+    {n:"Tortuguitas", z:"norte", lat:-34.4444, lng:-58.7364},
+    {n:"Garín", z:"norte", lat:-34.4067, lng:-58.7517},
+    {n:"Del Viso", z:"norte", lat:-34.3808, lng:-58.7969},
+    // ZONA OESTE
+    {n:"Ramos Mejía", z:"oeste", lat:-34.6497, lng:-58.5642},
+    {n:"Haedo", z:"oeste", lat:-34.6461, lng:-58.5875},
+    {n:"Morón", z:"oeste", lat:-34.6531, lng:-58.6197},
+    {n:"Castelar", z:"oeste", lat:-34.6503, lng:-58.6511},
+    {n:"Ituzaingó", z:"oeste", lat:-34.6597, lng:-58.6714},
+    {n:"Parque Leloir", z:"oeste", lat:-34.6297, lng:-58.7050},
+    {n:"Hurlingham", z:"oeste", lat:-34.5978, lng:-58.6383},
+    {n:"El Palomar", z:"oeste", lat:-34.6014, lng:-58.6011},
+    {n:"Caseros", z:"oeste", lat:-34.6169, lng:-58.5628},
+    {n:"Ciudadela", z:"oeste", lat:-34.6083, lng:-58.5397},
+    {n:"San Miguel", z:"oeste", lat:-34.5439, lng:-58.7169},
+    {n:"Bella Vista", z:"oeste", lat:-34.5617, lng:-58.6764},
+    {n:"José C. Paz", z:"oeste", lat:-34.5136, lng:-58.7481},
+    {n:"Liniers", z:"oeste", lat:-34.6394, lng:-58.5228},
+  ];
+
+  const coloresZona = { caba:"#8B3A52", norte:"#6E2C41", oeste:"#B98A6C" };
+
+  const mapaEl = document.getElementById('mapa-zonas');
+  if(mapaEl && window.L){
+    const mapa = L.map('mapa-zonas', { scrollWheelZoom:false }).setView([-34.52, -58.62], 10);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap, © CARTO',
+      maxZoom: 18
+    }).addTo(mapa);
+
+    localidades.forEach(loc => {
+      L.circleMarker([loc.lat, loc.lng], {
+        radius: 6,
+        fillColor: coloresZona[loc.z],
+        color: '#fff',
+        weight: 1,
+        fillOpacity: 0.9
+      }).addTo(mapa).bindPopup(loc.n);
+    });
+  }
+
 </script>
 
 <!-- Script oficial de Instagram: transforma los <blockquote> de arriba en el embed real -->
