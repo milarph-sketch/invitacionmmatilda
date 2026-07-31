@@ -90,6 +90,12 @@
   .servicio-desc{ font-size: 14px; opacity:0.7; line-height:1.6; max-width: 420px; }
   .servicio-link{ font-size: 11px; text-transform:uppercase; letter-spacing:0.15em; color: var(--rose); border-bottom: 1px solid var(--rose); align-self:flex-start; padding-bottom:2px; text-decoration:none; }
 
+  .servicios-list{ display:flex; flex-direction:column; }
+  .servicio-item{ padding: 22px 0; border-bottom: 1px solid var(--line); display:flex; flex-direction:column; gap: 6px; }
+  .servicio-item:first-child{ border-top: 1px solid var(--line); }
+  .servicio-item-title{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 22px; color: var(--rose-deep); }
+  .servicio-item-desc{ font-size: 14px; opacity:0.7; line-height:1.6; max-width: 460px; }
+
   .insta-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 26px; gap: 20px; }
   .insta-handle{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 22px; color: var(--rose-deep); text-decoration:none; }
   .insta-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -125,6 +131,8 @@
     .portfolio-grid .framed{ width: 300px; }
     .servicios-grid{ flex-direction:row; }
     .servicio-card{ flex:1; }
+    .servicios-list{ display:grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+    .servicio-item:nth-child(2){ border-top: 1px solid var(--line); }
     footer{ padding: 40px 80px; }
   }
 </style>
@@ -196,6 +204,43 @@
     <div class="framed" data-cat="bodas" style="display:none;"><div class="portfolio-proximamente" style="width:260px;">Próximamente</div></div>
   </div>
   <p class="portfolio-hint">Deslizá para ver más →</p>
+</section>
+
+<section class="reveal">
+  <div class="section-head">
+    <div class="eyebrow">Qué incluyo</div>
+    <div class="section-title">Servicios</div>
+  </div>
+  <div class="servicios-list">
+    <div class="servicio-item">
+      <div class="servicio-item-title">Book</div>
+      <p class="servicio-item-desc">Sesión de fotos posada, antes o después de la fiesta, en la locación que elijas.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-item-title">Fotolibro</div>
+      <p class="servicio-item-desc">Álbum impreso con una selección editada de tus mejores fotos.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-item-title">Invitación digital</div>
+      <p class="servicio-item-desc">Invitación web personalizada para compartir con tus invitados, con confirmación de asistencia incluida.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-item-title">Fotografía de evento</div>
+      <p class="servicio-item-desc">Cobertura fotográfica completa de tu fiesta, de principio a fin.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-item-title">Video de evento</div>
+      <p class="servicio-item-desc">Cobertura en video completa de tu fiesta, de principio a fin.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-item-title">Video cronológico</div>
+      <p class="servicio-item-desc">El resumen del día completo, editado en orden, tal como sucedió.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-item-title">Video fin de fiesta</div>
+      <p class="servicio-item-desc">Un clip corto con los mejores momentos de la noche, para revivir el cierre de la fiesta.</p>
+    </div>
+  </div>
 </section>
 
 <section class="reveal">
