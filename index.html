@@ -23,7 +23,6 @@
   a{ color:inherit; }
   .eyebrow{ text-transform: uppercase; letter-spacing: 0.3em; font-size: 11px; color: var(--rose); font-weight: 500; }
 
-  /* ---------- SIGNATURE: marco editorial offset (como una impresión montada) ---------- */
   .framed{ position:relative; padding: 10px; }
   .framed::before{
     content:'';
@@ -45,14 +44,12 @@
   }
   .ph.alt{ background: linear-gradient(155deg, var(--rose-deep), var(--pale-rose) 140%); }
 
-  /* ---------- NAV ---------- */
   nav{ display:flex; justify-content:space-between; align-items:center; padding: 28px 32px; }
   .logo-mark{ font-family:'Cormorant Garamond', serif; }
   .logo-mark .name{ font-size: 20px; letter-spacing: 0.04em; }
   .logo-mark .sub{ font-family:'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.45em; text-transform:uppercase; opacity:0.6; margin-top:2px; }
   .nav-cta{ font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; border-bottom: 1px solid var(--black); padding-bottom: 3px; text-decoration:none; }
 
-  /* ---------- HERO ---------- */
   .hero{ display:grid; grid-template-columns: 1fr; gap: 32px; padding: 32px 24px 56px; align-items:center; }
   .hero-copy{ order:1; }
   .hero-image{ order:2; aspect-ratio: 5/4; max-width: 340px; margin: 0 auto; width:100%; }
@@ -63,36 +60,34 @@
   .btn-primary{ display:inline-flex; align-items:center; gap:10px; background: var(--rose); color: var(--cream); padding: 16px 30px; font-size: 12px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none; }
   .btn-primary svg{ width:16px; height:16px; }
 
-  /* ---------- SECTION SHELL ---------- */
   section{ padding: 80px 32px; }
   .section-head{ margin-bottom: 44px; }
   .section-title{ font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:400; font-size: clamp(28px, 7vw, 40px); color: var(--rose-deep); margin-top: 10px; }
 
-  /* ---------- SOBRE MILAR ---------- */
   .about-grid{ display:grid; gap: 32px; }
   .about-text{ font-size: 16px; line-height:1.8; max-width: 460px; }
   .about-text strong{ color: var(--rose-deep); font-weight:500; }
   .about-quote{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 22px; color: var(--rose-deep); border-left: 2px solid var(--rose); padding-left: 20px; max-width: 340px; margin-top: 12px; }
 
-  /* ---------- PORTFOLIO ---------- */
   .portfolio-tabs{ display:flex; gap: 24px; margin-bottom: 30px; }
   .portfolio-tabs button{ background:none; border:none; font-family:'Josefin Sans', sans-serif; font-size: 12px; text-transform:uppercase; letter-spacing: 0.15em; color: var(--black); opacity:0.4; padding-bottom: 8px; border-bottom: 2px solid transparent; cursor:pointer; }
   .portfolio-tabs button.active{ opacity:1; color: var(--rose-deep); border-bottom-color: var(--rose); }
-  .portfolio-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 26px 20px; }
-  .portfolio-grid .framed:nth-child(3n+1){ grid-column: span 2; aspect-ratio: 16/10; }
-  .portfolio-grid .framed:not(:nth-child(3n+1)){ aspect-ratio: 3/4; }
+  .portfolio-grid{ display:flex; gap: 14px; overflow-x:auto; scroll-snap-type: x mandatory; padding: 6px 0 24px; -webkit-overflow-scrolling: touch; }
+  .portfolio-grid::-webkit-scrollbar{ height: 5px; }
+  .portfolio-grid::-webkit-scrollbar-thumb{ background: var(--pale-rose); }
+  .portfolio-grid .framed{ flex: 0 0 auto; width: 260px; aspect-ratio: 4/5; padding:0; scroll-snap-align: center; }
+  .portfolio-grid .framed::before{ display:none; }
+  .portfolio-hint{ font-size: 11px; opacity:0.5; letter-spacing:0.08em; margin-top: 14px; }
   .portfolio-proximamente{ border: 1px solid var(--line); padding: 50px 30px; text-align:center; }
   .portfolio-proximamente p{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 20px; color: var(--rose-deep); line-height:1.6; }
   .portfolio-proximamente p:first-child{ margin-bottom: 6px; }
 
-  /* ---------- SERVICIOS ---------- */
   .servicios-grid{ display:flex; flex-direction:column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .servicio-card{ background: var(--cream); padding: 34px 26px; display:flex; flex-direction:column; gap: 14px; }
   .servicio-tier{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 26px; color: var(--rose-deep); }
   .servicio-desc{ font-size: 14px; opacity:0.7; line-height:1.6; max-width: 420px; }
   .servicio-link{ font-size: 11px; text-transform:uppercase; letter-spacing:0.15em; color: var(--rose); border-bottom: 1px solid var(--rose); align-self:flex-start; padding-bottom:2px; text-decoration:none; }
 
-  /* ---------- INSTAGRAM ---------- */
   .insta-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 26px; gap: 20px; }
   .insta-handle{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 22px; color: var(--rose-deep); text-decoration:none; }
   .insta-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -103,11 +98,9 @@
     .insta-embed-grid{ grid-template-columns: repeat(3, 1fr); }
   }
 
-  /* ---------- ZONAS ---------- */
   .zonas{ display:flex; flex-wrap:wrap; gap: 10px; }
   .zona-pill{ border: 1px solid var(--rose); color: var(--rose-deep); font-size: 11px; text-transform:uppercase; letter-spacing:0.1em; padding: 8px 16px; }
 
-  /* ---------- CONTACTO / FOOTER ---------- */
   .contacto{ background: var(--rose); color: var(--cream); }
   .contacto .eyebrow{ color: var(--pale-rose); }
   .contacto .section-title{ color: var(--cream); }
@@ -127,8 +120,7 @@
     .hero-image{ order:2; max-width: 92%; aspect-ratio: 4/5; justify-self:end; }
     section{ padding: 110px 80px; }
     .about-grid{ grid-template-columns: 1.1fr 0.9fr; align-items:start; }
-    .portfolio-grid{ grid-template-columns: repeat(3, 1fr); }
-    .portfolio-grid .framed:nth-child(3n+1){ grid-column: span 2; }
+    .portfolio-grid .framed{ width: 300px; }
     .servicios-grid{ flex-direction:row; }
     .servicio-card{ flex:1; }
     footer{ padding: 40px 80px; }
@@ -158,7 +150,7 @@
     </a>
   </div>
   <div class="hero-image reveal is-visible">
-    <div class="framed"><div class="ph"></div></div>
+    <div class="framed"><img src="portfolio-book-1.jpg" alt="MILAR fotografía"></div>
   </div>
 </section>
 
@@ -184,7 +176,11 @@
     <button data-tab="bodas">Bodas</button>
   </div>
   <div class="portfolio-grid">
-    <div class="framed" data-cat="book" style="display:none;"><div class="portfolio-proximamente" style="grid-column:span 2;">Próximamente</div></div>
+    <div class="framed" data-cat="book"><img src="portfolio-book-1.jpg" alt="Book de quince años"></div>
+    <div class="framed" data-cat="book"><img src="portfolio-book-2.jpg" alt="Book de quince años"></div>
+    <div class="framed" data-cat="book"><img src="portfolio-book-3.jpg" alt="Book de quince años"></div>
+    <div class="framed" data-cat="book"><img src="portfolio-book-4.jpg" alt="Book de quince años"></div>
+    <div class="framed" data-cat="book"><img src="portfolio-book-5.jpg" alt="Book de quince años"></div>
     <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-1.jpg" alt="Fiesta de quince"></div>
     <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-2.jpg" alt="Fiesta de quince"></div>
     <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-3.jpg" alt="Fiesta de quince"></div>
@@ -193,8 +189,11 @@
     <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-6.jpg" alt="Fiesta de quince"></div>
     <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-7.jpg" alt="Fiesta de quince"></div>
     <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-8.jpg" alt="Fiesta de quince"></div>
-    <div class="framed" data-cat="bodas" style="display:none;"><div class="portfolio-proximamente" style="grid-column:span 2;">Próximamente</div></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-9.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-10.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="bodas" style="display:none;"><div class="portfolio-proximamente" style="width:260px;">Próximamente</div></div>
   </div>
+  <p class="portfolio-hint">Deslizá para ver más →</p>
 </section>
 
 <section class="reveal">
@@ -230,14 +229,6 @@
     <a class="insta-handle" href="https://www.instagram.com/milar.ph/" target="_blank" rel="noopener">Seguir →</a>
   </div>
 
-  <!-- ============================================================
-       PARA CAMBIAR LOS POSTS QUE SE MUESTRAN:
-       1. Andá al post en Instagram (desde la app o la web).
-       2. Click en los "..." → "Copiar enlace".
-       3. Pegá ese link reemplazando el que está en cada
-          data-instgrm-permalink="..." de abajo.
-       Podés tener 1, 2, 3 o más bloques — cada <blockquote> es un post.
-       ============================================================ -->
   <div class="insta-embed-grid">
     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C0000000000/" data-instgrm-version="14"></blockquote>
     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C0000000001/" data-instgrm-version="14"></blockquote>
