@@ -57,7 +57,7 @@
   .hero-copy{ order:1; }
   .hero-image .framed::before{ display:none; }
   .hero-image .framed{ padding:0; }
-  .hero-image{ order:2; aspect-ratio: 5/4; max-width: 340px; margin: 0 auto; width:100%; }
+  .hero-image{ order:2; aspect-ratio: 16/9; max-width: 420px; margin: 0 auto; width:100%; }
   .hero-title{ font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:400; font-size: clamp(44px, 13vw, 88px); line-height: 0.95; color: var(--rose-deep); margin: 14px 0 22px; }
   .hero-sub{ font-size: 15px; line-height:1.75; max-width: 460px; opacity:0.75; margin-bottom: 20px; }
   .hero-tagline{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 19px; color: var(--rose-deep); max-width: 440px; line-height:1.5; margin-bottom: 18px; }
@@ -66,6 +66,8 @@
   .btn-primary svg{ width:16px; height:16px; }
 
   section{ padding: 80px 32px; }
+  section:not(.hero):not(.contacto):nth-of-type(odd){ background: linear-gradient(165deg, var(--cream) 0%, var(--pale-rose) 150%); }
+  section:not(.hero):not(.contacto):nth-of-type(even){ background: linear-gradient(165deg, var(--pale-rose) 0%, var(--cream) 150%); }
   .section-head{ margin-bottom: 44px; }
   .section-title{ font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:400; font-size: clamp(28px, 7vw, 40px); color: var(--rose-deep); margin-top: 10px; }
 
@@ -118,6 +120,22 @@
   .leaflet-popup-content-wrapper{ border-radius:0; font-family:'Josefin Sans', sans-serif; }
   .leaflet-popup-content{ margin: 10px 14px; font-size: 13px; }
 
+  .faq-list{ max-width: 700px; }
+  .faq-item{ border-bottom: 1px solid var(--line); padding: 20px 0; }
+  .faq-item:first-child{ border-top: 1px solid var(--line); }
+  .faq-item summary{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 19px;
+    color: var(--rose-deep); cursor:pointer; list-style:none; position:relative; padding-right: 30px;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{
+    content:'+'; position:absolute; right:0; top:0; font-family:'Josefin Sans', sans-serif;
+    font-size: 20px; color: var(--rose); transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary::after{ content:'—'; }
+  .faq-item p{ font-size: 14px; line-height:1.7; opacity:0.75; margin-top: 12px; max-width: 560px; }
+  .faq-item p + p{ margin-top: 8px; }
+
   .contacto{ background: var(--rose); color: var(--cream); }
   .contacto .eyebrow{ color: var(--pale-rose); }
   .contacto .section-title{ color: var(--cream); }
@@ -134,7 +152,7 @@
   @media (min-width: 860px){
     .hero{ grid-template-columns: 1.05fr 0.95fr; gap: 70px; padding: 20px 80px 110px; min-height: 84vh; align-items:center; }
     .hero-copy{ order:1; }
-    .hero-image{ order:2; max-width: 92%; aspect-ratio: 4/5; justify-self:end; }
+    .hero-image{ order:2; max-width: 100%; aspect-ratio: 16/10; justify-self:end; }
     section{ padding: 110px 80px; }
     .about-grid{ grid-template-columns: 1.1fr 0.9fr; align-items:start; }
     .portfolio-grid .framed{ width: 300px; }
@@ -169,7 +187,7 @@
     </a>
   </div>
   <div class="hero-image reveal is-visible">
-    <div class="framed"><img src="portfolio-book-1.jpg" alt="MILAR fotografía"></div>
+    <div class="framed"><img src="hero-photo.jpg" alt="MILAR fotografía"></div>
   </div>
 </section>
 
@@ -311,6 +329,53 @@
   <div id="mapa-zonas"></div>
 </section>
 
+<section class="reveal">
+  <div class="section-head">
+    <div class="eyebrow">Antes de escribirme</div>
+    <div class="section-title">Preguntas frecuentes</div>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>¿Cómo reservo la fecha?</summary>
+      <p>La fecha queda reservada con una seña del 30% del valor total. Una vez acreditada, el evento queda confirmado en mi agenda y comienza la planificación de la cobertura.</p>
+      <p>La seña corresponde a la primera cuota y no es reembolsable.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Con cuánta anticipación hay que reservar?</summary>
+      <p>Lo ideal es reservar con 6 a 12 meses de anticipación, especialmente para eventos entre septiembre y diciembre, ya que las fechas suelen completarse rápidamente.</p>
+      <p>Si tu evento es dentro de un plazo menor, escribime igualmente para consultar disponibilidad.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Cómo es la forma de pago?</summary>
+      <p>La reserva se realiza con una seña del 30% y el saldo puede abonarse en cuotas consecutivas, adaptadas al tiempo que falte para el evento.</p>
+      <p>El servicio deberá estar abonado en su totalidad antes de la fecha del evento.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Qué incluyen los paquetes?</summary>
+      <p>Cada evento es único, por eso cuento con diferentes opciones de cobertura. Todos los paquetes incluyen edición profesional del material y asesoramiento previo para que elijas la opción que mejor se adapte a lo que estás buscando.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Qué zonas cubrís?</summary>
+      <p>Trabajo en CABA (zonas seleccionadas), Zona Norte y Zona Oeste.</p>
+      <p>Si tu evento se realiza fuera de estas zonas, consultame. Dependiendo de la ubicación, puede aplicarse un costo adicional por traslado.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Trabajás sola o con un equipo?</summary>
+      <p>Depende del servicio contratado. En coberturas fotográficas puedo trabajar de manera individual, mientras que en los paquetes que incluyen video o en eventos de mayor magnitud trabajo junto a un equipo de profesionales para garantizar una cobertura completa.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Cuánto tarda la entrega del material?</summary>
+      <p>El material se entrega en un plazo máximo de 35 días hábiles a partir del evento.</p>
+      <p>Cada fotografía y video pasa por un proceso de selección y edición para asegurar un resultado cuidado y de la mejor calidad.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Qué pasa si necesito cambiar la fecha del evento?</summary>
+      <p>Si el evento se reprograma y la nueva fecha se encuentra disponible en mi agenda, la reserva se traslada sin inconvenientes.</p>
+      <p>En caso de no tener disponibilidad para la nueva fecha, la seña no podrá reintegrarse, ya que la fecha original permaneció reservada exclusivamente para ese evento.</p>
+    </details>
+  </div>
+</section>
+
 <section class="contacto reveal">
   <div class="eyebrow">Contacto</div>
   <div class="section-title">Contame de tu evento</div>
@@ -364,6 +429,12 @@
     {n:"Saavedra", z:"caba", lat:-34.5522, lng:-58.4889},
     {n:"Coghlan", z:"caba", lat:-34.5622, lng:-58.4736},
     {n:"Devoto", z:"caba", lat:-34.5978, lng:-58.5211},
+    {n:"Monte Castro", z:"caba", lat:-34.6167, lng:-58.5089},
+    {n:"Versalles", z:"caba", lat:-34.6172, lng:-58.5306},
+    {n:"Villa Real", z:"caba", lat:-34.6178, lng:-58.5217},
+    {n:"Floresta", z:"caba", lat:-34.6294, lng:-58.4972},
+    {n:"Vélez Sarsfield", z:"caba", lat:-34.6350, lng:-58.5028},
+    {n:"Villa Luro", z:"caba", lat:-34.6383, lng:-58.5019},
     {n:"Villa del Parque", z:"caba", lat:-34.6011, lng:-58.4956},
     {n:"Agronomía", z:"caba", lat:-34.5911, lng:-58.4894},
     {n:"Paternal", z:"caba", lat:-34.5978, lng:-58.4694},
