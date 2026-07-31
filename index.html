@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>MILAR — Fotografía & Video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Josefin+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --rose: #8B3A52;
+    --rose-deep: #6E2C41;
+    --black: #241B1B;
+    --cream: #F7F1EC;
+    --pale-rose: #E8D2D0;
+    --line: rgba(36,27,27,0.15);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background: var(--cream); color: var(--black); font-family:'Josefin Sans', sans-serif; font-weight:300; overflow-x:hidden; }
+  a{ color:inherit; }
+  .eyebrow{ text-transform: uppercase; letter-spacing: 0.3em; font-size: 11px; color: var(--rose); font-weight: 500; }
+
+  /* ---------- SIGNATURE: marco editorial offset (como una impresión montada) ---------- */
+  .framed{ position:relative; padding: 10px; }
+  .framed::before{
+    content:'';
+    position:absolute; inset:0;
+    border: 1px solid var(--rose);
+    transform: translate(8px, 8px);
+    z-index:0;
+  }
+  .framed > *{ position:relative; z-index:1; display:block; width:100%; height:100%; object-fit:cover; }
+
+  .ph{ background: linear-gradient(155deg, var(--pale-rose), var(--rose) 140%); position:relative; }
+  .ph::after{
+    content:'';
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width: 68px; height: 68px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='47' fill='none' stroke='white' stroke-opacity='0.65' stroke-width='1'/%3E%3Ctext x='50' y='53' font-family='Georgia, serif' font-style='italic' font-size='15' fill='white' fill-opacity='0.85' text-anchor='middle'%3EMI/LAR%3C/text%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .ph.alt{ background: linear-gradient(155deg, var(--rose-deep), var(--pale-rose) 140%); }
+
+  /* ---------- NAV ---------- */
+  nav{ display:flex; justify-content:space-between; align-items:center; padding: 28px 32px; }
+  .logo-mark{ font-family:'Cormorant Garamond', serif; }
+  .logo-mark .name{ font-size: 20px; letter-spacing: 0.04em; }
+  .logo-mark .sub{ font-family:'Josefin Sans', sans-serif; font-size: 9px; letter-spacing: 0.45em; text-transform:uppercase; opacity:0.6; margin-top:2px; }
+  .nav-cta{ font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; border-bottom: 1px solid var(--black); padding-bottom: 3px; text-decoration:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{ display:grid; grid-template-columns: 1fr; gap: 32px; padding: 32px 24px 56px; align-items:center; }
+  .hero-copy{ order:1; }
+  .hero-image{ order:2; aspect-ratio: 5/4; max-width: 340px; margin: 0 auto; width:100%; }
+  .hero-title{ font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:400; font-size: clamp(44px, 13vw, 88px); line-height: 0.95; color: var(--rose-deep); margin: 14px 0 22px; }
+  .hero-sub{ font-size: 15px; line-height:1.75; max-width: 460px; opacity:0.75; margin-bottom: 20px; }
+  .hero-tagline{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 19px; color: var(--rose-deep); max-width: 440px; line-height:1.5; margin-bottom: 18px; }
+  .hero-sub:last-of-type{ margin-bottom: 32px; }
+  .btn-primary{ display:inline-flex; align-items:center; gap:10px; background: var(--rose); color: var(--cream); padding: 16px 30px; font-size: 12px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none; }
+  .btn-primary svg{ width:16px; height:16px; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding: 80px 32px; }
+  .section-head{ margin-bottom: 44px; }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:400; font-size: clamp(28px, 7vw, 40px); color: var(--rose-deep); margin-top: 10px; }
+
+  /* ---------- SOBRE MILAR ---------- */
+  .about-grid{ display:grid; gap: 32px; }
+  .about-text{ font-size: 16px; line-height:1.8; max-width: 460px; }
+  .about-text strong{ color: var(--rose-deep); font-weight:500; }
+  .about-quote{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 22px; color: var(--rose-deep); border-left: 2px solid var(--rose); padding-left: 20px; max-width: 340px; margin-top: 12px; }
+
+  /* ---------- PORTFOLIO ---------- */
+  .portfolio-tabs{ display:flex; gap: 24px; margin-bottom: 30px; }
+  .portfolio-tabs button{ background:none; border:none; font-family:'Josefin Sans', sans-serif; font-size: 12px; text-transform:uppercase; letter-spacing: 0.15em; color: var(--black); opacity:0.4; padding-bottom: 8px; border-bottom: 2px solid transparent; cursor:pointer; }
+  .portfolio-tabs button.active{ opacity:1; color: var(--rose-deep); border-bottom-color: var(--rose); }
+  .portfolio-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 26px 20px; }
+  .portfolio-grid .framed:nth-child(3n+1){ grid-column: span 2; aspect-ratio: 16/10; }
+  .portfolio-grid .framed:not(:nth-child(3n+1)){ aspect-ratio: 3/4; }
+  .portfolio-proximamente{ border: 1px solid var(--line); padding: 50px 30px; text-align:center; }
+  .portfolio-proximamente p{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 20px; color: var(--rose-deep); line-height:1.6; }
+  .portfolio-proximamente p:first-child{ margin-bottom: 6px; }
+
+  /* ---------- SERVICIOS ---------- */
+  .servicios-grid{ display:flex; flex-direction:column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .servicio-card{ background: var(--cream); padding: 34px 26px; display:flex; flex-direction:column; gap: 14px; }
+  .servicio-tier{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 26px; color: var(--rose-deep); }
+  .servicio-desc{ font-size: 14px; opacity:0.7; line-height:1.6; max-width: 420px; }
+  .servicio-link{ font-size: 11px; text-transform:uppercase; letter-spacing:0.15em; color: var(--rose); border-bottom: 1px solid var(--rose); align-self:flex-start; padding-bottom:2px; text-decoration:none; }
+
+  /* ---------- INSTAGRAM ---------- */
+  .insta-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 26px; gap: 20px; }
+  .insta-handle{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 22px; color: var(--rose-deep); text-decoration:none; }
+  .insta-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .insta-grid .ph{ aspect-ratio:1; }
+  .insta-embed-grid{ display:grid; grid-template-columns: 1fr; gap: 20px; }
+  .insta-embed-grid iframe{ margin: 0 auto !important; }
+  @media (min-width: 700px){
+    .insta-embed-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ---------- ZONAS ---------- */
+  .zonas{ display:flex; flex-wrap:wrap; gap: 10px; }
+  .zona-pill{ border: 1px solid var(--rose); color: var(--rose-deep); font-size: 11px; text-transform:uppercase; letter-spacing:0.1em; padding: 8px 16px; }
+
+  /* ---------- CONTACTO / FOOTER ---------- */
+  .contacto{ background: var(--rose); color: var(--cream); }
+  .contacto .eyebrow{ color: var(--pale-rose); }
+  .contacto .section-title{ color: var(--cream); }
+  .contacto-sub{ font-size: 15px; opacity:0.8; max-width: 380px; line-height:1.7; margin: 16px 0 30px; }
+  .btn-light{ display:inline-flex; align-items:center; gap:10px; background: var(--cream); color: var(--rose-deep); padding: 16px 30px; font-size: 12px; text-transform:uppercase; letter-spacing:0.15em; text-decoration:none; }
+  .btn-light svg{ width:16px; height:16px; }
+
+  footer{ padding: 40px 32px; display:flex; justify-content:space-between; align-items:center; font-size: 11px; letter-spacing:0.05em; opacity:0.55; flex-wrap:wrap; gap:10px; }
+
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+  @media (min-width: 860px){
+    .hero{ grid-template-columns: 1.05fr 0.95fr; gap: 70px; padding: 20px 80px 110px; min-height: 84vh; align-items:center; }
+    .hero-copy{ order:1; }
+    .hero-image{ order:2; max-width: 92%; aspect-ratio: 4/5; justify-self:end; }
+    section{ padding: 110px 80px; }
+    .about-grid{ grid-template-columns: 1.1fr 0.9fr; align-items:start; }
+    .portfolio-grid{ grid-template-columns: repeat(3, 1fr); }
+    .portfolio-grid .framed:nth-child(3n+1){ grid-column: span 2; }
+    .servicios-grid{ flex-direction:row; }
+    .servicio-card{ flex:1; }
+    footer{ padding: 40px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-mark">
+    <div class="name">MILAR</div>
+    <div class="sub">f o t o g r a f í a</div>
+  </div>
+  <a class="nav-cta" href="https://wa.me/5491176121971?text=Hola%20Mili%2C%20vi%20tu%20web%20y%20quer%C3%ADa%20consultar" target="_blank" rel="noopener">WhatsApp</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-copy reveal is-visible">
+    <div class="eyebrow">Fotografía & video · Buenos Aires</div>
+    <h1 class="hero-title">MILAR</h1>
+    <p class="hero-tagline">Fotografía con una mirada editorial, pero con la emoción de un recuerdo real.</p>
+    <p class="hero-sub">No fotografío solo un evento. Documento una historia que va a quedar con vos para siempre.</p>
+    <p class="hero-sub">Especializada en quinceañeras y bodas, con una mirada natural, elegante y atenta a los detalles, en CABA, Zona Norte y Zona Oeste.</p>
+    <a class="btn-primary" href="https://wa.me/5491176121971?text=Hola%20Mili%2C%20vi%20tu%20web%20y%20quer%C3%ADa%20consultar" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3C8.6 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
+      Quiero más información
+    </a>
+  </div>
+  <div class="hero-image reveal is-visible">
+    <div class="framed"><div class="ph"></div></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="section-head">
+    <div class="eyebrow">Cómo trabajo</div>
+    <div class="section-title">Así trabajo</div>
+  </div>
+  <div class="about-grid">
+    <p class="about-text">Cada cobertura empieza mucho antes del evento. Pienso la luz, los tiempos, los espacios y esos momentos que no se pueden repetir. Mi objetivo es que disfrutes tu fiesta mientras yo me ocupo de convertirla en recuerdos que sigan emocionando muchos años después.</p>
+    <p class="about-quote">"Quiero que, cuando vuelvas a estas fotos dentro de diez años, sientas exactamente lo que viviste esa noche."</p>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="section-head">
+    <div class="eyebrow">Portfolio</div>
+    <div class="section-title">Trabajos recientes</div>
+  </div>
+  <div class="portfolio-tabs">
+    <button data-tab="book">Book</button>
+    <button class="active" data-tab="fiesta">Fiesta</button>
+    <button data-tab="bodas">Bodas</button>
+  </div>
+  <div class="portfolio-grid">
+    <div class="framed" data-cat="book" style="display:none;"><div class="portfolio-proximamente" style="grid-column:span 2;">Próximamente</div></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-1.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-2.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-3.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-4.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-5.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-6.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-7.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="fiesta"><img src="portfolio-fiesta-8.jpg" alt="Fiesta de quince"></div>
+    <div class="framed" data-cat="bodas" style="display:none;"><div class="portfolio-proximamente" style="grid-column:span 2;">Próximamente</div></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="section-head">
+    <div class="eyebrow">Elegí tu experiencia</div>
+    <div class="section-title">Colecciones</div>
+  </div>
+  <div class="servicios-grid">
+    <div class="servicio-card">
+      <div class="servicio-tier">Esencial</div>
+      <p class="servicio-desc">Ideal para quienes quieren conservar cada momento importante con una cobertura fotográfica completa y una edición cuidada, lista para volver a vivir ese día una y otra vez.</p>
+      <a class="servicio-link" href="https://wa.me/5491176121971?text=Hola%20Mili%2C%20quer%C3%ADa%20consultar%20por%20el%20paquete%20Esencial" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-tier">Clásico</div>
+      <p class="servicio-desc">La combinación perfecta de fotografía y video para recordar no solo cómo se veía ese día, sino también cómo se sintió.</p>
+      <a class="servicio-link" href="https://wa.me/5491176121971?text=Hola%20Mili%2C%20quer%C3%ADa%20consultar%20por%20el%20paquete%20Cl%C3%A1sico" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-tier">Premium</div>
+      <p class="servicio-desc">La experiencia más completa. Equipo doble, dirección de arte y una cobertura pensada para que ningún detalle pase desapercibido.</p>
+      <a class="servicio-link" href="https://wa.me/5491176121971?text=Hola%20Mili%2C%20quer%C3%ADa%20consultar%20por%20el%20paquete%20Premium" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="insta-head">
+    <div>
+      <div class="eyebrow">Instagram</div>
+      <div class="section-title">@milar.ph</div>
+    </div>
+    <a class="insta-handle" href="https://www.instagram.com/milar.ph/" target="_blank" rel="noopener">Seguir →</a>
+  </div>
+
+  <!-- ============================================================
+       PARA CAMBIAR LOS POSTS QUE SE MUESTRAN:
+       1. Andá al post en Instagram (desde la app o la web).
+       2. Click en los "..." → "Copiar enlace".
+       3. Pegá ese link reemplazando el que está en cada
+          data-instgrm-permalink="..." de abajo.
+       Podés tener 1, 2, 3 o más bloques — cada <blockquote> es un post.
+       ============================================================ -->
+  <div class="insta-embed-grid">
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C0000000000/" data-instgrm-version="14"></blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C0000000001/" data-instgrm-version="14"></blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C0000000002/" data-instgrm-version="14"></blockquote>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="section-head">
+    <div class="eyebrow">Cobertura</div>
+    <div class="section-title">Zonas donde trabajo</div>
+  </div>
+  <div class="zonas">
+    <div class="zona-pill">CABA</div>
+    <div class="zona-pill">Zona Norte</div>
+    <div class="zona-pill">Zona Oeste</div>
+  </div>
+</section>
+
+<section class="contacto reveal">
+  <div class="eyebrow">Contacto</div>
+  <div class="section-title">Contame de tu evento</div>
+  <p class="contacto-sub">Escribime por WhatsApp con la fecha y el lugar, y te cuento la disponibilidad y los paquetes.</p>
+  <a class="btn-light" href="https://wa.me/5491176121971?text=Hola%20Mili%2C%20vi%20tu%20web%20y%20quer%C3%ADa%20consultar" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3C8.6 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
+    Escribime por WhatsApp
+  </a>
+</section>
+
+<footer>
+  <div>MILAR fotografía © 2026</div>
+  <div>CABA · Buenos Aires</div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.portfolio-tabs button');
+  const items = document.querySelectorAll('.portfolio-grid .framed');
+  function filtrarPortfolio(cat){
+    items.forEach(item => {
+      item.style.display = (item.getAttribute('data-cat') === cat) ? '' : 'none';
+    });
+  }
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filtrarPortfolio(btn.getAttribute('data-tab'));
+    });
+  });
+  filtrarPortfolio('fiesta');
+
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+<!-- Script oficial de Instagram: transforma los <blockquote> de arriba en el embed real -->
+<script async src="//www.instagram.com/embed.js"></script>
+
+</body>
+</html>
