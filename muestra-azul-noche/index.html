@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MILAR — Invitación Digital · Gala de Medianoche</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep: #0A1830;
+    --navy-mid: #123058;
+    --navy-light: #1F4374;
+    --navy: #14294C;
+    --navy-panel: #17335C;
+    --platinum: #E4EAF5;
+    --platinum-dim: #93A3BD;
+    --gold: #B9975B;
+    --gold-bright: #D9BC82;
+    --line: rgba(228,234,245,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background-color: var(--navy-mid);
+    background-image:
+      radial-gradient(1.3px 1.3px at 6% 8%, rgba(228,234,245,0.85), transparent),
+      radial-gradient(1px 1px at 18% 4%, rgba(228,234,245,0.5), transparent),
+      radial-gradient(1.4px 1.4px at 30% 14%, rgba(228,234,245,0.8), transparent),
+      radial-gradient(1px 1px at 42% 6%, rgba(228,234,245,0.45), transparent),
+      radial-gradient(1.3px 1.3px at 54% 18%, rgba(228,234,245,0.75), transparent),
+      radial-gradient(1px 1px at 66% 8%, rgba(228,234,245,0.5), transparent),
+      radial-gradient(1.4px 1.4px at 78% 16%, rgba(228,234,245,0.8), transparent),
+      radial-gradient(1px 1px at 90% 6%, rgba(228,234,245,0.45), transparent),
+      radial-gradient(1.3px 1.3px at 10% 24%, rgba(228,234,245,0.7), transparent),
+      radial-gradient(1px 1px at 24% 30%, rgba(228,234,245,0.4), transparent),
+      radial-gradient(1.4px 1.4px at 36% 22%, rgba(228,234,245,0.8), transparent),
+      radial-gradient(1px 1px at 48% 32%, rgba(228,234,245,0.45), transparent),
+      radial-gradient(1.3px 1.3px at 60% 26%, rgba(228,234,245,0.7), transparent),
+      radial-gradient(1px 1px at 72% 34%, rgba(228,234,245,0.4), transparent),
+      radial-gradient(1.4px 1.4px at 86% 28%, rgba(228,234,245,0.75), transparent),
+      radial-gradient(1px 1px at 4% 40%, rgba(228,234,245,0.45), transparent),
+      radial-gradient(1.3px 1.3px at 16% 44%, rgba(228,234,245,0.7), transparent),
+      radial-gradient(1px 1px at 94% 42%, rgba(228,234,245,0.4), transparent),
+      radial-gradient(circle at 50% 15%, rgba(185,151,91,0.06), transparent 45%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-mid) 45%, var(--navy-light) 100%);
+    background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat;
+    background-size: 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 460px 460px, 100% 100%, 100% 100%;
+    color: var(--platinum); font-family:'Jost', sans-serif; font-weight:300; overflow-x:hidden;
+  }
+  .serif{ font-family:'Marcellus', serif; }
+  .eyebrow{ text-transform: uppercase; letter-spacing: 0.35em; font-size: 11px; color: var(--gold); font-weight: 400; text-align:center; }
+
+  @keyframes drawline{ to{ stroke-dashoffset: 0; } }
+  @keyframes fadein{ to{ opacity:1; } }
+  @keyframes twinkle{ 0%,100%{ opacity:0.3;} 50%{ opacity:1;} }
+  @keyframes shoot{ 0%{ transform: translate(0,0); opacity:0;} 4%{ opacity:1;} 14%{ transform: translate(-160px,90px); opacity:0;} 100%{ transform: translate(-160px,90px); opacity:0;} }
+
+  .divider-flourish{ display:flex; align-items:center; justify-content:center; gap: 10px; margin: 22px auto; color: var(--gold); }
+  .divider-flourish::before, .divider-flourish::after{ content:''; width: 20px; height:1px; background: var(--gold); }
+  .constellation-tiny{ width: 30px; height: 12px; }
+
+  .portada{ min-height: 100svh; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 60px 28px; overflow:hidden;
+    background:
+      radial-gradient(1.2px 1.2px at 8% 12%, rgba(228,234,245,0.85), transparent),
+      radial-gradient(1px 1px at 22% 6%, rgba(228,234,245,0.5), transparent),
+      radial-gradient(1.4px 1.4px at 38% 16%, rgba(228,234,245,0.8), transparent),
+      radial-gradient(1px 1px at 52% 4%, rgba(228,234,245,0.45), transparent),
+      radial-gradient(1.2px 1.2px at 68% 20%, rgba(228,234,245,0.7), transparent),
+      radial-gradient(1px 1px at 82% 8%, rgba(228,234,245,0.5), transparent),
+      radial-gradient(1.4px 1.4px at 94% 24%, rgba(228,234,245,0.75), transparent),
+      radial-gradient(1px 1px at 5% 32%, rgba(228,234,245,0.45), transparent),
+      radial-gradient(1.2px 1.2px at 18% 42%, rgba(228,234,245,0.7), transparent),
+      radial-gradient(1px 1px at 33% 30%, rgba(228,234,245,0.4), transparent),
+      radial-gradient(1.4px 1.4px at 47% 44%, rgba(228,234,245,0.8), transparent),
+      radial-gradient(1px 1px at 61% 34%, rgba(228,234,245,0.45), transparent),
+      radial-gradient(1.2px 1.2px at 76% 46%, rgba(228,234,245,0.7), transparent),
+      radial-gradient(1px 1px at 90% 38%, rgba(228,234,245,0.5), transparent),
+      radial-gradient(1.4px 1.4px at 12% 58%, rgba(228,234,245,0.75), transparent),
+      radial-gradient(1px 1px at 27% 66%, rgba(228,234,245,0.4), transparent),
+      radial-gradient(1.2px 1.2px at 43% 56%, rgba(228,234,245,0.65), transparent),
+      radial-gradient(1px 1px at 58% 68%, rgba(228,234,245,0.45), transparent),
+      radial-gradient(1.4px 1.4px at 72% 60%, rgba(228,234,245,0.8), transparent),
+      radial-gradient(1px 1px at 86% 70%, rgba(228,234,245,0.4), transparent),
+      radial-gradient(circle at 50% 30%, rgba(185,151,91,0.08), transparent 55%),
+      var(--navy-deep);
+    background-size: 620px 620px; }
+
+  .shooting-star{ position:absolute; top:18%; right:12%; width:2px; height:2px; z-index:1; }
+  .shooting-star::before{ content:''; position:absolute; width:70px; height:1px; background: linear-gradient(to left, rgba(217,188,130,0.9), transparent); transform: rotate(28deg); animation: shoot 9s ease-in infinite; animation-delay: 3s; }
+
+  /* ---- Marco de esquinas, simple y elegante ---- */
+  .frame-corner{ position:absolute; width: 54px; height: 54px; z-index:1; opacity: 0.75; }
+  .frame-corner.tl{ top: 26px; left: 26px; }
+  .frame-corner.tr{ top: 26px; right: 26px; transform: scaleX(-1); }
+  .frame-corner.bl{ bottom: 26px; left: 26px; transform: scaleY(-1); }
+  .frame-corner.br{ bottom: 26px; right: 26px; transform: scale(-1,-1); }
+
+  .content-wrap{ position:relative; z-index:2; }
+
+  .seal{ width: 76px; height: 76px; margin: 0 auto 22px; position:relative; z-index:2; }
+
+  .brand-mark-top{ font-family:'Marcellus', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.25em; margin-bottom: 8px; text-transform: uppercase; position:relative; z-index:2; }
+  .portada-welcome{ font-size: 13px; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 6px; position:relative; z-index:2; }
+  .portada-title{ font-family:'Marcellus', serif; font-weight: 400; font-size: clamp(46px, 11vw, 72px); color: var(--platinum); line-height: 1.05; letter-spacing: 0.01em; position:relative; z-index:2; }
+  .portada-sub{ font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 16px; opacity: 0.55; display:flex; align-items:center; justify-content:center; gap:8px; position:relative; z-index:2; }
+  .music-choice{ margin-top: 46px; display:flex; gap: 18px; position:relative; z-index:2; }
+  .music-choice button{ font-family:'Jost', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 22px; border: 1px solid var(--gold); background: transparent; color: var(--platinum); cursor:pointer; }
+  .music-choice button.solid{ background: var(--gold); color: var(--navy-deep); border-color: var(--gold); }
+
+  section{ padding: 90px 28px; text-align:center; position:relative; }
+  .section-title{ font-family:'Marcellus', serif; font-weight:400; font-size: clamp(28px, 6.5vw, 40px); color: var(--platinum); margin-bottom: 6px; }
+  .section-sub{ font-size: 14px; opacity: 0.55; max-width: 380px; margin: 0 auto 40px; line-height:1.6; }
+
+  .countdown-grid{ display:flex; justify-content:center; gap: 14px; flex-wrap: wrap; }
+  .countdown-cell{ width: 84px; padding: 18px 0; border: 1px solid var(--gold); background: var(--navy-panel); position:relative; }
+  .countdown-cell::before{ content:''; position:absolute; inset:4px; border: 1px solid rgba(185,151,91,0.3); pointer-events:none; }
+  .countdown-num{ font-family:'Marcellus', serif; font-size: 32px; color: var(--platinum); }
+  .countdown-label{ font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; margin-top: 4px; color: var(--gold); }
+
+  .invitados-card{ max-width: 420px; margin: 0 auto; border: 1px solid var(--gold); padding: 36px 26px; background: var(--navy-panel); text-align:left; position:relative; }
+  .invitados-card::before{ content:''; position:absolute; inset:6px; border: 1px solid rgba(185,151,91,0.25); pointer-events:none; }
+  .invitados-generic{ font-family:'Marcellus', serif; font-size: 19px; color: var(--platinum); line-height: 1.5; text-align:center; }
+
+  .persona-row{ border-bottom: 1px solid var(--line); padding: 16px 0; display:flex; flex-direction:column; gap:10px; }
+  .persona-row:last-of-type{ border-bottom:none; }
+  .persona-top{ display:flex; justify-content:space-between; align-items:center; gap: 12px; }
+  .persona-nombre{ font-family:'Marcellus', serif; font-size: 19px; color: var(--platinum); }
+  .persona-toggle{ display:flex; border: 1px solid var(--gold); flex-shrink:0; }
+  .persona-toggle button{ font-family:'Jost', sans-serif; font-size: 10px; text-transform:uppercase; letter-spacing: 0.08em; padding: 7px 12px; background:transparent; border:none; color: var(--platinum); cursor:pointer; }
+  .persona-toggle button.active{ background: var(--gold); color: var(--navy-deep); }
+  .persona-restriccion{ display:none; }
+  .persona-restriccion.show{ display:block; }
+  .persona-restriccion input{ width:100%; border:none; border-bottom: 1px solid var(--line); background:transparent; padding: 6px 2px; font-family:'Jost', sans-serif; font-size: 13px; color: var(--platinum); }
+  .persona-restriccion input:focus{ outline:none; border-bottom-color: var(--gold); }
+  .persona-restriccion label{ font-size: 10px; text-transform:uppercase; letter-spacing:0.08em; opacity:0.5; display:block; margin-bottom:4px; }
+
+  .invitados-submit{ width:100%; margin-top: 20px; background: var(--gold); color: var(--navy-deep); border:none; padding: 14px; font-size: 11px; text-transform:uppercase; letter-spacing: 0.2em; cursor:pointer; font-family:'Jost', sans-serif; }
+  .invitados-submit:disabled{ opacity:0.5; cursor:not-allowed; }
+  .invitados-form-status{ margin-top: 14px; font-size: 13px; text-align:center; min-height:18px; }
+
+  .detail-cards{ display:flex; flex-direction:column; gap: 18px; max-width: 420px; margin: 0 auto; }
+  .detail-card{ border: 1px solid var(--gold); padding: 30px 24px; background: var(--navy-panel); position:relative; }
+  .detail-card::before{ content:''; position:absolute; inset:6px; border: 1px solid rgba(185,151,91,0.25); pointer-events:none; }
+  .detail-card .eyebrow{ margin-bottom: 10px; }
+  .detail-card-title{ font-family:'Marcellus', serif; font-size: 23px; color: var(--platinum); }
+  .detail-card-sub{ font-size: 13px; color: var(--platinum); opacity: 0.7; margin-top: 6px; }
+  .link-underline{ display:inline-block; margin-top: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 2px; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; font-family:'Jost', sans-serif; }
+
+  .rsvp{ background: var(--navy-panel); color: var(--platinum); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .rsvp .eyebrow{ color: var(--gold); }
+  .rsvp .section-title{ color: var(--platinum); }
+  .rsvp .section-sub{ color: rgba(201,210,227,0.7); }
+  .btn-primary{ display:inline-block; background: var(--gold); color: var(--navy-deep); padding: 16px 40px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; border:none; cursor:pointer; font-family:'Jost', sans-serif; }
+
+  /* ---------- GALERIA — carrusel horizontal ---------- */
+  .galeria-carrusel{
+    display:flex; gap: 14px; overflow-x:auto; scroll-snap-type: x mandatory;
+    padding: 6px 28px 18px; margin: 0 -28px; -webkit-overflow-scrolling: touch;
+  }
+  .galeria-carrusel::-webkit-scrollbar{ height: 5px; }
+  .galeria-carrusel::-webkit-scrollbar-thumb{ background: var(--platinum-dim); }
+  .galeria-item{
+    flex: 0 0 auto; width: 220px; height: 280px; scroll-snap-align: center;
+    background: linear-gradient(160deg, var(--navy-panel), var(--navy-deep) 140%);
+    border: 1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center; position:relative;
+    overflow:hidden;
+  }
+  .galeria-item::before{ content:''; position:absolute; inset:6px; border: 1px solid rgba(185,151,91,0.25); pointer-events:none; z-index:2; }
+  .galeria-item img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
+  .galeria-item .ph-icon{ width: 32px; height:32px; opacity:0.4; position:relative; z-index:0; }
+  .galeria-hint{ font-size: 11px; opacity:0.45; margin-top: 10px; letter-spacing: 0.08em; }
+
+  .info-grid{ display:flex; flex-direction:column; gap: 16px; max-width: 420px; margin: 0 auto; }
+  .info-card{ border: 1px solid var(--gold); padding: 26px; background: var(--navy-panel); cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; text-decoration:none; position:relative; }
+  .info-card::before{ content:''; position:absolute; inset:5px; border: 1px solid rgba(185,151,91,0.2); pointer-events:none; }
+  .info-card-title{ font-family:'Marcellus', serif; font-size: 21px; color: var(--platinum); }
+  .info-card-sub{ font-size: 12px; color: var(--platinum); opacity: 0.75; margin-top: 4px; }
+
+  footer{ padding: 60px 28px 46px; text-align:center; }
+  .footer-mark{ font-family:'Marcellus', serif; font-size: 25px; color: var(--platinum); margin-bottom: 10px; display:flex; align-items:center; justify-content:center; gap: 8px; }
+  .footer-tag{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--platinum); opacity: 0.55; }
+
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } .shooting-star::before{ animation:none; } }
+  @media (min-width: 720px){ section{ padding: 120px 60px; } }
+
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{ position:fixed; inset:0; background: rgba(2,5,10,0.75); display:none; align-items:center; justify-content:center; padding: 24px; z-index: 100; }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{ background: var(--navy); max-width: 420px; width:100%; padding: 40px 30px; position:relative; border: 1px solid var(--gold); text-align:center; max-height: 85vh; overflow-y:auto; }
+  .modal-close{ position:absolute; top:16px; right:18px; background:none; border:none; font-size: 20px; color: var(--platinum); cursor:pointer; line-height:1; }
+  .modal-title{ font-family:'Marcellus', serif; font-size: 25px; color: var(--platinum); margin: 10px 0 20px; }
+  .modal-body{ font-size: 14px; line-height:1.7; text-align:left; opacity:0.75; }
+  .modal-body p{ margin-bottom: 12px; }
+
+  .form-field{ text-align:left; margin-bottom: 16px; }
+  .form-field label{ font-size: 11px; text-transform:uppercase; letter-spacing:0.1em; opacity:0.5; display:block; margin-bottom: 6px; }
+  .form-field input, .form-field select, .form-field textarea{ width:100%; border: none; border-bottom: 1px solid var(--line); background: transparent; padding: 8px 2px; font-family:'Jost', sans-serif; font-size: 15px; color: var(--platinum); }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus{ outline:none; border-bottom-color: var(--gold); }
+  .form-submit{ width:100%; margin-top: 10px; background: var(--gold); color: var(--navy-deep); border:none; padding: 14px; font-size: 11px; text-transform:uppercase; letter-spacing: 0.2em; cursor:pointer; font-family:'Jost', sans-serif; }
+  .form-submit:disabled{ opacity:0.5; cursor:not-allowed; }
+  .form-status{ margin-top: 14px; font-size: 13px; text-align:center; min-height:18px; }
+</style>
+</head>
+<body>
+
+<!-- PANTALLA 1: BIENVENIDA + ELECCIÓN DE MÚSICA -->
+<section class="portada" id="landing">
+  <div class="shooting-star"></div>
+
+  <svg class="frame-corner tl" viewBox="0 0 54 54" fill="none" stroke="#B9975B"><path d="M2 20 V2 H20" stroke-width="1"/><circle cx="2" cy="2" r="2" fill="#B9975B" stroke="none"/></svg>
+  <svg class="frame-corner tr" viewBox="0 0 54 54" fill="none" stroke="#B9975B"><path d="M2 20 V2 H20" stroke-width="1"/><circle cx="2" cy="2" r="2" fill="#B9975B" stroke="none"/></svg>
+  <svg class="frame-corner bl" viewBox="0 0 54 54" fill="none" stroke="#B9975B"><path d="M2 20 V2 H20" stroke-width="1"/><circle cx="2" cy="2" r="2" fill="#B9975B" stroke="none"/></svg>
+  <svg class="frame-corner br" viewBox="0 0 54 54" fill="none" stroke="#B9975B"><path d="M2 20 V2 H20" stroke-width="1"/><circle cx="2" cy="2" r="2" fill="#B9975B" stroke="none"/></svg>
+
+  <div class="content-wrap">
+    <div class="brand-mark-top">milar</div>
+
+    <!-- Sello de cera con monograma -->
+    <svg class="seal" viewBox="0 0 76 76" fill="none">
+      <circle cx="38" cy="38" r="34" fill="#0E1B30" stroke="#B9975B" stroke-width="1.4"/>
+      <circle cx="38" cy="38" r="27" fill="none" stroke="#B9975B" stroke-width="0.6" opacity="0.6"/>
+      <text x="38" y="49" text-anchor="middle" font-family="'Marcellus', serif" font-size="30" fill="#D9BC82">M</text>
+    </svg>
+
+    <div class="portada-welcome">Bienvenidos a la invitación de</div>
+    <h1 class="portada-title">Matilda</h1>
+    <div class="portada-sub">
+      <svg class="constellation-tiny" viewBox="0 0 30 12" fill="none"><line x1="3" y1="9" x2="27" y2="3" stroke="#B9975B" stroke-width="0.7"/><circle cx="3" cy="9" r="1.6" fill="#D9BC82"/><circle cx="15" cy="6" r="1.3" fill="#D9BC82"/><circle cx="27" cy="3" r="1.6" fill="#D9BC82"/></svg>
+      Mis quince años
+      <svg class="constellation-tiny" viewBox="0 0 30 12" fill="none"><line x1="3" y1="3" x2="27" y2="9" stroke="#B9975B" stroke-width="0.7"/><circle cx="3" cy="3" r="1.6" fill="#D9BC82"/><circle cx="15" cy="6" r="1.3" fill="#D9BC82"/><circle cx="27" cy="9" r="1.6" fill="#D9BC82"/></svg>
+    </div>
+    <div class="music-choice">
+      <button class="solid" id="withMusic">Ingresar con música</button>
+      <button id="withoutMusic">Sin música</button>
+    </div>
+  </div>
+</section>
+
+<audio id="bgMusic" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA 2: RESTO DE LA INVITACIÓN (oculta hasta elegir música) -->
+<div id="mainContent" style="display:none;">
+
+<!-- COUNTDOWN -->
+<section class="reveal is-visible">
+  <div class="eyebrow">Falta poco</div>
+  <div class="section-title">12 de septiembre, 2026</div>
+  <div class="divider-flourish"><svg class="constellation-tiny" viewBox="0 0 30 12" fill="none"><line x1="3" y1="6" x2="27" y2="6" stroke="#B9975B" stroke-width="0.7"/><circle cx="3" cy="6" r="1.6" fill="#B9975B"/><circle cx="15" cy="6" r="1.3" fill="#B9975B"/><circle cx="27" cy="6" r="1.6" fill="#B9975B"/></svg></div>
+  <div class="countdown-grid">
+    <div class="countdown-cell"><div class="countdown-num" id="cd-dias">--</div><div class="countdown-label">Días</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-horas">--</div><div class="countdown-label">Hs</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-min">--</div><div class="countdown-label">Min</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-seg">--</div><div class="countdown-label">Seg</div></div>
+  </div>
+</section>
+
+<!-- FIESTA -->
+<section class="reveal">
+  <div class="eyebrow">La fiesta</div>
+  <div class="section-title">Todos los detalles</div>
+  <div class="divider-flourish"><svg class="constellation-tiny" viewBox="0 0 30 12" fill="none"><line x1="3" y1="6" x2="27" y2="6" stroke="#B9975B" stroke-width="0.7"/><circle cx="3" cy="6" r="1.6" fill="#B9975B"/><circle cx="15" cy="6" r="1.3" fill="#B9975B"/><circle cx="27" cy="6" r="1.6" fill="#B9975B"/></svg></div>
+  <div class="detail-cards">
+    <div class="detail-card">
+      <div class="eyebrow">Día</div>
+      <div class="detail-card-title">Sábado 12 de septiembre</div>
+      <div class="detail-card-sub">Desde las 20:30 hs</div>
+      <button class="link-underline" data-cal>Agendar</button>
+    </div>
+    <div class="detail-card">
+      <div class="eyebrow">Lugar</div>
+      <div class="detail-card-title">Salón Alma</div>
+      <div class="detail-card-sub">Devoto, CABA</div>
+      <a class="link-underline" href="https://www.google.com/maps/search/?api=1&query=Salon+Alma+Devoto+CABA" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="detail-card">
+      <div class="eyebrow">Dress code</div>
+      <div class="detail-card-title">Gala de medianoche</div>
+      <div class="detail-card-sub">Azules, plateados y negro sugeridos</div>
+      <button class="link-underline" data-modal="dresscode">Ver más</button>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP CTA -->
+<section class="rsvp reveal">
+  <div class="eyebrow">Confirmación</div>
+  <div class="section-title">¿Vas a acompañarme?</div>
+  <p class="section-sub">Ya viste todos los detalles — contanos si vas a estar esa noche con nosotros.</p>
+  <button class="btn-primary" data-scroll="invitados">Confirmar asistencia</button>
+</section>
+
+<!-- INVITADOS + RSVP -->
+<section class="reveal" id="invitados">
+  <div class="eyebrow">Personalizado para vos</div>
+  <div class="section-title">Invitados</div>
+  <div class="invitados-card">
+    <p class="invitados-generic" id="invitadosGeneric">Esta invitación fue armada especialmente para vos y quienes te acompañen esa noche.</p>
+    <div id="personasContainer"></div>
+    <button class="invitados-submit" id="enviarRsvpBtn" style="display:none;">Enviar confirmación</button>
+    <div class="invitados-form-status" id="invitadosStatus"></div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="reveal">
+  <div class="eyebrow">Un poco de mí</div>
+  <div class="section-title">Este recorrido</div>
+  <div class="galeria-carrusel">
+    <div class="galeria-item"><img src="fotos/foto-1.jpg" alt="Matilda" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#C9D2E3" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+    <div class="galeria-item"><img src="fotos/foto-2.jpg" alt="Matilda" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#C9D2E3" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+    <div class="galeria-item"><img src="fotos/foto-3.jpg" alt="Matilda" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#C9D2E3" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+    <div class="galeria-item"><img src="fotos/foto-4.jpg" alt="Matilda" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#C9D2E3" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+    <div class="galeria-item"><img src="fotos/foto-5.jpg" alt="Matilda" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#C9D2E3" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+    <div class="galeria-item"><img src="fotos/foto-6.jpg" alt="Matilda" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#C9D2E3" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+  </div>
+  <div class="galeria-hint">Deslizá para ver más →</div>
+</section>
+
+<!-- INFO CARDS -->
+<section class="reveal">
+  <div class="eyebrow">Para tener en cuenta</div>
+  <div class="section-title">Antes de venir</div>
+  <div class="info-grid">
+    <button class="info-card" data-modal="cancion">
+      <span><span class="info-card-title">Sugerí una canción</span><br><span class="info-card-sub">Para que no falte en la playlist</span></span>
+    </button>
+    <button class="info-card" data-modal="tips">
+      <span><span class="info-card-title">Tips y notas</span><br><span class="info-card-sub">Información adicional para tener en cuenta</span></span>
+    </button>
+    <button class="info-card" data-modal="regalos">
+      <span><span class="info-card-title">Regalos</span><br><span class="info-card-sub">Si querés hacerme un regalo</span></span>
+    </button>
+    <a class="info-card" href="https://www.instagram.com/explore/tags/matilda15/" target="_blank" rel="noopener">
+      <span><span class="info-card-title">#matilda15</span><br><span class="info-card-sub">Compartí tus fotos de esa noche</span></span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-mark">Matilda · Mis 15
+    <svg class="constellation-tiny" viewBox="0 0 30 12" fill="none"><line x1="3" y1="6" x2="27" y2="6" stroke="#B9975B" stroke-width="0.7"/><circle cx="3" cy="6" r="1.6" fill="#B9975B"/><circle cx="15" cy="6" r="1.3" fill="#B9975B"/><circle cx="27" cy="6" r="1.6" fill="#B9975B"/></svg>
+  </div>
+  <div class="footer-tag">Hecho con MILAR</div>
+</footer>
+
+</div> <!-- cierre de mainContent -->
+
+<!-- ===== MODALES ===== -->
+
+<div class="modal-overlay" id="modal-cancion">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Playlist</div>
+    <div class="modal-title">Sugerí una canción</div>
+    <form id="cancionForm">
+      <div class="form-field">
+        <label>Tu nombre</label>
+        <input type="text" id="cancionNombre" required>
+      </div>
+      <div class="form-field">
+        <label>Canción y artista</label>
+        <input type="text" id="cancionTema" placeholder="Ej: Bad Bunny — Título" required>
+      </div>
+      <button type="submit" class="form-submit">Enviar sugerencia</button>
+      <div class="form-status" id="cancionStatus"></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-dresscode">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Vestuario</div>
+    <div class="modal-title">Dress code</div>
+    <div class="modal-body">
+      <p>Gala de medianoche. Azul noche, plateado y negro son bienvenidos — nada de blanco, ese color me lo reservo para la noche.</p>
+      <p>Para ellas: vestido largo o midi. Para ellos: traje o pantalón de vestir con camisa.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-tips">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Para tener en cuenta</div>
+    <div class="modal-title">Tips y notas</div>
+    <div class="modal-body">
+      <p>El salón tiene estacionamiento propio, así que podés venir en auto sin problema.</p>
+      <p>La fiesta es en un espacio semicubierto — por las dudas, te recomendamos traer un abrigo liviano para más tarde.</p>
+      <p>Si tenés alguna restricción alimentaria, contanoslo al confirmar tu asistencia más arriba.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-regalos">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Un gesto</div>
+    <div class="modal-title">Regalos</div>
+    <div class="modal-body">
+      <p>Tu presencia esa noche ya es un montón. Si además querés hacerme un regalo, estoy armando mi luna de miel de xv, así que un aporte para eso lo voy a atesorar.</p>
+      <p>Alias: matilda.xv.mp</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Countdown
+  const target = new Date('2026-09-12T20:30:00');
+  function tick(){
+    const now = new Date();
+    let diff = target - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-dias').textContent = d;
+    document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Pantalla 1 → Pantalla 2 (elección de música)
+  const audio = document.getElementById('bgMusic');
+  const landing = document.getElementById('landing');
+  const mainContent = document.getElementById('mainContent');
+
+  function entrarALaInvitacion(conMusica){
+    if(conMusica){ audio.play().catch(()=>{}); }
+    landing.style.display = 'none';
+    mainContent.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  document.getElementById('withMusic').addEventListener('click', () => entrarALaInvitacion(true));
+  document.getElementById('withoutMusic').addEventListener('click', () => entrarALaInvitacion(false));
+
+  document.querySelectorAll('[data-scroll]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById(btn.getAttribute('data-scroll')).scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // ====== ACÁ SE CONECTA GOOGLE SHEETS ======
+  const APPS_SCRIPT_URL = 'PEGAR_ACA_LA_URL_DE_TU_NUEVO_APPS_SCRIPT';
+
+  const DEMO_INVITADOS = {
+    'grupo-familiar': { personas: ['Juan Pablo', 'Verónica', 'Ignacio', 'Milagros'] },
+    'flia-ruiz': { personas: ['Valentina Ruiz', 'Agustín Ruiz'] },
+    'camila': { personas: ['Camila Gómez'] }
+  };
+
+  function enviarAGoogleSheets(payload, statusEl, successMsg){
+    statusEl.textContent = 'Enviando...';
+    if(APPS_SCRIPT_URL.includes('PEGAR_ACA')){
+      setTimeout(() => { statusEl.textContent = successMsg + ' (demo — falta conectar la Sheet real)'; }, 500);
+      return;
+    }
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload),
+      headers: {'Content-Type': 'text/plain'}
+    })
+    .then(() => { statusEl.textContent = successMsg; })
+    .catch(() => { statusEl.textContent = 'Hubo un error, probá de nuevo.'; });
+  }
+
+  // ---- Invitados: buscar por ?id= y armar los toggles de asistencia ----
+  const params = new URLSearchParams(window.location.search);
+  const idParam = params.get('id');
+  const personasContainer = document.getElementById('personasContainer');
+  const enviarRsvpBtn = document.getElementById('enviarRsvpBtn');
+  const invitadosStatus = document.getElementById('invitadosStatus');
+  let personasState = [];
+
+  function renderPersonas(nombres){
+    document.getElementById('invitadosGeneric').style.display = 'none';
+    personasState = nombres.map(n => ({ nombre: n, asiste: true, restriccion: '' }));
+    personasContainer.innerHTML = '';
+    personasState.forEach((p, i) => {
+      const row = document.createElement('div');
+      row.className = 'persona-row';
+      row.innerHTML = `
+        <div class="persona-top">
+          <div class="persona-nombre">${p.nombre}</div>
+          <div class="persona-toggle">
+            <button type="button" class="btn-si active" data-i="${i}">Asiste</button>
+            <button type="button" class="btn-no" data-i="${i}">No asiste</button>
+          </div>
+        </div>
+        <div class="persona-restriccion show" data-i="${i}">
+          <label>Restricción alimentaria (opcional)</label>
+          <input type="text" placeholder="Ej: vegetariano, celíaco, sin frutos secos...">
+        </div>
+      `;
+      personasContainer.appendChild(row);
+    });
+
+    personasContainer.querySelectorAll('.btn-si').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.dataset.i, 10);
+        personasState[i].asiste = true;
+        btn.classList.add('active');
+        btn.nextElementSibling.classList.remove('active');
+        personasContainer.querySelector(`.persona-restriccion[data-i="${i}"]`).classList.add('show');
+      });
+    });
+    personasContainer.querySelectorAll('.btn-no').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.dataset.i, 10);
+        personasState[i].asiste = false;
+        btn.classList.add('active');
+        btn.previousElementSibling.classList.remove('active');
+        personasContainer.querySelector(`.persona-restriccion[data-i="${i}"]`).classList.remove('show');
+      });
+    });
+    personasContainer.querySelectorAll('.persona-restriccion input').forEach((input, i) => {
+      input.addEventListener('input', () => { personasState[i].restriccion = input.value; });
+    });
+
+    enviarRsvpBtn.style.display = 'block';
+  }
+
+  function cargarInvitadoJSONP(id){
+    const callbackName = 'milarInvitadoCallback_' + Date.now();
+    window[callbackName] = function(data){
+      if(data && data.personas && data.personas.length){ renderPersonas(data.personas); }
+      delete window[callbackName];
+      script.remove();
+    };
+    const script = document.createElement('script');
+    script.src = APPS_SCRIPT_URL + '?id=' + encodeURIComponent(id) + '&callback=' + callbackName;
+    document.body.appendChild(script);
+  }
+
+  if(idParam){
+    if(APPS_SCRIPT_URL.includes('PEGAR_ACA')){
+      const demo = DEMO_INVITADOS[idParam];
+      if(demo){ renderPersonas(demo.personas); }
+    } else {
+      cargarInvitadoJSONP(idParam);
+    }
+  }
+
+  enviarRsvpBtn.addEventListener('click', () => {
+    const payload = { tipo: 'rsvp', id: idParam || '', personas: personasState };
+    enviarAGoogleSheets(payload, invitadosStatus, 'Gracias, quedó todo confirmado.');
+  });
+
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('modal-' + btn.getAttribute('data-modal')).classList.add('open');
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => { btn.closest('.modal-overlay').classList.remove('open'); });
+  });
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('open'); });
+  });
+
+  document.querySelector('[data-cal]').addEventListener('click', () => {
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20260912T203000','DTEND:20260913T020000','SUMMARY:Mis 15 — Matilda','LOCATION:Salón Alma, Devoto, CABA','END:VEVENT','END:VCALENDAR'].join('\n');
+    const blob = new Blob([ics], {type:'text/calendar'});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'mis-15-matilda.ics';
+    link.click();
+  });
+
+  document.getElementById('cancionForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const payload = { tipo: 'cancion', nombre: document.getElementById('cancionNombre').value, tema: document.getElementById('cancionTema').value };
+    enviarAGoogleSheets(payload, document.getElementById('cancionStatus'), 'Gracias por la sugerencia.');
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
