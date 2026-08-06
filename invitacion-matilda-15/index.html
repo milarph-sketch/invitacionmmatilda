@@ -175,7 +175,7 @@
     <div class="detail-card">
       <div class="eyebrow">Día</div>
       <div class="detail-card-title">Sábado 12 de septiembre</div>
-      <div class="detail-card-sub">Desde las 21:00 hs</div>
+      <div class="detail-card-sub">Desde las 21:00 hs hasta 04:00 </div>
       <button class="link-underline" data-cal>Agendar</button>
     </div>
     <div class="detail-card">
@@ -257,7 +257,7 @@
     <div class="modal-title">Regalos</div>
     <div class="modal-body">
       <p>Tu presencia es el mejor regalo. Si además querés hacerme un mimo y no sabés qué regalarme, podés hacer un aporte a través del alias que figura abajo. ¡Lo voy a atesorar con todo mi corazón!</p>
-      <p>Alias: matilda.ramirezz</p>
+      <p style="font-size:18px; font-weight:600; color:var(--rose-deep);">Alias: matilda.ramirezz</p>
     </div>
   </div>
 </div>
@@ -329,7 +329,7 @@
 
   // Agendar (descarga .ics)
   document.querySelector('[data-cal]').addEventListener('click', () => {
-    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20260912T210000','DTEND:20260913T020000','SUMMARY:Mis 15 — Matilda','LOCATION:Salón Don Alfredo, Colombres 74, Almagro, CABA','END:VEVENT','END:VCALENDAR'].join('\n');
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20260912T210000','DTEND:20260913T040000','SUMMARY:Mis 15 — Matilda','LOCATION:Salón Don Alfredo, Colombres 74, Almagro, CABA','END:VEVENT','END:VCALENDAR'].join('\n');
     const blob = new Blob([ics], {type:'text/calendar'});
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
