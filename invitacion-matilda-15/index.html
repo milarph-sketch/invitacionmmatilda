@@ -89,30 +89,6 @@
   .rsvp .section-sub{ color: rgba(248,243,238,0.8); }
   .btn-primary{ display:inline-block; background: var(--cream); color: var(--rose-deep); padding: 16px 40px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; border:none; cursor:pointer; }
 
-  /* ---------- GALERIA — carrusel horizontal ---------- */
-  .galeria-carrusel{
-    display:flex;
-    gap: 14px;
-    overflow-x:auto;
-    scroll-snap-type: x mandatory;
-    padding: 6px 28px 18px;
-    margin: 0 -28px;
-    -webkit-overflow-scrolling: touch;
-  }
-  .galeria-carrusel::-webkit-scrollbar{ height: 5px; }
-  .galeria-carrusel::-webkit-scrollbar-thumb{ background: var(--pale-rose); }
-  .galeria-item{
-    flex: 0 0 auto;
-    width: 220px;
-    height: 280px;
-    scroll-snap-align: center;
-    background: linear-gradient(155deg, var(--pale-rose), var(--rose) 140%);
-    border: 1px solid var(--gold);
-  }
-  .galeria-item:nth-child(2n){ background: linear-gradient(155deg, var(--gold), var(--rose-deep) 140%); }
-  .galeria-item:nth-child(3n){ background: linear-gradient(155deg, var(--rose), var(--pale-rose) 140%); }
-  .galeria-hint{ font-size: 11px; opacity:0.5; margin-top: 10px; letter-spacing: 0.08em; }
-
   .info-grid{ display:flex; flex-direction:column; gap: 16px; max-width: 420px; margin: 0 auto; }
   .info-card{ border: 1px solid var(--line); padding: 26px; background: rgba(255,255,255,0.45); cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; text-decoration:none; }
   .info-card-title{ font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--rose-deep); }
@@ -127,7 +103,6 @@
   @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
   @media (min-width: 720px){ section{ padding: 120px 60px; } }
 
-  /* ---------- MODAL ---------- */
   .modal-overlay{ position:fixed; inset:0; background: rgba(36,27,27,0.55); display:none; align-items:center; justify-content:center; padding: 24px; z-index: 100; }
   .modal-overlay.open{ display:flex; }
   .modal-box{ background: var(--cream); max-width: 420px; width:100%; padding: 40px 30px; position:relative; border: 1px solid var(--gold); text-align:center; max-height: 85vh; overflow-y:auto; }
@@ -172,7 +147,7 @@
 </section>
 
 <audio id="bgMusic" loop>
-  <source src="/musica.mp3" type="audio/mpeg">
+  <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <!-- PANTALLA 2: RESTO DE LA INVITACIÓN (oculta hasta elegir música) -->
@@ -205,47 +180,23 @@
     </div>
     <div class="detail-card">
       <div class="eyebrow">Lugar</div>
-      <div class="detail-card-title">Salón Alma</div>
-      <div class="detail-card-sub">Devoto, CABA</div>
-      <a class="link-underline" href="https://www.google.com/maps/search/?api=1&query=Salon+Alma+Devoto+CABA" target="_blank" rel="noopener">Cómo llegar</a>
+      <div class="detail-card-title">Salón Don Alfredo</div>
+      <div class="detail-card-sub">Colombres 74, Almagro (Asociación Empleados de Farmacia)</div>
+      <a class="link-underline" href="https://maps.app.goo.gl/e2BdCt9jni6YLMWo6" target="_blank" rel="noopener">Cómo llegar</a>
     </div>
     <div class="detail-card">
       <div class="eyebrow">Dress code</div>
-      <div class="detail-card-title">Formal elegante</div>
-      <div class="detail-card-sub">Colores cálidos sugeridos</div>
-      <button class="link-underline" data-modal="dresscode">Ver más</button>
+      <div class="detail-card-title">Elegante sport</div>
     </div>
   </div>
 </section>
 
-<!-- RSVP CTA (lleva a la sección de Invitados, donde vive el formulario real) -->
+<!-- RSVP con Google Form -->
 <section class="rsvp reveal">
   <div class="eyebrow">Confirmación</div>
   <div class="section-title">¿Vas a acompañarme?</div>
   <p class="section-sub">Ya viste todos los detalles — contanos si vas a estar esa noche con nosotros.</p>
-  <button class="btn-primary" data-scroll="invitados">Confirmar asistencia</button>
-</section>
-
-<!-- INVITADOS + RSVP (personalizado por ?id=, con lookup a Google Sheets) -->
-<section class="reveal" id="invitados">
-  <div class="eyebrow">Personalizado para vos</div>
-  <div class="section-title">Invitados</div>
-  <div class="invitados-card">
-    <p class="invitados-generic" id="invitadosGeneric">Esta invitación fue armada especialmente para vos y quienes te acompañen esa noche.</p>
-    <div id="personasContainer"></div>
-    <button class="invitados-submit" id="enviarRsvpBtn" style="display:none;">Enviar confirmación</button>
-    <div class="invitados-form-status" id="invitadosStatus"></div>
-  </div>
-</section>
-
-<!-- GALERIA — carrusel -->
-<section class="reveal">
-  <div class="eyebrow">Un poco de mí</div>
-  <div class="section-title">Este recorrido</div>
-  <div class="galeria-carrusel">
-    <div class="galeria-item"></div><div class="galeria-item"></div><div class="galeria-item"></div><div class="galeria-item"></div><div class="galeria-item"></div>
-  </div>
-  <div class="galeria-hint">Deslizá para ver más →</div>
+  <a class="btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfA_dUi6JVK9YuQRMLnqD5bnJJ33uEE15RTAAnZAjeopfd95Q/viewform?usp=publish-editor" target="_blank" rel="noopener">Confirmar asistencia</a>
 </section>
 
 <!-- INFO CARDS -->
@@ -255,9 +206,6 @@
   <div class="info-grid">
     <button class="info-card" data-modal="cancion">
       <span><span class="info-card-title">Sugerí una canción</span><br><span class="info-card-sub">Para que no falte en la playlist</span></span>
-    </button>
-    <button class="info-card" data-modal="tips">
-      <span><span class="info-card-title">Tips y notas</span><br><span class="info-card-sub">Información adicional para tener en cuenta</span></span>
     </button>
     <button class="info-card" data-modal="regalos">
       <span><span class="info-card-title">Regalos</span><br><span class="info-card-sub">Si querés hacerme un regalo</span></span>
@@ -300,33 +248,6 @@
   </div>
 </div>
 
-<!-- Dress code -->
-<div class="modal-overlay" id="modal-dresscode">
-  <div class="modal-box">
-    <button class="modal-close" data-close>&times;</button>
-    <div class="eyebrow">Vestuario</div>
-    <div class="modal-title">Dress code</div>
-    <div class="modal-body">
-      <p>Formal elegante. Colores cálidos y tierra son bienvenidos — nada de blanco, ese color me lo reservo para la noche.</p>
-      <p>Para ellas: vestido largo o midi. Para ellos: traje o pantalón de vestir con camisa.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Tips y notas -->
-<div class="modal-overlay" id="modal-tips">
-  <div class="modal-box">
-    <button class="modal-close" data-close>&times;</button>
-    <div class="eyebrow">Para tener en cuenta</div>
-    <div class="modal-title">Tips y notas</div>
-    <div class="modal-body">
-      <p>El salón tiene estacionamiento propio, así que podés venir en auto sin problema.</p>
-      <p>La fiesta es en un espacio semicubierto — por las dudas, te recomendamos traer un abrigo liviano para más tarde.</p>
-      <p>Si tenés alguna restricción alimentaria, contanoslo al confirmar tu asistencia más arriba.</p>
-    </div>
-  </div>
-</div>
-
 <!-- Regalos -->
 <div class="modal-overlay" id="modal-regalos">
   <div class="modal-box">
@@ -335,7 +256,7 @@
     <div class="modal-title">Regalos</div>
     <div class="modal-body">
       <p>Tu presencia esa noche ya es un montón. Si además querés hacerme un regalo, estoy armando mi luna de miel de xv, así que un aporte para eso lo voy a atesorar.</p>
-      <p>Alias: matilda.xv.mp</p>
+      <p>Alias: matilda.ramirezz</p>
     </div>
   </div>
 </div>
@@ -372,25 +293,8 @@
   document.getElementById('withMusic').addEventListener('click', () => entrarALaInvitacion(true));
   document.getElementById('withoutMusic').addEventListener('click', () => entrarALaInvitacion(false));
 
-  // Scroll a sección (usado por el botón de RSVP que apunta a #invitados)
-  document.querySelectorAll('[data-scroll]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById(btn.getAttribute('data-scroll')).scrollIntoView({behavior:'smooth'});
-    });
-  });
-
-  // ====== ACÁ SE CONECTA GOOGLE SHEETS ======
-  // Reemplazar por la URL real del Google Apps Script cuando esté desplegado
+  // ====== ACÁ SE CONECTA GOOGLE SHEETS (para sugerencias de canción) ======
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxxSd9bZLc6x-RFN4Xj0Stet7eqa8jTBH8VPrdGoINN_UTYUEInGs2ojDgDZgMez31XAA/exec';
-
-  // Datos de ejemplo para poder ver la sección de Invitados funcionando
-  // ANTES de conectar la Sheet real. Una vez que pegues tu APPS_SCRIPT_URL
-  // de verdad, este objeto deja de usarse automáticamente.
-  const DEMO_INVITADOS = {
-    'grupo-familiar': { personas: ['Juan Pablo', 'Verónica', 'Ignacio', 'Milagros'] },
-    'flia-ruiz': { personas: ['Valentina Ruiz', 'Agustín Ruiz'] },
-    'camila': { personas: ['Camila Gómez'] }
-  };
 
   function enviarAGoogleSheets(payload, statusEl, successMsg){
     statusEl.textContent = 'Enviando...';
@@ -398,8 +302,6 @@
       setTimeout(() => { statusEl.textContent = successMsg + ' (demo — falta conectar la Sheet real)'; }, 500);
       return;
     }
-    // mode:'no-cors' evita que el navegador bloquee la promesa por CORS.
-    // No podemos leer la respuesta, pero el dato SÍ se guarda en la Sheet.
     fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -409,91 +311,6 @@
     .then(() => { statusEl.textContent = successMsg; })
     .catch(() => { statusEl.textContent = 'Hubo un error, probá de nuevo.'; });
   }
-
-  // ---- Invitados: buscar por ?id= y armar los toggles de asistencia ----
-  const params = new URLSearchParams(window.location.search);
-  const idParam = params.get('id');
-  const personasContainer = document.getElementById('personasContainer');
-  const enviarRsvpBtn = document.getElementById('enviarRsvpBtn');
-  const invitadosStatus = document.getElementById('invitadosStatus');
-  let personasState = []; // [{nombre, asiste, restriccion}]
-
-  function renderPersonas(nombres){
-    document.getElementById('invitadosGeneric').style.display = 'none';
-    personasState = nombres.map(n => ({ nombre: n, asiste: true, restriccion: '' }));
-    personasContainer.innerHTML = '';
-    personasState.forEach((p, i) => {
-      const row = document.createElement('div');
-      row.className = 'persona-row';
-      row.innerHTML = `
-        <div class="persona-top">
-          <div class="persona-nombre">${p.nombre}</div>
-          <div class="persona-toggle">
-            <button type="button" class="btn-si active" data-i="${i}">Asiste</button>
-            <button type="button" class="btn-no" data-i="${i}">No asiste</button>
-          </div>
-        </div>
-        <div class="persona-restriccion show" data-i="${i}">
-          <label>Restricción alimentaria (opcional)</label>
-          <input type="text" placeholder="Ej: vegetariano, celíaco, sin frutos secos...">
-        </div>
-      `;
-      personasContainer.appendChild(row);
-    });
-
-    personasContainer.querySelectorAll('.btn-si').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const i = parseInt(btn.dataset.i, 10);
-        personasState[i].asiste = true;
-        btn.classList.add('active');
-        btn.nextElementSibling.classList.remove('active');
-        personasContainer.querySelector(`.persona-restriccion[data-i="${i}"]`).classList.add('show');
-      });
-    });
-    personasContainer.querySelectorAll('.btn-no').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const i = parseInt(btn.dataset.i, 10);
-        personasState[i].asiste = false;
-        btn.classList.add('active');
-        btn.previousElementSibling.classList.remove('active');
-        personasContainer.querySelector(`.persona-restriccion[data-i="${i}"]`).classList.remove('show');
-      });
-    });
-    personasContainer.querySelectorAll('.persona-restriccion input').forEach((input, i) => {
-      input.addEventListener('input', () => { personasState[i].restriccion = input.value; });
-    });
-
-    enviarRsvpBtn.style.display = 'block';
-  }
-
-  // JSONP: pedimos los datos como un <script>, así el navegador no
-  // aplica el bloqueo de CORS que sí aplica a fetch().
-  function cargarInvitadoJSONP(id){
-    const callbackName = 'milarInvitadoCallback_' + Date.now();
-    window[callbackName] = function(data){
-      if(data && data.personas && data.personas.length){ renderPersonas(data.personas); }
-      delete window[callbackName];
-      script.remove();
-    };
-    const script = document.createElement('script');
-    script.src = APPS_SCRIPT_URL + '?id=' + encodeURIComponent(id) + '&callback=' + callbackName;
-    document.body.appendChild(script);
-  }
-
-  if(idParam){
-    if(APPS_SCRIPT_URL.includes('PEGAR_ACA')){
-      // Modo demo: usamos el objeto local de arriba
-      const demo = DEMO_INVITADOS[idParam];
-      if(demo){ renderPersonas(demo.personas); }
-    } else {
-      cargarInvitadoJSONP(idParam);
-    }
-  }
-
-  enviarRsvpBtn.addEventListener('click', () => {
-    const payload = { tipo: 'rsvp', id: idParam || '', personas: personasState };
-    enviarAGoogleSheets(payload, invitadosStatus, 'Gracias, quedó todo confirmado.');
-  });
 
   // Modales
   document.querySelectorAll('[data-modal]').forEach(btn => {
@@ -511,7 +328,7 @@
 
   // Agendar (descarga .ics)
   document.querySelector('[data-cal]').addEventListener('click', () => {
-    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20260912T203000','DTEND:20260913T020000','SUMMARY:Mis 15 — Matilda','LOCATION:Salón Alma, Devoto, CABA','END:VEVENT','END:VCALENDAR'].join('\n');
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20260912T203000','DTEND:20260913T020000','SUMMARY:Mis 15 — Matilda','LOCATION:Salón Don Alfredo, Colombres 74, Almagro, CABA','END:VEVENT','END:VCALENDAR'].join('\n');
     const blob = new Blob([ics], {type:'text/calendar'});
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
