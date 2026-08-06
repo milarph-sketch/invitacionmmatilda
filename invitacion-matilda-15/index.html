@@ -211,8 +211,8 @@
     <button class="info-card" data-modal="regalos">
       <span><span class="info-card-title">Regalos</span><br><span class="info-card-sub">Si querés hacerme un regalo</span></span>
     </button>
-    <a class="info-card" href="https://www.instagram.com/explore/tags/matilda15/" target="_blank" rel="noopener">
-      <span><span class="info-card-title">#matilda15</span><br><span class="info-card-sub">Compartí tus fotos de esa noche</span></span>
+    <a class="info-card" href="https://www.instagram.com/mmati.ramirezz/" target="_blank" rel="noopener">
+      <span><span class="info-card-title">@mmati.ramirezz</span><br><span class="info-card-sub">Subí tus fotos y videos a tus redes y etiquetame</span></span>
     </a>
   </div>
 </section>
@@ -264,7 +264,7 @@
 
 <script>
   // Countdown
-  const target = new Date('2026-09-12T20:30:00');
+  const target = new Date('2026-09-12T21:00:00');
   function tick(){
     const now = new Date();
     let diff = target - now;
@@ -329,7 +329,7 @@
 
   // Agendar (descarga .ics)
   document.querySelector('[data-cal]').addEventListener('click', () => {
-    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20260912T203000','DTEND:20260913T020000','SUMMARY:Mis 15 — Matilda','LOCATION:Salón Don Alfredo, Colombres 74, Almagro, CABA','END:VEVENT','END:VCALENDAR'].join('\n');
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20260912T210000','DTEND:20260913T020000','SUMMARY:Mis 15 — Matilda','LOCATION:Salón Don Alfredo, Colombres 74, Almagro, CABA','END:VEVENT','END:VCALENDAR'].join('\n');
     const blob = new Blob([ics], {type:'text/calendar'});
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
