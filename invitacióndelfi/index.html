@@ -14,6 +14,7 @@
     --pearl: #F8F9FA;
     --ink: #2F333B;
     --bordo: #6B2737;
+    --rose: #D98FA0;
     --line: rgba(124,131,143,0.28);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -71,7 +72,7 @@
   .countdown-grid{ display:flex; justify-content:center; gap: 14px; flex-wrap: wrap; }
   .countdown-cell{ width: 84px; padding: 20px 0 16px; border: 1px solid var(--silver-deep); background: #fff; position:relative; }
   .countdown-cell::before{ content:''; position:absolute; inset:4px; border: 1px solid rgba(124,131,143,0.25); pointer-events:none; }
-  .countdown-cell::after{ content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:5px; height:5px; border-radius:50%; background: var(--bordo); }
+  .countdown-cell::after{ content:''; position:absolute; top:-6px; left:50%; transform:translateX(-50%) rotate(45deg); width:8px; height:8px; background: var(--bordo); }
   .countdown-num{ font-family:'Marcellus', serif; font-size: 32px; color: var(--ink); }
   .countdown-label{ font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; margin-top: 4px; color: var(--silver-deep); }
 
@@ -81,9 +82,10 @@
   .detail-card .eyebrow{ margin-bottom: 10px; }
   .detail-card-title{ font-family:'Marcellus', serif; font-size: 23px; color: var(--ink); }
   .detail-card-sub{ font-size: 13px; opacity: 0.65; margin-top: 6px; }
-  .link-underline{ display:inline-block; margin-top: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--silver-deep); border-bottom: 1px solid var(--silver-deep); padding-bottom: 2px; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; font-family:'Jost', sans-serif; text-decoration:none; }
+  .link-underline{ display:inline-block; margin-top: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--bordo); border-bottom: 1px solid var(--bordo); padding-bottom: 2px; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; font-family:'Jost', sans-serif; text-decoration:none; }
 
-  .rsvp{ background: var(--ink); color: #fff; border-top: 2px solid var(--bordo); }
+  .rsvp{ background: var(--ink); color: #fff; border-top: 2px solid var(--rose); position:relative; }
+  .rsvp::after{ content:''; position:absolute; top:-4px; left:50%; transform:translateX(-50%) rotate(45deg); width:8px; height:8px; background: var(--rose); }
   .rsvp .eyebrow{ color: var(--silver); }
   .rsvp .section-title{ color: #fff; }
   .rsvp .section-sub{ color: rgba(255,255,255,0.75); }
@@ -115,7 +117,7 @@
 
   footer{ padding: 60px 28px 46px; text-align:center; }
   .footer-mark{ font-family:'Marcellus', serif; font-size: 25px; color: var(--ink); margin-bottom: 10px; display:flex; align-items:center; justify-content:center; gap: 8px; }
-  .footer-tag{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.4; }
+  .footer-tag{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); opacity: 0.9; }
 
   .reveal{ opacity:0; transform: translateY(16px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.is-visible{ opacity:1; transform:none; }
@@ -160,6 +162,7 @@
 
     <div class="portada-welcome">Bienvenidos a la invitación de</div>
     <h1 class="portada-title">Delfi</h1>
+    <div style="width:46px; height:2px; background:var(--bordo); position:relative; left:50%; transform:translateX(-50%); margin-top:8px;"></div>
     <div class="portada-sub">
       <svg class="spark-tiny" viewBox="0 0 24 24" fill="#C7CCD3" stroke="#7C838F" stroke-width="0.6"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg>
       Mis quince años
@@ -242,6 +245,7 @@
 
 <!-- INFO CARDS -->
 <section class="reveal">
+  <svg class="spark-tiny" style="display:block; margin: 0 auto 10px;" viewBox="0 0 24 24" fill="#D98FA0"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg>
   <div class="eyebrow">Para tener en cuenta</div>
   <div class="section-title">Antes de venir</div>
   <div class="info-grid">
@@ -258,8 +262,10 @@
 </section>
 
 <footer>
-  <div class="footer-mark">Delfi · Mis 15
-    <svg class="spark-tiny" viewBox="0 0 24 24" fill="#7C838F"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg>
+  <div class="footer-mark">
+    <svg class="spark-tiny" viewBox="0 0 24 24" fill="#D98FA0"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg>
+    Delfi · Mis 15
+    <svg class="spark-tiny" viewBox="0 0 24 24" fill="#D98FA0"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg>
   </div>
   <div class="footer-tag">Hecho con MILAR</div>
 </footer>
