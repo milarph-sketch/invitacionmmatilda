@@ -1,4 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MILAR — Invitación Digital · Delfi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --silver: #C7CCD3;
+    --silver-deep: #7C838F;
+    --platinum: #E4E7EB;
+    --pearl: #F8F9FA;
+    --ink: #2F333B;
+    --bordo: #6B2737;
+    --rose: #D98FA0;
+    --line: rgba(124,131,143,0.28);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:
+      radial-gradient(ellipse at 12% 8%, rgba(124,131,143,0.06), transparent 50%),
+      radial-gradient(ellipse at 88% 25%, rgba(124,131,143,0.06), transparent 50%),
+      radial-gradient(ellipse at 50% 92%, rgba(124,131,143,0.07), transparent 55%),
+      linear-gradient(180deg, var(--platinum) 0%, var(--pearl) 45%, #fff 100%);
+    color: var(--ink); font-family:'Jost', sans-serif; font-weight:300; overflow-x:hidden; }
+  .serif{ font-family:'Marcellus', serif; }
+  .eyebrow{ text-transform: uppercase; letter-spacing: 0.32em; font-size: 11px; color: var(--silver-deep); font-weight: 400; text-align:center; }
 
+  .divider-flourish{ display:flex; align-items:center; justify-content:center; gap: 12px; margin: 22px auto; }
+  .divider-flourish::before, .divider-flourish::after{ content:''; width: 30px; height:1px; background: var(--silver-deep); opacity:0.5; }
+  .spark-tiny{ width: 14px; height: 14px; flex-shrink:0; }
+
+  .portada{ min-height: 100svh; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 60px 28px;
+    background:
+      radial-gradient(1.3px 1.3px at 18% 20%, rgba(124,131,143,0.4), transparent),
+      radial-gradient(1px 1px at 72% 14%, rgba(124,131,143,0.3), transparent),
+      radial-gradient(1.3px 1.3px at 55% 72%, rgba(124,131,143,0.35), transparent),
+      radial-gradient(1px 1px at 30% 84%, rgba(124,131,143,0.25), transparent),
+      radial-gradient(1.3px 1.3px at 85% 58%, rgba(124,131,143,0.3), transparent),
+      radial-gradient(1px 1px at 42% 40%, rgba(124,131,143,0.28), transparent),
+      linear-gradient(180deg, var(--silver) 0%, var(--platinum) 100%);
+    background-size: 420px 420px, 420px 420px, 420px 420px, 420px 420px, 420px 420px, 420px 420px, 100% 100%;
+  }
+
+  .frame-box{ position:absolute; inset: 22px; border: 1px solid var(--silver-deep); opacity: 0.35; pointer-events:none; }
+  .frame-box::before{ content:''; position:absolute; inset: 6px; border: 1px solid var(--silver-deep); opacity: 0.6; }
+
+  .emblem{ width: 78px; height: 78px; margin: 0 auto 22px; position:relative; }
+  .emblem svg{ width:100%; height:100%; }
+
+  .brand-mark-top{ font-family:'Marcellus', serif; font-size: 13px; color: var(--silver-deep); letter-spacing: 0.25em; margin-bottom: 30px; text-transform: uppercase; }
+  .portada-welcome{ font-size: 13px; letter-spacing: 0.1em; opacity: 0.65; margin-bottom: 6px; }
+  .portada-title{ font-family:'Marcellus', serif; font-weight: 400; font-size: clamp(50px, 12vw, 84px); color: var(--ink); line-height: 1.05; letter-spacing: 0.01em; }
+  .portada-sub{ font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 16px; opacity: 0.7; display:flex; align-items:center; justify-content:center; gap:9px; }
+  .music-choice{ margin-top: 46px; display:flex; gap: 18px; }
+  .music-choice button{ font-family:'Jost', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 24px; border: 1px solid var(--silver-deep); background: transparent; color: var(--ink); cursor:pointer; }
+  .music-choice button.solid{ background: var(--silver-deep); color: #fff; border-color: var(--silver-deep); }
+
+  @media (max-width: 480px){
+    .music-choice{ flex-direction:column; width:100%; max-width:230px; gap:12px; }
+    .music-choice button{ width:100%; padding: 13px 18px; }
+    .frame-box{ inset: 14px; }
+    .frame-box::before{ inset: 5px; }
+  }
+
+  section{ padding: 90px 28px; text-align:center; position:relative; }
+  .section-title{ font-family:'Marcellus', serif; font-weight:400; font-size: clamp(28px, 6.5vw, 40px); color: var(--ink); margin-bottom: 6px; }
+  .section-sub{ font-size: 14px; opacity: 0.65; max-width: 380px; margin: 0 auto 40px; line-height:1.6; }
+
+  .countdown-grid{ display:flex; justify-content:center; gap: 14px; flex-wrap: wrap; }
+  .countdown-cell{ width: 84px; padding: 20px 0 16px; border: 1px solid var(--silver-deep); background: #fff; position:relative; }
+  .countdown-cell::before{ content:''; position:absolute; inset:4px; border: 1px solid rgba(124,131,143,0.25); pointer-events:none; }
+  .countdown-cell::after{ content:''; position:absolute; top:-6px; left:50%; transform:translateX(-50%) rotate(45deg); width:8px; height:8px; background: var(--bordo); }
+  .countdown-num{ font-family:'Marcellus', serif; font-size: 32px; color: var(--ink); }
+  .countdown-label{ font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; margin-top: 4px; color: var(--silver-deep); }
+
+  .detail-cards{ display:flex; flex-direction:column; gap: 18px; max-width: 420px; margin: 0 auto; }
+  .detail-card{ border: 1px solid var(--silver-deep); padding: 30px 24px; background: #fff; position:relative; }
+  .detail-card::before{ content:''; position:absolute; inset:6px; border: 1px solid rgba(124,131,143,0.2); pointer-events:none; }
+  .detail-card .eyebrow{ margin-bottom: 10px; }
+  .detail-card-title{ font-family:'Marcellus', serif; font-size: 23px; color: var(--ink); }
+  .detail-card-sub{ font-size: 13px; opacity: 0.65; margin-top: 6px; }
+  .link-underline{ display:inline-block; margin-top: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--bordo); border-bottom: 1px solid var(--bordo); padding-bottom: 2px; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; font-family:'Jost', sans-serif; text-decoration:none; }
+
+  .rsvp{ background: var(--ink); color: #fff; border-top: 2px solid var(--rose); position:relative; }
+  .rsvp::after{ content:''; position:absolute; top:-4px; left:50%; transform:translateX(-50%) rotate(45deg); width:8px; height:8px; background: var(--rose); }
+  .rsvp .eyebrow{ color: var(--silver); }
+  .rsvp .section-title{ color: #fff; }
+  .rsvp .section-sub{ color: rgba(255,255,255,0.75); }
+  .btn-primary{ display:inline-block; background: var(--silver); color: var(--ink); padding: 16px 42px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; border:none; cursor:pointer; font-family:'Jost', sans-serif; font-weight:500; text-decoration:none; }
+
+  /* ---------- GALERIA — carrusel horizontal (placeholders neutros) ---------- */
+  .galeria-carrusel{
+    display:flex; gap: 14px; overflow-x:auto; scroll-snap-type: x mandatory;
+    padding: 6px 28px 18px; margin: 0 -28px; -webkit-overflow-scrolling: touch;
+  }
+  .galeria-carrusel::-webkit-scrollbar{ height: 5px; }
+  .galeria-carrusel::-webkit-scrollbar-thumb{ background: var(--silver-deep); }
+  .galeria-item{
+    flex: 0 0 auto; width: 220px; height: 280px; scroll-snap-align: center;
+    background: linear-gradient(160deg, #fff, var(--platinum) 140%);
+    border: 1px solid var(--silver-deep);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+  .galeria-item::before{ content:''; position:absolute; inset:6px; border: 1px solid rgba(124,131,143,0.2); pointer-events:none; }
+  .galeria-item img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .galeria-item .ph-icon{ width: 32px; height:32px; opacity:0.35; }
+  .galeria-hint{ font-size: 11px; opacity:0.5; margin-top: 10px; letter-spacing: 0.08em; }
+
+  .info-grid{ display:flex; flex-direction:column; gap: 16px; max-width: 420px; margin: 0 auto; }
+  .info-card{ border: 1px solid var(--silver-deep); padding: 26px; background: #fff; cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; text-decoration:none; position:relative; }
+  .info-card::before{ content:''; position:absolute; inset:5px; border: 1px solid rgba(124,131,143,0.15); pointer-events:none; }
+  .info-card-title{ font-family:'Marcellus', serif; font-size: 21px; color: var(--ink); }
+  .info-card-sub{ font-size: 12px; opacity: 0.6; margin-top: 4px; }
+
+  footer{ padding: 60px 28px 46px; text-align:center; }
+  .footer-mark{ font-family:'Marcellus', serif; font-size: 25px; color: var(--ink); margin-bottom: 10px; display:flex; align-items:center; justify-content:center; gap: 8px; }
+  .footer-tag{ font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); opacity: 0.9; }
+
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+  @media (min-width: 720px){ section{ padding: 120px 60px; } }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{ position:fixed; inset:0; background: rgba(47,51,59,0.45); display:none; align-items:center; justify-content:center; padding: 24px; z-index: 100; }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{ background: #fff; max-width: 420px; width:100%; padding: 40px 30px; position:relative; border: 1px solid var(--silver-deep); text-align:center; max-height: 85vh; overflow-y:auto; }
+  .modal-close{ position:absolute; top:16px; right:18px; background:none; border:none; font-size: 20px; color: var(--ink); cursor:pointer; line-height:1; }
+  .modal-title{ font-family:'Marcellus', serif; font-size: 25px; color: var(--ink); margin: 10px 0 20px; }
+  .modal-body{ font-size: 14px; line-height:1.7; text-align:left; opacity:0.75; }
+  .modal-body p{ margin-bottom: 12px; }
+
+  .form-field{ text-align:left; margin-bottom: 16px; }
+  .form-field label{ font-size: 11px; text-transform:uppercase; letter-spacing:0.1em; opacity:0.55; display:block; margin-bottom: 6px; }
+  .form-field input{ width:100%; border: none; border-bottom: 1px solid var(--line); background: transparent; padding: 8px 2px; font-family:'Jost', sans-serif; font-size: 15px; color: var(--ink); }
+  .form-field input:focus{ outline:none; border-bottom-color: var(--silver-deep); }
+  .form-submit{ width:100%; margin-top: 10px; background: var(--silver-deep); color: #fff; border:none; padding: 14px; font-size: 11px; text-transform:uppercase; letter-spacing: 0.2em; cursor:pointer; font-family:'Jost', sans-serif; }
+  .form-submit:disabled{ opacity:0.5; cursor:not-allowed; }
+  .form-status{ margin-top: 14px; font-size: 13px; text-align:center; min-height:18px; }
+</style>
+</head>
+<body>
+  
 <!-- PANTALLA 1: BIENVENIDA + ELECCIÓN DE MÚSICA -->
 <section class="portada" id="landing">
   <div class="frame-box"></div>
