@@ -1,1 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>MILAR — Generador de contratos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bordo:#8B3A52;
+    --bordo-oscuro:#5E2539;
+    --crema:#FBF4EC;
+    --rosa-palida:#F4E1E6;
+    --negro-calido:#262223;
+    --borde:#E7D7DC;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--negro-calido);
+    font-family:'Josefin Sans', sans-serif;
+    font-weight:300;
+    padding-bottom:110px;
+  }
+  header{
+    padding:28px 20px 18px;
+    text-align:center;
+    border-bottom:1px solid var(--borde);
+    background:var(--crema);
+    position:sticky;
+    top:0;
+    z-index:5;
+  }
+  header h1{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:600;
+    color:var(--bordo);
+    font-size:34px;
+    margin:0 0 2px;
+    letter-spacing:0.5px;
+  }
+  header p{
+    margin:0;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:lowercase;
+    color:var(--bordo);
+    opacity:0.75;
+  }
+  header .subtitulo{
+    margin-top:10px;
+    font-size:14px;
+    letter-spacing:0.3px;
+    color:var(--negro-calido);
+    opacity:0.7;
+  }
+  main{
+    max-width:640px;
+    margin:0 auto;
+    padding:18px 16px 40px;
+  }
+  fieldset{
+    border:1px solid var(--borde);
+    border-radius:14px;
+    background:#fff;
+    padding:18px 16px 20px;
+    margin:0 0 16px;
+  }
+  legend{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-style:italic;
+    color:var(--bordo);
+    font-size:20px;
+    padding:0 8px;
+  }
+  .campo{
+    margin-bottom:14px;
+  }
+  .campo:last-child{margin-bottom:0;}
+  label{
+    display:block;
+    font-size:13px;
+    color:var(--negro-calido);
+    opacity:0.85;
+    margin-bottom:5px;
+    letter-spacing:0.2px;
+  }
+  .hint{
+    font-size:11.5px;
+    color:var(--bordo);
+    opacity:0.75;
+    margin-top:4px;
+  }
+  input[type=text], input[type=number], input[type=date], input[type=time], select{
+    width:100%;
+    padding:11px 12px;
+    border:1px solid var(--borde);
+    border-radius:9px;
+    font-size:15px;
+    font-family:'Josefin Sans', sans-serif;
+    background:#fff;
+    color:var(--negro-calido);
+  }
+  input:focus, select:focus{
+    outline:2px solid var(--bordo);
+    outline-offset:1px;
+  }
+  .fila2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .fila3{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+  }
+  .item-cobertura{
+    border:1px solid var(--borde);
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:10px;
+    background:var(--rosa-palida);
+  }
+  .item-cobertura:last-child{margin-bottom:0;}
+  .item-cobertura.desactivado{
+    opacity:0.5;
+    background:#fafafa;
+  }
+  .check-row{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:10px;
+  }
+  .check-row:last-child{margin-bottom:0;}
+  .check-row input[type=checkbox]{
+    width:19px;
+    height:19px;
+    accent-color:var(--bordo);
+    flex-shrink:0;
+  }
+  .check-row label{
+    margin:0;
+    font-size:14.5px;
+    opacity:1;
+  }
+  .item-cobertura .fila2{margin-top:8px;}
+  .servicios-grid .check-row{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:8px;
+    padding:9px 10px;
+  }
+  .paginas-inline{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+    padding-left:28px;
+  }
+  .paginas-inline input{width:70px;}
+  .paginas-inline label{margin:0; font-size:13px;}
+  .resumen{
+    background:var(--rosa-palida);
+    border:1px solid var(--borde);
+    border-radius:10px;
+    padding:12px 14px;
+    font-size:13.5px;
+    line-height:1.7;
+    color:var(--bordo-oscuro);
+  }
+  .resumen strong{color:var(--bordo-oscuro);}
+  .barra-inferior{
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:#fff;
+    border-top:1px solid var(--borde);
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    display:flex;
+    justify-content:center;
+    z-index:10;
+  }
+  .btn-generar{
+    width:100%;
+    max-width:640px;
+    background:var(--bordo);
+    color:#fff;
+    border:none;
+    padding:15px;
+    border-radius:11px;
+    font-size:16px;
+    font-family:'Josefin Sans', sans-serif;
+    font-weight:500;
+    letter-spacing:0.4px;
+    cursor:pointer;
+  }
+  .btn-generar:active{background:var(--bordo-oscuro);}
+  .error-msg{
+    color:#A6304A;
+    font-size:13px;
+    margin:0 0 14px;
+    padding:10px 12px;
+    background:#FBE7EC;
+    border-radius:8px;
+    display:none;
+  }
+  .nota-tipo{
+    font-size:12px;
+    color:var(--bordo);
+    opacity:0.8;
+    margin-top:-6px;
+    margin-bottom:14px;
+  }
+</style>
+</head>
+<body>
 
+<header>
+  <h1>MILAR</h1>
+  <p>f o t o g r a f í a</p>
+  <div class="subtitulo">Generador de contratos</div>
+</header>
+
+<main>
+  <div class="error-msg" id="errorMsg"></div>
+  <form id="contractForm">
+
+    <fieldset>
+      <legend>Evento y cliente</legend>
+      <div class="campo">
+        <label for="tipoEvento">Tipo de evento</label>
+        <select id="tipoEvento">
+          <option value="quince">Quinceañera</option>
+          <option value="boda">Boda</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="clienteNombre">Nombre del cliente</label>
+        <input type="text" id="clienteNombre" placeholder="Ej: Romina">
+      </div>
+      <div class="fila2">
+        <div class="campo">
+          <label for="clienteDNI">DNI (opcional)</label>
+          <input type="text" id="clienteDNI" placeholder="Dejar vacío si no lo tenés">
+        </div>
+        <div class="campo">
+          <label for="clienteContacto">Teléfono / mail (opcional)</label>
+          <input type="text" id="clienteContacto">
+        </div>
+      </div>
+      <div class="fila2">
+        <div class="campo">
+          <label for="lugarContrato">Lugar del contrato</label>
+          <input type="text" id="lugarContrato" value="Buenos Aires">
+        </div>
+        <div class="campo">
+          <label for="fechaContrato">Fecha del contrato</label>
+          <input type="date" id="fechaContrato">
+        </div>
+      </div>
+      <div class="fila2">
+        <div class="campo">
+          <label for="fechaEvento">Fecha del evento</label>
+          <input type="date" id="fechaEvento">
+        </div>
+        <div class="campo">
+          <label for="zonaEvento">Zona del evento</label>
+          <input type="text" id="zonaEvento" placeholder="Ej: Tortuguitas, Buenos Aires">
+        </div>
+      </div>
+      <div class="campo">
+        <label for="lugarSalon">Lugar específico (salón / iglesia)</label>
+        <input type="text" id="lugarSalon" placeholder="Dejar vacío si aún no está confirmado">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Cobertura</legend>
+      <div id="coberturaItems"></div>
+      <div class="campo" style="margin-top:14px;">
+        <div class="fila2">
+          <div>
+            <label for="horarioDesde">Horario estimado — desde</label>
+            <input type="time" id="horarioDesde" value="21:00">
+          </div>
+          <div>
+            <label for="horarioHasta">Horario estimado — hasta</label>
+            <input type="time" id="horarioHasta" value="05:00">
+          </div>
+        </div>
+      </div>
+      <div class="resumen" id="resumenCobertura"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Servicios incluidos</legend>
+      <div class="servicios-grid">
+        <div class="check-row">
+          <input type="checkbox" id="srv_foto" checked>
+          <label for="srv_foto">Cobertura fotográfica profesional</label>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="srv_video" checked>
+          <label for="srv_video">Cobertura de video profesional</label>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="srv_book" checked>
+          <label for="srv_book">Book de fotos previo + fotolibro tapa dura</label>
+        </div>
+        <div class="paginas-inline">
+          <label for="srv_paginas">Páginas del fotolibro:</label>
+          <input type="number" id="srv_paginas" value="22" min="1">
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="srv_pendrive" checked>
+          <label for="srv_pendrive">Entrega digital completa en pendrive</label>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="srv_invitacion" checked>
+          <label for="srv_invitacion">Invitación digital de regalo</label>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="srv_edicion" checked>
+          <label for="srv_edicion">Edición de color y luz en todas las fotografías</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Entrega del material</legend>
+      <div class="fila3">
+        <div class="campo">
+          <label for="formatoFotos">Formato fotos</label>
+          <input type="text" id="formatoFotos" value="JPG">
+        </div>
+        <div class="campo">
+          <label for="plazoMin">Entrega desde (días)</label>
+          <input type="number" id="plazoMin" value="21" min="1">
+        </div>
+        <div class="campo">
+          <label for="plazoMax">Entrega hasta (días)</label>
+          <input type="number" id="plazoMax" value="35" min="1">
+        </div>
+      </div>
+      <div class="campo">
+        <label for="backupMeses">Backup posterior a la entrega (meses)</label>
+        <input type="number" id="backupMeses" value="2" min="1" style="max-width:120px;">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Honorarios y forma de pago</legend>
+      <div class="fila2">
+        <div class="campo">
+          <label for="valorTotal">Valor total del servicio ($)</label>
+          <input type="number" id="valorTotal" placeholder="Ej: 750000" min="0" step="1000">
+        </div>
+        <div class="campo">
+          <label for="cantidadCuotas">Cantidad de cuotas</label>
+          <input type="number" id="cantidadCuotas" value="3" min="1">
+        </div>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="primeraCuotaSena" checked>
+        <label for="primeraCuotaSena">La primera cuota funciona como seña</label>
+      </div>
+      <div class="fila2">
+        <div class="campo">
+          <label for="interesMora">Interés por mora mensual (%)</label>
+          <input type="number" id="interesMora" value="3" min="0" step="0.5">
+        </div>
+        <div class="campo">
+          <label for="medioPago">Medio de pago</label>
+          <input type="text" id="medioPago" value="Transferencia bancaria">
+        </div>
+      </div>
+      <div class="resumen" id="resumenPago"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Uso de imagen</legend>
+      <div class="servicios-grid">
+        <div class="check-row">
+          <input type="checkbox" id="img_instagram" checked>
+          <label for="img_instagram">Instagram</label>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="img_tiktok" checked>
+          <label for="img_tiktok">TikTok</label>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="img_facebook" checked>
+          <label for="img_facebook">Facebook</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Cláusulas adicionales</legend>
+      <div class="check-row">
+        <input type="checkbox" id="incluirLaser" checked>
+        <label for="incluirLaser">Incluir cláusula de uso de láser en pista</label>
+      </div>
+    </fieldset>
+
+  </form>
+</main>
+
+<div class="barra-inferior">
+  <button class="btn-generar" id="generateBtn" type="button">Generar contrato (PDF)</button>
+</div>
+
+<script src="jspdf.umd.min.js"></script>
+<script src="fonts-embed.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
