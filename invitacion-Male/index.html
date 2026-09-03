@@ -157,7 +157,7 @@
   .photo-caption{ font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--gold-bright); opacity: 0.85; margin-top: 14px; }
   .deco-corner{ position:absolute; width: 42px; height: 42px; z-index:3; opacity:0.9; }
   .deco-corner.tl-photo{ top: 22px; left: 4px; }
-  .deco-corner.br-photo{ bottom: -2px; right: 4px; transform: scaleX(-1) scaleY(-1); }
+  .deco-corner.br-photo{ bottom: -2px; right: 4px; transform: scaleX(-1); }
 
   .info-grid{ display:flex; flex-direction:column; gap: 16px; max-width: 420px; margin: 0 auto; }
   .info-card{ border: 1px solid var(--gold); padding: 26px; background: var(--navy-panel); cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; text-decoration:none; position:relative; }
@@ -350,6 +350,8 @@
     </div>
   </div>
 </section>
+  </div>
+</section>
 
 <!-- FOTO 6 -->
 <section class="reveal" style="padding-top:0; padding-bottom:20px;">
@@ -405,8 +407,8 @@
 </div>
 
 <script>
-  // ====== ACÁ VA EL LINK DE TU FORMULARIO DE RSVP (definir método de confirmación) ======
-  const RSVP_FORM_URL = 'PEGAR_ACA_EL_LINK_DE_TU_FORMULARIO';
+  // ====== ACÁ VA EL LINK DE TU FORMULARIO DE RSVP ======
+  const RSVP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSd70JGE8Iy3fyGwIKPDHKDJUnOyg2oBotrlS-2ciOE4HnhCeA/viewform?usp=publish-editor';
   document.getElementById('rsvpBtn').setAttribute('href', RSVP_FORM_URL);
 
   // Countdown
@@ -466,9 +468,25 @@
     overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('open'); });
   });
 
+  // ====== Envío de "sugerí una canción" a un Apps Script (guarda en la pestaña Canciones, sin tocar el formulario visible) ======
+  const CANCION_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVnCr-J9HtzIW0i_zWxQrX3fsd6e9Cv7ih8dO-LtVF9wsf0vA9iizcodyD0kiKyCmQiA/exec';
+
   document.getElementById('cancionForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    document.getElementById('cancionStatus').textContent = 'Gracias por la sugerencia.';
+    const statusEl = document.getElementById('cancionStatus');
+    statusEl.textContent = 'Enviando...';
+    const payload = {
+      nombre: document.getElementById('cancionNombre').value,
+      tema: document.getElementById('cancionTema').value
+    };
+    fetch(CANCION_APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload),
+      headers: {'Content-Type': 'text/plain'}
+    })
+    .then(() => { statusEl.textContent = 'Gracias por la sugerencia.'; })
+    .catch(() => { statusEl.textContent = 'Hubo un error, probá de nuevo.'; });
   });
 
   // Scroll reveal
