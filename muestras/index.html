@@ -1,1 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MILAR — Invitación Digital · Muestra Holográfica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --holo-pink: #FF6EC7;
+    --holo-purple: #A66CFF;
+    --holo-blue: #6EC6FF;
+    --holo-cyan: #7CF5E4;
+    --holo-yellow: #FFE96E;
+    --ink: #2B1B4D;
+    --white: #FFFFFF;
+    --line: rgba(255,255,255,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: linear-gradient(120deg, #FFD6F0, #D6E5FF, #E0FFF6, #FFE9D6, #F0D6FF);
+    background-size: 400% 400%;
+    animation: holoShift 18s ease-in-out infinite;
+    color: var(--ink); font-family:'Poppins', sans-serif; font-weight:400; overflow-x:hidden;
+  }
+  @keyframes holoShift{ 0%{ background-position: 0% 50%;} 50%{ background-position: 100% 50%;} 100%{ background-position: 0% 50%;} }
+  .display{ font-family:'Fredoka', sans-serif; font-weight:600; }
 
+  .chrome-text, .section-title.chrome-text, .footer-mark.chrome-text{
+    background: linear-gradient(100deg, #B98CFF 0%, #FF9AE0 20%, #9AD8FF 40%, #FFF3A0 55%, #FF9AE0 70%, #B98CFF 100%) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important; background-clip: text !important; color: transparent !important;
+    animation: shimmer 5s linear infinite;
+  }
+  @keyframes shimmer{ 0%{ background-position: 0% 50%;} 100%{ background-position: -300% 50%;} }
+
+  .eyebrow{ text-transform: uppercase; letter-spacing: 0.3em; font-size: 11px; color: var(--holo-purple); font-weight: 600; text-align:center; }
+
+  .divider-flourish{ display:flex; align-items:center; justify-content:center; gap: 10px; margin: 22px auto; }
+  .divider-flourish::before, .divider-flourish::after{ content:''; width: 26px; height:2px; border-radius:2px; background: linear-gradient(90deg, var(--holo-pink), var(--holo-blue)); opacity:0.6; }
+
+  .sparkle{ flex-shrink:0; animation: twinkle 2s ease-in-out infinite; }
+  @keyframes twinkle{ 0%,100%{ opacity:0.4; transform:scale(0.85);} 50%{ opacity:1; transform:scale(1.15);} }
+
+  .portada{ min-height: 100svh; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 60px 28px; overflow:hidden; }
+  .blob{ position:absolute; border-radius:50%; filter: blur(50px); opacity:0.55; z-index:0; }
+  .blob1{ width:280px; height:280px; background: var(--holo-pink); top:-60px; left:-60px; }
+  .blob2{ width:240px; height:240px; background: var(--holo-blue); bottom:-40px; right:-50px; }
+  .blob3{ width:200px; height:200px; background: var(--holo-yellow); top:40%; left:60%; opacity:0.4; }
+
+  .glass-badge{ position:relative; z-index:2; background: rgba(255,255,255,0.45); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.7); border-radius: 999px; padding: 8px 20px; font-family:'Fredoka', sans-serif; font-weight:600; font-size: 13px; color: var(--ink); letter-spacing:0.08em; margin-bottom: 26px; box-shadow: 0 8px 24px rgba(166,108,255,0.15); }
+
+  /* ---------- MARCO DE FOTO CIRCULAR ---------- */
+  .avatar-frame{ position:relative; z-index:2; width: 148px; height: 148px; margin: 0 auto 22px; border-radius:50%; padding: 5px; background: conic-gradient(from 0deg, var(--holo-pink), var(--holo-purple), var(--holo-blue), var(--holo-yellow), var(--holo-pink)); animation: spinRing 6s linear infinite; box-shadow: 0 12px 30px rgba(166,108,255,0.3); }
+  @keyframes spinRing{ to{ transform: rotate(360deg); } }
+  .avatar-frame-inner{ width:100%; height:100%; border-radius:50%; background: rgba(255,255,255,0.6); backdrop-filter: blur(6px); display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+  .avatar-frame-inner img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%; }
+  .avatar-frame-inner .ph-icon{ width: 36px; height:36px; opacity:0.4; }
+
+  /* ---------- MARIPOSA HOLOGRÁFICA LIBRE ---------- */
+  .holo-butterfly{ position:fixed; width: 46px; height: 34px; z-index: 50; pointer-events:none; animation: butterflyPath 16s ease-in-out infinite; filter: drop-shadow(0 4px 10px rgba(166,108,255,0.35)); }
+  .holo-butterfly .wing-l{ transform-origin: 23px 17px; animation: flapHolo 1.3s ease-in-out infinite; }
+  .holo-butterfly .wing-r{ transform-origin: 23px 17px; animation: flapHolo 1.3s ease-in-out infinite; animation-delay:0.07s; }
+  @keyframes flapHolo{ 0%,100%{ transform: scaleX(1);} 50%{ transform: scaleX(0.68);} }
+  @keyframes butterflyPath{
+    0%{ top: 12%; left: 8%; transform: rotate(0deg); }
+    15%{ top: 28%; left: 78%; transform: rotate(8deg); }
+    30%{ top: 55%; left: 15%; transform: rotate(-10deg); }
+    45%{ top: 40%; left: 85%; transform: rotate(6deg); }
+    60%{ top: 72%; left: 30%; transform: rotate(-6deg); }
+    75%{ top: 85%; left: 75%; transform: rotate(10deg); }
+    90%{ top: 20%; left: 50%; transform: rotate(-4deg); }
+    100%{ top: 12%; left: 8%; transform: rotate(0deg); }
+  }
+  @media (prefers-reduced-motion: reduce){ .holo-butterfly{ animation: none; display:none; } }
+
+  .portada-welcome{ font-size: 13px; letter-spacing: 0.08em; opacity: 0.8; margin-bottom: 8px; position:relative; z-index:2; }
+  .portada-title{ font-family:'Fredoka', sans-serif; font-weight: 700; font-size: clamp(56px, 15vw, 100px); line-height: 1; position:relative; z-index:2; }
+  .portada-sub{ font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; margin-top: 14px; opacity: 0.85; display:flex; align-items:center; justify-content:center; gap:10px; position:relative; z-index:2; font-weight:600; color: var(--holo-purple); }
+  .music-choice{ margin-top: 42px; display:flex; gap: 16px; position:relative; z-index:2; }
+  .music-choice button{ font-family:'Fredoka', sans-serif; font-weight:600; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; padding: 15px 26px; border: none; cursor:pointer; border-radius: 999px; }
+  .music-choice button.solid{ background: linear-gradient(120deg, var(--holo-pink), var(--holo-purple)); color: #fff; box-shadow: 0 10px 26px rgba(166,108,255,0.4); position:relative; overflow:hidden; }
+  .music-choice button.solid::before{ content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent 60%); }
+  .music-choice button:not(.solid){ background: rgba(255,255,255,0.5); backdrop-filter: blur(10px); color: var(--ink); border: 1px solid rgba(255,255,255,0.8); }
+
+  @media (max-width: 480px){
+    .music-choice{ flex-direction:column; width:100%; max-width:230px; gap:12px; margin-left:auto; margin-right:auto; }
+    .music-choice button{ width:100%; padding: 14px 18px; }
+  }
+
+  section{ padding: 90px 28px; text-align:center; position:relative; }
+  .section-title{ font-family:'Fredoka', sans-serif; font-weight:600; font-size: clamp(28px, 7vw, 40px); color: var(--ink); margin-bottom: 6px; }
+  .section-sub{ font-size: 14px; opacity: 0.75; max-width: 380px; margin: 0 auto 40px; line-height:1.6; }
+
+  .countdown-grid{ display:flex; justify-content:center; gap: 12px; flex-wrap: wrap; }
+  .countdown-cell{ width: 82px; padding: 18px 0 14px; border-radius: 20px; background: rgba(255,255,255,0.5); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.8); position:relative; box-shadow: 0 8px 20px rgba(166,108,255,0.12); }
+  .countdown-num{ font-family:'Fredoka', sans-serif; font-weight:700; font-size: 30px; }
+  .countdown-label{ font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin-top: 4px; font-weight:600; }
+
+  .detail-cards{ display:flex; flex-direction:column; gap: 16px; max-width: 420px; margin: 0 auto; }
+  .detail-card{ border-radius: 22px; padding: 28px 24px; background: rgba(255,255,255,0.45); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.75); position:relative; box-shadow: 0 10px 28px rgba(166,108,255,0.14); }
+  .detail-card::before{ content:''; position:absolute; inset:-1.5px; border-radius:22px; padding:1.5px; background: linear-gradient(120deg, var(--holo-pink), var(--holo-blue), var(--holo-yellow)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:0.5; pointer-events:none; }
+  .detail-card-title{ font-family:'Fredoka', sans-serif; font-weight:600; font-size: 22px; color: var(--ink); }
+  .detail-card-sub{ font-size: 13px; opacity: 0.75; margin-top: 6px; }
+  .link-underline{ display:inline-block; margin-top: 14px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--holo-purple); font-weight:600; border-bottom: 2px solid var(--holo-purple); padding-bottom: 2px; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; font-family:'Poppins',sans-serif; text-decoration:none; }
+
+  .rsvp{ background: linear-gradient(135deg, var(--holo-purple), var(--holo-pink)); color: #fff; }
+  .rsvp .eyebrow{ color: rgba(255,255,255,0.85); }
+  .rsvp .section-title{ color: #fff; }
+  .rsvp .section-sub{ color: rgba(255,255,255,0.9); }
+  .btn-primary{ display:inline-block; background: #fff; color: var(--holo-purple); padding: 16px 40px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; border:none; cursor:pointer; font-family:'Fredoka', sans-serif; font-weight:600; border-radius: 999px; box-shadow: 0 10px 26px rgba(0,0,0,0.15); text-decoration:none; }
+
+  .galeria-carrusel{
+    display:flex; gap: 14px; overflow-x:auto; scroll-snap-type: x mandatory;
+    padding: 6px 28px 18px; margin: 0 -28px; -webkit-overflow-scrolling: touch;
+  }
+  .galeria-carrusel::-webkit-scrollbar{ height: 5px; }
+  .galeria-carrusel::-webkit-scrollbar-thumb{ background: var(--holo-purple); border-radius: 4px; }
+  .galeria-item{
+    flex: 0 0 auto; width: 210px; height: 270px; scroll-snap-align: center;
+    background: linear-gradient(160deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.75); border-radius: 22px;
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+    box-shadow: 0 10px 24px rgba(166,108,255,0.14);
+  }
+  .galeria-item img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .galeria-item .ph-icon{ width: 30px; height:30px; opacity:0.4; }
+  .galeria-hint{ font-size: 11px; opacity:0.6; margin-top: 10px; letter-spacing: 0.06em; font-weight:500; }
+
+  .info-grid{ display:flex; flex-direction:column; gap: 14px; max-width: 420px; margin: 0 auto; }
+  .info-card{ border-radius: 20px; padding: 24px; background: rgba(255,255,255,0.45); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.75); cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; text-decoration:none; box-shadow: 0 8px 22px rgba(166,108,255,0.12); }
+  .info-card-title{ font-family:'Fredoka', sans-serif; font-weight:600; font-size: 19px; color: var(--ink); }
+  .info-card-sub{ font-size: 12px; opacity: 0.65; margin-top: 4px; }
+
+  footer{ padding: 60px 28px 46px; text-align:center; }
+  .footer-mark{ font-family:'Fredoka', sans-serif; font-weight:700; font-size: 26px; margin-bottom: 8px; display:flex; align-items:center; justify-content:center; gap: 8px; }
+  .footer-tag{ font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.5; font-weight:600; }
+
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } body{ animation:none; } }
+  @media (min-width: 720px){ section{ padding: 120px 60px; } }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{ position:fixed; inset:0; background: rgba(43,27,77,0.35); backdrop-filter: blur(4px); display:none; align-items:center; justify-content:center; padding: 24px; z-index: 100; }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{ background: rgba(255,255,255,0.9); backdrop-filter: blur(20px); max-width: 420px; width:100%; padding: 40px 30px; position:relative; border: 1px solid rgba(255,255,255,0.9); text-align:center; max-height: 85vh; overflow-y:auto; border-radius: 26px; box-shadow: 0 20px 50px rgba(166,108,255,0.25); }
+  .modal-close{ position:absolute; top:16px; right:18px; background:none; border:none; font-size: 20px; color: var(--ink); cursor:pointer; line-height:1; }
+  .modal-title{ font-family:'Fredoka', sans-serif; font-weight:600; font-size: 24px; color: var(--ink); margin: 10px 0 20px; }
+
+  .form-field{ text-align:left; margin-bottom: 16px; }
+  .form-field label{ font-size: 11px; text-transform:uppercase; letter-spacing:0.08em; opacity:0.6; display:block; margin-bottom: 6px; font-weight:600; }
+  .form-field input{ width:100%; border: none; border-bottom: 2px solid rgba(166,108,255,0.3); background: transparent; padding: 8px 2px; font-family:'Poppins', sans-serif; font-size: 15px; color: var(--ink); }
+  .form-field input:focus{ outline:none; border-bottom-color: var(--holo-purple); }
+  .form-submit{ width:100%; margin-top: 10px; background: linear-gradient(120deg, var(--holo-pink), var(--holo-purple)); color: #fff; border:none; padding: 14px; font-size: 11px; text-transform:uppercase; letter-spacing: 0.1em; cursor:pointer; font-family:'Fredoka', sans-serif; font-weight:600; border-radius: 999px; }
+  .form-status{ margin-top: 14px; font-size: 13px; text-align:center; min-height:18px; }
+</style>
+</head>
+<body>
+
+<svg class="holo-butterfly" viewBox="0 0 46 34" fill="none">
+  <defs>
+    <linearGradient id="holoWing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6EC7"/>
+      <stop offset="50%" stop-color="#A66CFF"/>
+      <stop offset="100%" stop-color="#6EC6FF"/>
+    </linearGradient>
+  </defs>
+  <g class="wing-l" fill="url(#holoWing)" fill-opacity="0.85">
+    <path d="M23 17 C10 2 0 4 3 14 C5 20 15 21 23 17 Z" stroke="#fff" stroke-width="0.6" stroke-opacity="0.5"/>
+    <path d="M23 17 C13 18 8 26 15 30 C19 31 23 24 23 17 Z" stroke="#fff" stroke-width="0.6" stroke-opacity="0.5"/>
+  </g>
+  <g class="wing-r" fill="url(#holoWing)" fill-opacity="0.85">
+    <path d="M23 17 C36 2 46 4 43 14 C41 20 31 21 23 17 Z" stroke="#fff" stroke-width="0.6" stroke-opacity="0.5"/>
+    <path d="M23 17 C33 18 38 26 31 30 C27 31 23 24 23 17 Z" stroke="#fff" stroke-width="0.6" stroke-opacity="0.5"/>
+  </g>
+  <line x1="23" y1="9" x2="23" y2="25" stroke="#7A4FCC" stroke-width="1.2"/>
+</svg>
+
+<!-- PANTALLA 1: BIENVENIDA + ELECCIÓN DE MÚSICA -->
+<section class="portada" id="landing">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <div class="reveal is-visible">
+    <div class="glass-badge">✨ milar</div>
+
+    <div class="avatar-frame">
+      <div class="avatar-frame-inner">
+        <img src="fotos/foto-perfil.jpg" alt="Valentina" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()">
+        <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#A66CFF" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg>
+      </div>
+    </div>
+
+    <div class="portada-welcome">Bienvenidos a la invitación de</div>
+    <h1 class="portada-title chrome-text">Valentina</h1>
+    <div class="portada-sub">
+      <svg class="sparkle" width="16" height="16" viewBox="0 0 24 24" fill="#FF6EC7"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg>
+      Mis quince años
+      <svg class="sparkle" width="16" height="16" viewBox="0 0 24 24" fill="#6EC6FF" style="animation-delay:0.6s;"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg>
+    </div>
+    <div class="music-choice">
+      <button class="solid" id="withMusic">Ingresar con música</button>
+      <button id="withoutMusic">Sin música</button>
+    </div>
+  </div>
+</section>
+
+<audio id="bgMusic" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA 2: RESTO DE LA INVITACIÓN (oculta hasta elegir música) -->
+<div id="mainContent" style="display:none;">
+
+<!-- FIESTA -->
+<section class="reveal is-visible">
+  <div class="eyebrow">La fiesta</div>
+  <div class="section-title">Todos los detalles</div>
+  <div class="divider-flourish"><svg class="sparkle" width="14" height="14" viewBox="0 0 24 24" fill="#A66CFF"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg></div>
+  <div class="detail-cards">
+    <div class="detail-card">
+      <div class="eyebrow">Día</div>
+      <div class="detail-card-title">Sábado 15 de marzo</div>
+      <div class="detail-card-sub">Desde las 21:00 hs</div>
+      <button class="link-underline" data-cal>Agendar</button>
+    </div>
+    <div class="detail-card">
+      <div class="eyebrow">Lugar</div>
+      <div class="detail-card-title">Space Club</div>
+      <div class="detail-card-sub">Av. Ejemplo 1234, Buenos Aires</div>
+      <a class="link-underline" href="https://www.google.com/maps" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="detail-card">
+      <div class="eyebrow">Dress code</div>
+      <div class="detail-card-title">Glow party ✨</div>
+      <div class="detail-card-sub">Colores metálicos y brillos bienvenidos</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="reveal">
+  <div class="eyebrow">Un poco de mí</div>
+  <div class="section-title">Este recorrido</div>
+  <div class="galeria-carrusel">
+    <div class="galeria-item"><img src="fotos/foto-1.jpg" alt="Valentina" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#A66CFF" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+    <div class="galeria-item"><img src="fotos/foto-2.jpg" alt="Valentina" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#A66CFF" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+    <div class="galeria-item"><img src="fotos/foto-3.jpg" alt="Valentina" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#A66CFF" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+    <div class="galeria-item"><img src="fotos/foto-4.jpg" alt="Valentina" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#A66CFF" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg></div>
+  </div>
+  <div class="galeria-hint">Deslizá para ver más →</div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="reveal">
+  <div class="eyebrow">Falta poco</div>
+  <div class="section-title chrome-text">15 de marzo, 2027</div>
+  <div class="divider-flourish"><svg class="sparkle" width="14" height="14" viewBox="0 0 24 24" fill="#A66CFF"><path d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"/></svg></div>
+  <div class="countdown-grid">
+    <div class="countdown-cell"><div class="countdown-num" id="cd-dias">--</div><div class="countdown-label">Días</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-horas">--</div><div class="countdown-label">Hs</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-min">--</div><div class="countdown-label">Min</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-seg">--</div><div class="countdown-label">Seg</div></div>
+  </div>
+</section>
+
+<!-- RSVP CTA -->
+<section class="rsvp reveal">
+  <div class="eyebrow">Confirmación</div>
+  <div class="section-title" style="color:#fff;">¿Vas a acompañarme?</div>
+  <p class="section-sub">Ya viste todos los detalles — contanos si vas a estar esa noche con nosotros.</p>
+  <a class="btn-primary" id="rsvpBtn" href="#" target="_blank" rel="noopener">Confirmar asistencia</a>
+</section>
+
+<!-- INFO CARDS -->
+<section class="reveal">
+  <div class="eyebrow">Para tener en cuenta</div>
+  <div class="section-title">Antes de venir</div>
+  <div class="info-grid">
+    <button class="info-card" data-modal="cancion">
+      <span><span class="info-card-title">Sugerí una canción 🎶</span><br><span class="info-card-sub">Para que no falte en la playlist</span></span>
+    </button>
+    <div class="info-card" style="cursor:default;">
+      <span><span class="info-card-title">Regalos</span><br><span class="info-card-sub">Tu presencia esa noche ya es el mejor regalo. Alias: ejemplo.alias</span></span>
+    </div>
+    <a class="info-card" href="https://www.instagram.com/" target="_blank" rel="noopener">
+      <span><span class="info-card-title">#valentina15</span><br><span class="info-card-sub">Compartí tus fotos de esa noche</span></span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-mark chrome-text">Valentina · Mis 15</div>
+  <div class="footer-tag">Hecho con MILAR</div>
+</footer>
+
+</div> <!-- cierre de mainContent -->
+
+<!-- ===== MODALES ===== -->
+
+<div class="modal-overlay" id="modal-cancion">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Playlist</div>
+    <div class="modal-title">Sugerí una canción</div>
+    <form id="cancionForm">
+      <div class="form-field">
+        <label>Tu nombre</label>
+        <input type="text" id="cancionNombre" required>
+      </div>
+      <div class="form-field">
+        <label>Canción y artista</label>
+        <input type="text" id="cancionTema" placeholder="Ej: Bad Bunny — Título" required>
+      </div>
+      <button type="submit" class="form-submit">Enviar sugerencia</button>
+      <div class="form-status" id="cancionStatus"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ====== ACÁ VA EL LINK DE TU FORMULARIO DE RSVP ======
+  const RSVP_FORM_URL = 'PEGAR_ACA_EL_LINK_DE_TU_FORMULARIO';
+  document.getElementById('rsvpBtn').setAttribute('href', RSVP_FORM_URL);
+
+  // Countdown
+  const target = new Date('2027-03-15T21:00:00');
+  function tick(){
+    const now = new Date();
+    let diff = target - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-dias').textContent = d;
+    document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Pantalla 1 → Pantalla 2 (elección de música)
+  const audio = document.getElementById('bgMusic');
+  const landing = document.getElementById('landing');
+  const mainContent = document.getElementById('mainContent');
+
+  function entrarALaInvitacion(conMusica){
+    if(conMusica){ audio.play().catch(()=>{}); }
+    landing.style.display = 'none';
+    mainContent.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  document.getElementById('withMusic').addEventListener('click', () => entrarALaInvitacion(true));
+  document.getElementById('withoutMusic').addEventListener('click', () => entrarALaInvitacion(false));
+
+  // Calendario .ics
+  const calBtn = document.querySelector('[data-cal]');
+  if(calBtn){
+    calBtn.addEventListener('click', () => {
+      const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20270315T210000','DTEND:20270316T050000','SUMMARY:Mis 15 — Valentina','LOCATION:Space Club, Buenos Aires','END:VEVENT','END:VCALENDAR'].join('\n');
+      const blob = new Blob([ics], {type:'text/calendar'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'mis-15-valentina.ics';
+      link.click();
+    });
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('modal-' + btn.getAttribute('data-modal')).classList.add('open');
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => { btn.closest('.modal-overlay').classList.remove('open'); });
+  });
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('open'); });
+  });
+
+  document.getElementById('cancionForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('cancionStatus').textContent = '¡Gracias por la sugerencia! ✨';
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
