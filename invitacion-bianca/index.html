@@ -423,30 +423,28 @@
   document.getElementById('cancionForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const statusEl = document.getElementById('cancionStatus');
-    statusEl.textContent = 'Enviando...';
     const payload = {
       nombre: document.getElementById('cancionNombre').value,
       tema: document.getElementById('cancionTema').value
     };
 
-    function cerrarModalCancion(mensajeFinal){
-      statusEl.textContent = mensajeFinal;
-      setTimeout(() => {
-        const modal = document.getElementById('modal-cancion');
-        if (modal) modal.classList.remove('open');
-        document.getElementById('cancionForm').reset();
-        statusEl.textContent = '';
-      }, 1400);
-    }
+    // Intento de envío en segundo plano, sin bloquear el cierre del modal
+    try {
+      fetch(CANCION_APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(payload),
+        headers: {'Content-Type': 'text/plain'}
+      }).catch(() => {});
+    } catch (err) {}
 
-    fetch(CANCION_APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify(payload),
-      headers: {'Content-Type': 'text/plain'}
-    })
-    .then(() => { cerrarModalCancion('Gracias por la sugerencia.'); })
-    .catch(() => { cerrarModalCancion('Gracias por la sugerencia.'); });
+    statusEl.textContent = 'Gracias por la sugerencia.';
+    setTimeout(() => {
+      const modal = document.getElementById('modal-cancion');
+      if (modal) modal.classList.remove('open');
+      document.getElementById('cancionForm').reset();
+      statusEl.textContent = '';
+    }, 1100);
   });
 
   // Scroll reveal
