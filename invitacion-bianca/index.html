@@ -434,7 +434,14 @@
       body: JSON.stringify(payload),
       headers: {'Content-Type': 'text/plain'}
     })
-    .then(() => { statusEl.textContent = 'Gracias por la sugerencia.'; })
+    .then(() => {
+      statusEl.textContent = 'Gracias por la sugerencia.';
+      setTimeout(() => {
+        document.getElementById('modal-cancion').classList.remove('open');
+        document.getElementById('cancionForm').reset();
+        statusEl.textContent = '';
+      }, 1600);
+    })
     .catch(() => { statusEl.textContent = 'Hubo un error, probá de nuevo.'; });
   });
 
