@@ -330,6 +330,7 @@ function recopilarDatos() {
   const srv = {
     foto: document.getElementById('srv_foto').checked,
     video: document.getElementById('srv_video').checked,
+    videocrono: document.getElementById('srv_videocrono').checked,
     book: document.getElementById('srv_book').checked,
     paginas: document.getElementById('srv_paginas').value,
     pendrive: document.getElementById('srv_pendrive').checked,
@@ -447,6 +448,7 @@ function generarPDF() {
   y = drawParagraph(doc, 'Este contrato incluye los siguientes servicios:', y, { spacingAfter: 1 });
   if (data.srv.foto) y = drawBullet(doc, 'Cobertura fotográfica profesional del evento', y);
   if (data.srv.video) y = drawBullet(doc, 'Cobertura de video profesional del evento', y);
+  if (data.srv.videocrono) y = drawBullet(doc, 'Video cronológico (sin pantalla)', y);
   if (data.srv.book) y = drawBullet(doc, `Book de fotos previo y fotolibro tapa dura de ${data.srv.paginas} páginas`, y);
   if (data.srv.pendrive) y = drawBullet(doc, 'Entrega digital completa en pendrive', y);
   if (data.srv.invitacion) y = drawBullet(doc, 'Invitación digital de regalo', y);
