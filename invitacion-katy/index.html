@@ -1,1 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MILAR — Invitación Digital · Katy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pistacho:#C9D58B; --pistacho-deep:#5E6E38; --pistacho-dark:#46552A; --pistacho-pale:#E3EBC0;
+    --crema:#FBF8EF; --rosa:#E8C4C4; --champagne:#B8975A;
+    --ink:#2F3B1C; --ink-soft:rgba(47,59,28,0.82); --line:rgba(94,110,56,0.30);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background-color:#E0E9B4;
+    background-image:url("/invitacion-katy/fondo-pistacho.jpg");
+    background-repeat:repeat-y; background-position:top center; background-size:100% auto;
+    color:var(--ink); font-family:'Montserrat',sans-serif; font-weight:400; font-size:16px; overflow-x:hidden;
+  }
+  .eyebrow{ text-transform:uppercase; letter-spacing:0.26em; font-size:12px; color:var(--pistacho-deep); font-weight:600; text-align:center; }
 
+  /* decoraciones */
+  .rama{ position:absolute; pointer-events:none; z-index:1; }
+  .rama.tl{ top:-8px; left:-18px; width:270px; height:167px; }
+  .rama.br{ bottom:-8px; right:-18px; width:270px; height:167px; transform:rotate(180deg); }
+  .rama.tr{ top:8px; right:-30px; width:170px; height:105px; transform:scaleX(-1) rotate(8deg); opacity:.95; }
+  @media (max-width:480px){ .rama.tl,.rama.br{ width:215px; height:133px; } }
+  .mariposa{ position:absolute; z-index:2; pointer-events:none; width:38px; height:28px; filter:drop-shadow(0 3px 5px rgba(120,100,60,.25)); }
+  .mariposa .ala-i{ transform-origin:22px 16px; animation:aletea 1.6s ease-in-out infinite; }
+  .mariposa .ala-d{ transform-origin:22px 16px; animation:aletea 1.6s ease-in-out infinite; animation-delay:.08s; }
+  @keyframes aletea{ 0%,100%{transform:scaleX(1)} 50%{transform:scaleX(.7)} }
+  @keyframes vuela{ 0%,100%{transform:translate(0,0) rotate(0)} 25%{transform:translate(10px,-14px) rotate(8deg)} 50%{transform:translate(-4px,-22px) rotate(-6deg)} 75%{transform:translate(-14px,-8px) rotate(4deg)} }
+  .mariposa.vuela{ animation:vuela 7s ease-in-out infinite; }
+
+
+  .mariposa-guia{ position:fixed; width:54px; height:39px; z-index:50; pointer-events:none; filter:drop-shadow(0 5px 8px rgba(110,90,50,.3)); animation:recorre 18s ease-in-out infinite; }
+  .mariposa-guia .ala-i{ transform-origin:22px 16px; animation:aletea 1.4s ease-in-out infinite; }
+  .mariposa-guia .ala-d{ transform-origin:22px 16px; animation:aletea 1.4s ease-in-out infinite; animation-delay:.07s; }
+  @keyframes recorre{
+    0%{ top:10%; left:8%; transform:rotate(0deg) scaleX(1); }
+    15%{ top:26%; left:78%; transform:rotate(6deg) scaleX(-1); }
+    30%{ top:52%; left:12%; transform:rotate(-8deg) scaleX(1); }
+    45%{ top:38%; left:84%; transform:rotate(5deg) scaleX(-1); }
+    60%{ top:70%; left:28%; transform:rotate(-5deg) scaleX(1); }
+    75%{ top:84%; left:74%; transform:rotate(8deg) scaleX(-1); }
+    90%{ top:18%; left:48%; transform:rotate(-4deg) scaleX(1); }
+    100%{ top:10%; left:8%; transform:rotate(0deg) scaleX(1); }
+  }
+  .divisor{ display:flex; align-items:center; justify-content:center; gap:10px; margin:20px auto; }
+  .divisor::before,.divisor::after{ content:''; width:34px; height:1px; background:var(--champagne); opacity:.7; }
+  .divisor svg{ width:42px; height:21px; }
+
+  /* portada */
+  .portada{ min-height:100svh; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:60px 26px; overflow:hidden; }
+  .arco{ position:relative; z-index:2; width:min(340px,86vw); border:1.5px solid var(--champagne); border-radius:180px 180px 16px 16px; padding:84px 22px 46px; background:rgba(251,248,239,0.7); backdrop-filter:blur(3px); box-shadow:0 18px 40px rgba(70,85,42,.18); }
+  .arco::before{ content:''; position:absolute; inset:8px; border:1px solid var(--champagne); opacity:.45; border-radius:172px 172px 10px 10px; pointer-events:none; }
+  .brand-mark{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:16px; color:var(--pistacho-deep); letter-spacing:.14em; margin-bottom:14px; }
+  .bienvenida{ font-size:15px; letter-spacing:.04em; color:var(--ink-soft); margin-bottom:4px; }
+  .nombre{ font-family:'Cormorant Garamond',serif; font-weight:600; font-style:italic; font-size:clamp(70px,21vw,98px); line-height:1.02; color:var(--pistacho-dark); }
+  .quince{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top:12px; font-size:13px; letter-spacing:.24em; text-transform:uppercase; font-weight:600; color:var(--pistacho-deep); }
+  .quince svg{ width:32px; height:16px; }
+  .musica-opciones{ position:relative; z-index:2; margin-top:34px; display:flex; gap:16px; }
+  .musica-opciones button{ font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px; letter-spacing:.12em; text-transform:uppercase; padding:16px 26px; border-radius:999px; cursor:pointer; border:1.5px solid var(--pistacho-deep); background:rgba(251,248,239,.85); color:var(--pistacho-dark); }
+  .musica-opciones button.solido{ background:var(--pistacho-deep); color:var(--crema); box-shadow:0 10px 24px rgba(70,85,42,.35); }
+  @media (max-width:480px){ .musica-opciones{ flex-direction:column; width:100%; max-width:250px; gap:12px; } .musica-opciones button{ width:100%; } }
+
+  section{ padding:84px 26px; text-align:center; position:relative; }
+  .titulo{ font-family:'Cormorant Garamond',serif; font-weight:600; font-style:italic; font-size:clamp(32px,7.4vw,44px); color:var(--pistacho-dark); margin-bottom:6px; }
+
+  /* mensaje */
+  .mensaje{ max-width:430px; margin:0 auto; position:relative; z-index:2; }
+  .mensaje p{ font-family:'Cormorant Garamond',serif; font-weight:500; font-style:italic; font-size:22px; line-height:1.7; color:var(--ink); }
+  .mensaje p + p{ margin-top:16px; }
+  .mensaje .resalta{ color:var(--pistacho-dark); font-weight:700; }
+
+  /* contador */
+  .contador{ display:flex; justify-content:center; gap:10px; flex-wrap:nowrap; max-width:400px; margin:0 auto; }
+  .celda{ flex:1 1 0; min-width:0; max-width:92px; padding:18px 0 14px; background:rgba(251,248,239,.92); border:1px solid var(--line); border-radius:16px; box-shadow:0 8px 20px rgba(70,85,42,.14); position:relative; }
+  .celda::before{ content:''; position:absolute; inset:4px; border:1px solid rgba(184,151,90,.35); border-radius:12px; pointer-events:none; }
+  .celda-num{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:clamp(28px,8vw,36px); color:var(--pistacho-dark); }
+  .celda-label{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--pistacho-deep); margin-top:2px; }
+
+  /* tarjetas */
+  .tarjetas{ display:flex; flex-direction:column; gap:18px; max-width:440px; margin:0 auto; position:relative; z-index:2; }
+  .tarjeta{ background:rgba(251,248,239,.93); border:1px solid var(--line); border-radius:20px; padding:30px 24px; box-shadow:0 10px 26px rgba(70,85,42,.14); position:relative; text-align:center; }
+  .tarjeta::before{ content:''; position:absolute; inset:6px; border:1px solid rgba(184,151,90,.35); border-radius:15px; pointer-events:none; }
+  .tarjeta .eyebrow{ margin-bottom:8px; }
+  .tarjeta-titulo{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:28px; color:var(--ink); line-height:1.15; }
+  .tarjeta-texto{ font-size:16px; line-height:1.55; color:var(--ink-soft); margin-top:8px; }
+  .enlace{ display:inline-block; margin-top:16px; font-size:13px; text-transform:uppercase; letter-spacing:.12em; font-weight:700; color:var(--pistacho-deep); border-bottom:2px solid var(--pistacho-deep); padding-bottom:2px; background:none; border-top:none; border-left:none; border-right:none; font-family:'Montserrat',sans-serif; text-decoration:none; cursor:pointer; }
+  button.tarjeta{ width:100%; cursor:pointer; font-family:inherit; text-align:center; }
+  button.tarjeta .tarjeta-titulo{ font-size:25px; }
+
+  /* confirmación */
+  .rsvp{ background:linear-gradient(135deg,var(--pistacho-deep),var(--pistacho-dark)); color:var(--crema); overflow:hidden; }
+  .rsvp .eyebrow{ color:#E6EDC4; position:relative; z-index:2; }
+  .rsvp .titulo{ color:var(--crema); position:relative; z-index:2; }
+  .rsvp-sub{ font-size:17px; line-height:1.6; max-width:380px; margin:6px auto 30px; color:rgba(251,248,239,.92); position:relative; z-index:2; }
+  .btn-rsvp{ display:inline-block; position:relative; z-index:2; background:var(--crema); color:var(--pistacho-dark); padding:18px 44px; border-radius:999px; font-size:14px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; box-shadow:0 14px 30px rgba(0,0,0,.22); }
+  .rsvp-nota{ position:relative; z-index:2; font-size:15px; line-height:1.55; max-width:360px; margin:20px auto 0; color:rgba(251,248,239,.9); }
+
+  footer{ padding:30px 26px 54px; text-align:center; position:relative; }
+  footer .rama{ position:relative; display:block; margin:0 auto 6px; width:210px; height:130px; transform:none; left:0; top:0; }
+  .pie-nombre{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:30px; color:var(--pistacho-dark); margin-bottom:8px; }
+  .pie-tag{ font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; color:var(--pistacho-deep); opacity:.8; }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .mariposa-guia{ display:none; } .reveal{ opacity:1; transform:none; transition:none; } .mariposa .ala-i,.mariposa .ala-d,.mariposa.vuela{ animation:none; } }
+  @media (min-width:720px){ section{ padding:110px 60px; } }
+
+  /* modal */
+  .modal-overlay{ position:fixed; inset:0; background:rgba(47,59,28,.45); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; padding:24px; z-index:100; }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{ background:var(--crema); max-width:440px; width:100%; padding:42px 32px; position:relative; border:1px solid var(--champagne); border-radius:22px; text-align:center; max-height:85vh; overflow-y:auto; }
+  .modal-close{ position:absolute; top:16px; right:20px; background:none; border:none; font-size:24px; color:var(--pistacho-deep); cursor:pointer; line-height:1; }
+  .modal-title{ font-family:'Cormorant Garamond',serif; font-weight:600; font-style:italic; font-size:28px; color:var(--pistacho-dark); margin:8px 0 22px; }
+  .form-field{ text-align:left; margin-bottom:18px; }
+  .form-field label{ display:block; font-size:12px; text-transform:uppercase; letter-spacing:.1em; font-weight:700; color:var(--pistacho-deep); margin-bottom:6px; }
+  .form-field input{ width:100%; border:none; border-bottom:2px solid var(--line); background:transparent; padding:9px 2px; font-family:'Montserrat',sans-serif; font-size:16px; color:var(--ink); }
+  .form-field input:focus{ outline:none; border-bottom-color:var(--pistacho-deep); }
+  .form-submit{ width:100%; margin-top:10px; background:var(--pistacho-deep); color:var(--crema); border:none; padding:16px; border-radius:999px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; }
+  .form-status{ margin-top:14px; font-size:14px; min-height:18px; color:var(--pistacho-deep); text-align:center; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><radialGradient id="roseG" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#FDF0EE"/><stop offset="55%" stop-color="#EEC9C8"/><stop offset="100%" stop-color="#D99FA5"/></radialGradient><radialGradient id="flG" cx="50%" cy="40%" r="75%"><stop offset="0%" stop-color="#FFFAF6"/><stop offset="100%" stop-color="#F1CFCF"/></radialGradient><g id="g-rosa"><g stroke="#CE939A" stroke-width="0.6" stroke-opacity=".7"><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(0) scale(1)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(45) scale(1)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(90) scale(1)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(135) scale(1)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(180) scale(1)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(225) scale(1)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(270) scale(1)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(315) scale(1)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(30) scale(0.74)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(90) scale(0.74)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(150) scale(0.74)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(210) scale(0.74)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(270) scale(0.74)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(330) scale(0.74)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(10) scale(0.46)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(82) scale(0.46)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(154) scale(0.46)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(226) scale(0.46)"/><path d="M0,0 C-11,-3 -13,-19 0,-22 C13,-19 11,-3 0,0 Z" fill="url(#roseG)" transform="rotate(298) scale(0.46)"/></g><circle r="3" fill="#C9A66B"/><circle cx="-1" cy="-1" r="1" fill="#F3E3B8"/></g><g id="g-flor5"><g stroke="#D9A5A8" stroke-width=".5" stroke-opacity=".7"><path d="M0,0 C-7,-2 -8,-12 0,-14 C8,-12 7,-2 0,0 Z" fill="url(#flG)" transform="rotate(0)"/><path d="M0,0 C-7,-2 -8,-12 0,-14 C8,-12 7,-2 0,0 Z" fill="url(#flG)" transform="rotate(72)"/><path d="M0,0 C-7,-2 -8,-12 0,-14 C8,-12 7,-2 0,0 Z" fill="url(#flG)" transform="rotate(144)"/><path d="M0,0 C-7,-2 -8,-12 0,-14 C8,-12 7,-2 0,0 Z" fill="url(#flG)" transform="rotate(216)"/><path d="M0,0 C-7,-2 -8,-12 0,-14 C8,-12 7,-2 0,0 Z" fill="url(#flG)" transform="rotate(288)"/></g><circle r="2.4" fill="#C9A66B"/></g>
+    <symbol id="rama" viewBox="0 0 200 124"><path d="M10,114 Q62,40 190,28" stroke="#C9A66B" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".9"/><circle cx="126" cy="40" r="3.2" fill="#F1CFCF" stroke="#D9A5A8" stroke-width=".5"/><circle cx="174" cy="28" r="3.4" fill="#F1CFCF" stroke="#D9A5A8" stroke-width=".5"/><circle cx="84" cy="52" r="2.8" fill="#F1CFCF" stroke="#D9A5A8" stroke-width=".5"/><use href="#g-flor5" transform="translate(150,34) scale(.62)"/><use href="#g-flor5" transform="translate(106,50) scale(.9)"/><use href="#g-flor5" transform="translate(22,100) scale(.75)"/><use href="#g-rosa" transform="translate(58,70) scale(.95)"/><circle cx="82" cy="96" r="1.5" fill="#C9A66B"/><circle cx="134" cy="66" r="1.3" fill="#C9A66B"/><circle cx="168" cy="46" r="1.3" fill="#C9A66B"/><circle cx="40" cy="38" r="1.3" fill="#C9A66B"/></symbol>
+    <symbol id="hoja" viewBox="0 0 40 20"><use href="#g-flor5" transform="translate(20,10) scale(.62)"/></symbol>
+    <symbol id="mariposa" viewBox="0 0 44 32">
+      <g class="ala-i" fill="#EBC9C9" fill-opacity="0.95" stroke="#B8975A" stroke-width="0.8">
+        <path d="M22 16 C10 2 0 4 3 13 C5 19 15 20 22 16 Z"/>
+        <path d="M22 16 C13 17 8 25 15 29 C19 30 22 23 22 16 Z"/>
+      </g>
+      <g class="ala-d" fill="#EBC9C9" fill-opacity="0.95" stroke="#B8975A" stroke-width="0.8">
+        <path d="M22 16 C34 2 44 4 41 13 C39 19 29 20 22 16 Z"/>
+        <path d="M22 16 C31 17 36 25 29 29 C25 30 22 23 22 16 Z"/>
+      </g>
+      <line x1="22" y1="8" x2="22" y2="24" stroke="#8A6F3E" stroke-width="1.1"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- PANTALLA 1: BIENVENIDA + ELECCIÓN DE MÚSICA -->
+<section class="portada" id="landing">
+  <svg class="rama tl"><use href="#rama"/></svg>
+  <svg class="rama br"><use href="#rama"/></svg>
+  <svg class="rama tr"><use href="#rama"/></svg>
+  <svg class="mariposa vuela" style="top:15%; right:11%;" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+  <svg class="mariposa vuela" style="bottom:17%; left:9%; width:30px; height:22px; animation-delay:1.8s;" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+
+  <div class="arco reveal is-visible">
+    <div class="brand-mark">milar</div>
+    <div class="bienvenida">Bienvenidos a la invitación de</div>
+    <h1 class="nombre">Katy</h1>
+    <div class="quince">
+      <svg viewBox="0 0 40 20"><use href="#hoja"/></svg>
+      Mis quince años
+      <svg viewBox="0 0 40 20" style="transform:scaleX(-1)"><use href="#hoja"/></svg>
+    </div>
+  </div>
+  <div class="musica-opciones">
+    <button class="solido" id="withMusic">Ingresar con música</button>
+    <button id="withoutMusic">Sin música</button>
+  </div>
+</section>
+
+<audio id="bgMusic" loop>
+  <source src="/invitacion-katy/musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA 2 -->
+<div id="mainContent" style="display:none;">
+
+<svg class="mariposa-guia" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+
+<!-- MENSAJE -->
+<section class="reveal is-visible" style="padding-top:70px; padding-bottom:40px; overflow:hidden;">
+  <svg class="mariposa" style="position:relative; display:block; margin:0 auto 18px; width:44px; height:32px;" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+  <div class="mensaje">
+    <p>Hoy celebro un momento muy especial, dejando atrás una hermosa etapa para comenzar otra llena de sueños e ilusiones.</p>
+    <p>Mis 15 años son un día único y deseo compartir esta alegría junto a las personas que quiero.</p>
+    <p><span class="resalta">Por eso, espero contar con tu presencia</span> para celebrar juntos una noche inolvidable.</p>
+  </div>
+</section>
+
+<!-- CONTADOR -->
+<section class="reveal is-visible" style="padding-top:50px;">
+  <div class="eyebrow">Falta poco</div>
+  <div class="titulo">16 de enero, 2027</div>
+  <div class="divisor"><svg viewBox="0 0 40 20"><use href="#hoja"/></svg></div>
+  <div class="contador">
+    <div class="celda"><div class="celda-num" id="cd-dias">--</div><div class="celda-label">Días</div></div>
+    <div class="celda"><div class="celda-num" id="cd-horas">--</div><div class="celda-label">Hs</div></div>
+    <div class="celda"><div class="celda-num" id="cd-min">--</div><div class="celda-label">Min</div></div>
+    <div class="celda"><div class="celda-num" id="cd-seg">--</div><div class="celda-label">Seg</div></div>
+  </div>
+</section>
+
+<!-- FIESTA -->
+<section class="reveal" style="overflow:hidden;">
+  <svg class="rama tr" style="top:0;"><use href="#rama"/></svg>
+  <div class="eyebrow" style="position:relative; z-index:2;">La fiesta</div>
+  <div class="titulo" style="position:relative; z-index:2;">Todos los detalles</div>
+  <div class="divisor" style="position:relative; z-index:2;"><svg viewBox="0 0 40 20"><use href="#hoja"/></svg></div>
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <div class="eyebrow">Día</div>
+      <div class="tarjeta-titulo">Sábado 16 de enero</div>
+      <div class="tarjeta-texto">De 21:00 a 05:00 hs</div>
+      <button class="enlace" data-cal>Agendar</button>
+    </div>
+    <div class="tarjeta">
+      <div class="eyebrow">Lugar</div>
+      <div class="tarjeta-titulo">Cuartel V, Moreno</div>
+      <div class="tarjeta-texto">Federico Loefler 9315, esquina Arechavala</div>
+      <a class="enlace" href="https://www.google.com/maps/search/?api=1&query=Federico+Loefler+9315+Arechavala+Cuartel+V+Moreno" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="tarjeta">
+      <div class="eyebrow">Dress code</div>
+      <div class="tarjeta-titulo">Elegante sport</div>
+      <div class="tarjeta-texto">Colores reservados para Katy: gama de verdes — por favor, evitá usarlos</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRMACIÓN -->
+<section class="rsvp reveal">
+  <svg class="mariposa vuela" style="top:12%; left:8%;" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+  <svg class="mariposa vuela" style="bottom:12%; right:9%; width:30px; height:22px; animation-delay:1.5s;" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+  <div class="eyebrow">Confirmación</div>
+  <div class="titulo">¿Vas a acompañarme?</div>
+  <p class="rsvp-sub">Ya viste todos los detalles — contanos si vas a estar esa noche con nosotros.</p>
+  <a class="btn-rsvp" id="rsvpBtn" href="#" target="_blank" rel="noopener">Confirmar asistencia</a>
+</section>
+
+<!-- INFO -->
+<section class="reveal" style="overflow:hidden;">
+  <div class="eyebrow">Para tener en cuenta</div>
+  <div class="titulo">Antes de venir</div>
+  <div class="divisor"><svg viewBox="0 0 40 20"><use href="#hoja"/></svg></div>
+  <div class="tarjetas">
+    <button class="tarjeta" data-modal="cancion">
+      <div class="tarjeta-titulo">¿Qué canción no puede faltar?</div>
+      <div class="tarjeta-texto">Sugerime una canción para la playlist</div>
+    </button>
+    <div class="tarjeta">
+      <div class="tarjeta-titulo">Regalos</div>
+      <div class="tarjeta-texto">Tu presencia esa noche ya es el mejor regalo. Si además querés tener un gesto conmigo — Alias: <strong>Katyy.919.mp</strong><br>CVU: <strong>0000003100020843673607</strong></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="rama"><use href="#rama"/></svg>
+  <div class="pie-nombre">Katy · Mis 15</div>
+  <div class="pie-tag">Hecho con MILAR</div>
+</footer>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-cancion">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="eyebrow">Playlist</div>
+    <div class="modal-title">Sugerí una canción</div>
+    <form id="cancionForm">
+      <div class="form-field">
+        <label>Tu nombre</label>
+        <input type="text" id="cancionNombre" required>
+      </div>
+      <div class="form-field">
+        <label>Canción y artista</label>
+        <input type="text" id="cancionTema" placeholder="Ej: Coldplay — Título" required>
+      </div>
+      <button type="submit" class="form-submit">Enviar sugerencia</button>
+      <div class="form-status" id="cancionStatus"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ====== ACÁ VA EL LINK DE TU FORMULARIO DE RSVP (definir método de confirmación) ======
+  const RSVP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc1eZSlVfXa__-VbGyYnw4IfkRJFGCovcAvcs3d9iHAA2F0Vg/viewform?usp=publish-editor';
+  document.getElementById('rsvpBtn').setAttribute('href', RSVP_FORM_URL);
+
+  // Countdown
+  const target = new Date('2027-01-16T21:00:00');
+  function tick(){
+    const now = new Date();
+    let diff = target - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-dias').textContent = d;
+    document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Pantalla 1 → Pantalla 2 (elección de música)
+  const audio = document.getElementById('bgMusic');
+  const landing = document.getElementById('landing');
+  const mainContent = document.getElementById('mainContent');
+
+  function entrarALaInvitacion(conMusica){
+    if(conMusica){ audio.play().catch(()=>{}); }
+    landing.style.display = 'none';
+    mainContent.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  document.getElementById('withMusic').addEventListener('click', () => entrarALaInvitacion(true));
+  document.getElementById('withoutMusic').addEventListener('click', () => entrarALaInvitacion(false));
+
+  // Calendario .ics
+  const calBtn = document.querySelector('[data-cal]');
+  if(calBtn){
+    calBtn.addEventListener('click', () => {
+      const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20270116T210000','DTEND:20270117T050000','SUMMARY:Mis 15 — Katy','LOCATION:Federico Loefler 9315, esquina Arechavala, Cuartel V, Moreno','END:VEVENT','END:VCALENDAR'].join('\n');
+      const blob = new Blob([ics], {type:'text/calendar'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'mis-15-katy.ics';
+      link.click();
+    });
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('modal-' + btn.getAttribute('data-modal')).classList.add('open');
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => { btn.closest('.modal-overlay').classList.remove('open'); });
+  });
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('open'); });
+  });
+
+  // ====== Envío de "sugerí una canción" a un Apps Script (guarda en la pestaña Canciones, sin tocar el formulario visible) ======
+  const CANCION_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhhic9e2VL7oqqnylh_LWnJw8t4WWwpzswNA290vUX19s8VmjAHlVzcaD-ORcHuscJ/exec';
+
+  document.getElementById('cancionForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const statusEl = document.getElementById('cancionStatus');
+    const payload = {
+      nombre: document.getElementById('cancionNombre').value,
+      tema: document.getElementById('cancionTema').value
+    };
+    try {
+      fetch(CANCION_APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(payload),
+        headers: {'Content-Type': 'text/plain'}
+      }).catch(() => {});
+    } catch (err) {}
+    statusEl.textContent = 'Gracias por la sugerencia.';
+    setTimeout(() => {
+      const modal = document.getElementById('modal-cancion');
+      if (modal) modal.classList.remove('open');
+      document.getElementById('cancionForm').reset();
+      statusEl.textContent = '';
+    }, 1100);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
