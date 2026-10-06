@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MILAR — Invitación Digital · Lola XV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --negro:#070707; --panel:#0c0c0e;
+    --plata:#C9C9CD; --plata-clara:#F1F1F3; --plata-media:#9B9BA1;
+    --texto:#D8D8DC; --texto-suave:#B4B4BA;
+    --linea:rgba(205,205,210,0.62);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--negro); color:var(--texto); font-family:'Montserrat',sans-serif; font-weight:400; font-size:16px; overflow-x:hidden; }
+  .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  img{ display:block; max-width:100%; }
 
+  .plata{ background:linear-gradient(180deg,#ffffff 0%,#c7c7cc 42%,#f4f4f6 58%,#8c8c92 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .eyebrow{ text-transform:uppercase; letter-spacing:0.28em; font-size:12px; color:var(--plata-media); font-weight:600; text-align:center; }
+  .titulo{ font-family:'Pinyon Script',cursive; font-size:clamp(42px,11vw,54px); line-height:1.15; text-align:center; margin:4px 0 2px; }
+
+  /* ---------- PORTADA ---------- */
+  .portada{ position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:150px 22px 230px; overflow:hidden;
+    background:radial-gradient(ellipse at 50% 42%, rgba(255,255,255,0.055), transparent 62%), var(--negro); }
+  .marco{ position:absolute; inset:16px; border:1px solid var(--linea); pointer-events:none; z-index:1; }
+  .marco::before{ content:''; position:absolute; inset:5px; border:1px solid rgba(205,205,210,0.5); }
+  .esq{ position:absolute; width:64px; height:64px; }
+  .esq.tr{ right:-3.3px; top:-3.5px; }
+  .esq.bl{ left:-3.3px; bottom:-3.7px; }
+  .lirio{ position:absolute; z-index:2; pointer-events:none; }
+  .lirio.sup{ top:-8px; left:-12px; width:min(58vw,300px); }
+  .lirio.inf{ bottom:-8px; right:-12px; width:min(52vw,270px); }
+  .centro{ position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; width:100%; }
+  .centro .adorno-a{ width:min(52vw,230px); margin-bottom:6px; }
+  .centro .adorno-b{ width:min(44vw,200px); margin-top:4px; }
+  .nombre{ width:min(84vw,370px); }
+  .musica-opciones{ margin-top:30px; display:flex; flex-direction:column; gap:12px; width:100%; max-width:250px; }
+  .musica-opciones button{ font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px; letter-spacing:.14em; text-transform:uppercase; padding:16px 22px; cursor:pointer; border:1px solid var(--plata); background:rgba(7,7,7,.7); color:var(--plata-clara); }
+  .musica-opciones button.solido{ background:linear-gradient(180deg,#f7f7f9,#b3b3b9); color:#0a0a0a; border-color:#d9d9de; box-shadow:0 8px 22px rgba(255,255,255,.12); }
+
+  /* ---------- SECCIONES ---------- */
+  section{ position:relative; padding:78px 26px; text-align:center; }
+  section.suave{ padding-top:60px; }
+  .mensaje{ max-width:420px; margin:0 auto; position:relative; z-index:2; }
+  .mensaje p{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:25px; line-height:1.55; color:var(--plata-clara); }
+  .ornamento{ width:min(58vw,240px); margin:0 auto; opacity:.95; }
+  .ornamento.inv{ transform:scaleY(-1); }
+
+  .contador{ display:flex; justify-content:center; gap:10px; max-width:400px; margin:22px auto 0; position:relative; z-index:2; }
+  .celda{ flex:1 1 0; min-width:0; max-width:92px; padding:18px 0 14px; background:var(--panel); border:1px solid var(--linea); position:relative; }
+  .celda::before{ content:''; position:absolute; inset:4px; border:1px solid rgba(205,205,210,0.28); }
+  .celda-num{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:clamp(28px,8vw,36px); line-height:1.1; }
+  .celda-label{ font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:var(--plata-media); margin-top:2px; }
+
+  .tarjetas{ display:flex; flex-direction:column; gap:18px; max-width:440px; margin:26px auto 0; position:relative; z-index:2; }
+  .tarjeta{ background:var(--panel); border:1px solid var(--linea); padding:32px 24px; position:relative; }
+  .tarjeta::before{ content:''; position:absolute; inset:5px; border:1px solid rgba(205,205,210,0.26); pointer-events:none; }
+  .tarjeta .eyebrow{ margin-bottom:8px; }
+  .tarjeta-titulo{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:29px; line-height:1.15; color:var(--plata-clara); }
+  .tarjeta-texto{ font-size:16px; line-height:1.6; color:var(--texto); margin-top:8px; }
+  .tarjeta-texto strong{ color:#fff; font-weight:600; }
+  .enlace{ display:inline-block; margin-top:18px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--plata-clara); text-decoration:none; background:none; border:none; border-bottom:1px solid var(--plata); padding-bottom:3px; cursor:pointer; }
+
+  .deco{ position:absolute; pointer-events:none; z-index:1; }
+  .deco.izq{ top:0; left:-46px; width:min(48vw,230px); opacity:.55; }
+  .deco.der{ bottom:0; right:-40px; width:min(44vw,215px); opacity:.6; -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 100%); mask-image:linear-gradient(to bottom,#000 70%,transparent 100%); }
+
+  .rsvp{ border-top:1px solid var(--linea); border-bottom:1px solid var(--linea); background:linear-gradient(180deg,#0a0a0b,#050505); }
+  .rsvp-sub{ font-size:17px; line-height:1.6; max-width:370px; margin:6px auto 30px; color:var(--texto); }
+  .btn-rsvp{ display:inline-block; background:linear-gradient(180deg,#f7f7f9,#b3b3b9); color:#0a0a0a; padding:18px 44px; font-size:14px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; text-decoration:none; box-shadow:0 10px 26px rgba(255,255,255,.14); }
+  .rsvp-nota{ font-size:16px; line-height:1.6; max-width:370px; margin:22px auto 0; color:var(--texto); }
+  .rsvp-nota strong{ color:#fff; font-weight:600; }
+  .btn-wsp{ display:inline-block; margin-top:20px; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--plata-clara); text-decoration:none; border:1px solid var(--plata); padding:14px 26px; white-space:nowrap; }
+
+  footer{ padding:34px 26px 60px; text-align:center; }
+  .pie-nombre{ font-family:'Pinyon Script',cursive; font-size:48px; line-height:1.1; margin:10px 0 6px; }
+  .pie-tag{ font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--plata-media); font-weight:600; }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+  @media (min-width:720px){ section{ padding:110px 60px; } }
+</style>
+</head>
+<body>
+
+<!-- PANTALLA 1: PORTADA + ELECCIÓN DE MÚSICA -->
+<section class="portada" id="landing">
+  <div class="marco">
+    <img class="esq tr" src="/invitacion-lola/esquina-superior-derecha.png" alt="">
+    <img class="esq bl" src="/invitacion-lola/esquina-inferior-izquierda.png" alt="">
+  </div>
+  <img class="lirio sup" src="/invitacion-lola/lirio-superior.png" alt="">
+  <img class="lirio inf" src="/invitacion-lola/lirio-inferior.png" alt="">
+
+  <div class="centro">
+    <h1 class="sr-only">Lola XV</h1>
+    <img class="adorno-a" src="/invitacion-lola/adorno-arriba.png" alt="">
+    <img class="nombre" src="/invitacion-lola/nombre-lola-xv.png" alt="Lola XV">
+    <img class="adorno-b" src="/invitacion-lola/adorno-abajo.png" alt="">
+    <div class="musica-opciones">
+      <button class="solido" id="withMusic">Ingresar con música</button>
+      <button id="withoutMusic">Sin música</button>
+    </div>
+  </div>
+</section>
+
+<audio id="bgMusic" loop>
+  <source src="/invitacion-lola/musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA 2 -->
+<div id="mainContent" style="display:none;">
+
+<!-- MENSAJE -->
+<section class="reveal is-visible suave" style="padding-bottom:44px;">
+  <img class="ornamento" src="/invitacion-lola/adorno-arriba.png" alt="" style="margin-bottom:18px;">
+  <div class="mensaje">
+    <p>Te invito a celebrar conmigo una noche muy especial.</p>
+  </div>
+  <img class="ornamento inv" src="/invitacion-lola/adorno-arriba.png" alt="" style="margin-top:18px;">
+</section>
+
+<!-- CONTADOR -->
+<section class="reveal is-visible" style="padding-top:36px;">
+  <div class="eyebrow">Falta poco</div>
+  <div class="titulo plata">22 de noviembre</div>
+  <div class="contador">
+    <div class="celda"><div class="celda-num plata" id="cd-dias">--</div><div class="celda-label">Días</div></div>
+    <div class="celda"><div class="celda-num plata" id="cd-horas">--</div><div class="celda-label">Hs</div></div>
+    <div class="celda"><div class="celda-num plata" id="cd-min">--</div><div class="celda-label">Min</div></div>
+    <div class="celda"><div class="celda-num plata" id="cd-seg">--</div><div class="celda-label">Seg</div></div>
+  </div>
+</section>
+
+<!-- FIESTA -->
+<section class="reveal" style="overflow:hidden;">
+  <img class="deco izq" src="/invitacion-lola/lirio-superior.png" alt="">
+  <div class="eyebrow" style="position:relative; z-index:2;">La fiesta</div>
+  <div class="titulo plata" style="position:relative; z-index:2;">Todos los detalles</div>
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <div class="eyebrow">Día</div>
+      <div class="tarjeta-titulo">Domingo 22 de noviembre</div>
+      <div class="tarjeta-texto">Desde las 21:00 hs</div>
+      <button class="enlace" data-cal>Agendar</button>
+    </div>
+    <div class="tarjeta">
+      <div class="eyebrow">Lugar</div>
+      <div class="tarjeta-titulo">Anayansi Eventos</div>
+      <div class="tarjeta-texto">Angel D'Elia 310 — Muñiz</div>
+      <a class="enlace" href="https://www.google.com/maps/search/?api=1&query=Anayansi+Eventos+Angel+D%27Elia+310+Muniz" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="tarjeta">
+      <div class="eyebrow">Dress code</div>
+      <div class="tarjeta-titulo">Elegante</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRMACIÓN -->
+<section class="rsvp reveal">
+  <div class="eyebrow">Confirmación</div>
+  <div class="titulo plata">¿Vas a acompañarme?</div>
+  <p class="rsvp-sub">Contanos si vas a estar esa noche con nosotros.</p>
+  <a class="btn-rsvp" id="rsvpBtn" href="#" target="_blank" rel="noopener">Confirmar asistencia</a>
+  <p class="rsvp-nota">Por favor, confirmá tu asistencia antes del <strong>6 de noviembre</strong>.</p>
+  <a class="btn-wsp" href="https://wa.me/5491161081013?text=Hola!%20Quiero%20confirmar%20mi%20asistencia%20a%20los%2015%20de%20Lola." target="_blank" rel="noopener">WhatsApp · 11 6108-1013</a>
+</section>
+
+<!-- REGALOS -->
+<section class="reveal" style="overflow:hidden; padding-bottom:110px;">
+  <div class="eyebrow" style="position:relative; z-index:2;">Para tener en cuenta</div>
+  <div class="titulo plata" style="position:relative; z-index:2;">Regalos</div>
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <div class="tarjeta-texto" style="margin-top:0;">Tu presencia esa noche ya es el mejor regalo. Si además querés tener un gesto conmigo:</div>
+      <div class="tarjeta-texto" style="margin-top:16px;">Alias: <strong>loblust.mp</strong></div>
+      <div class="tarjeta-texto" style="margin-top:4px;">Titular: <strong>Lola Manuela Blust</strong></div>
+      <div class="tarjeta-texto" style="margin-top:4px;">Banco: <strong>Mercado Pago</strong></div>
+    </div>
+  </div>
+  <img class="deco der" src="/invitacion-lola/lirio-inferior.png" alt="">
+</section>
+
+<footer>
+  <img class="ornamento" src="/invitacion-lola/adorno-abajo.png" alt="">
+  <div class="pie-nombre plata">Lola · XV</div>
+  <div class="pie-tag">Hecho con MILAR</div>
+</footer>
+
+</div>
+
+<script>
+  // ====== ACÁ VA EL LINK DE TU FORMULARIO DE RSVP ======
+  const RSVP_FORM_URL = 'PEGAR_ACA_EL_LINK_DE_TU_FORMULARIO';
+  document.getElementById('rsvpBtn').setAttribute('href', RSVP_FORM_URL);
+
+  // Contador
+  const target = new Date('2026-11-22T21:00:00');
+  function tick(){
+    let diff = target - new Date();
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-dias').textContent = d;
+    document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Portada → invitación (elección de música)
+  const audio = document.getElementById('bgMusic');
+  const landing = document.getElementById('landing');
+  const mainContent = document.getElementById('mainContent');
+  function entrarALaInvitacion(conMusica){
+    if(conMusica){ audio.play().catch(()=>{}); }
+    landing.style.display = 'none';
+    mainContent.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  document.getElementById('withMusic').addEventListener('click', () => entrarALaInvitacion(true));
+  document.getElementById('withoutMusic').addEventListener('click', () => entrarALaInvitacion(false));
+
+  // Agendar (.ics)
+  const calBtn = document.querySelector('[data-cal]');
+  if(calBtn){
+    calBtn.addEventListener('click', () => {
+      const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20261122T210000','DTEND:20261123T050000','SUMMARY:Mis 15 — Lola','LOCATION:Anayansi Eventos, Angel D\'Elia 310, Muñiz','END:VEVENT','END:VCALENDAR'].join('\n');
+      const blob = new Blob([ics], {type:'text/calendar'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'mis-15-lola.ics';
+      link.click();
+    });
+  }
+
+  // Aparición al hacer scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
