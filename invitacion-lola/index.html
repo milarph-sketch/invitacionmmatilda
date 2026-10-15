@@ -120,6 +120,46 @@
 
   .rsvp{ background:rgba(0,0,0,.4) !important; }
 
+
+  /* ---------- más presencia: nombre de la portada y letritas ---------- */
+  .eyebrow{ color:#C6C6CB; font-size:11.5px; }
+  .nombre{ width:min(78vw,330px); filter:brightness(1.15) contrast(1.08) drop-shadow(0 0 10px rgba(255,255,255,.22)); animation:brilloNombre 5s ease-in-out infinite; }
+  @keyframes brilloNombre{ 0%,100%{ filter:brightness(1.1) contrast(1.06) drop-shadow(0 0 8px rgba(255,255,255,.16)); } 50%{ filter:brightness(1.42) contrast(1.12) drop-shadow(0 0 18px rgba(255,255,255,.42)); } }
+  .centro .adorno-a, .centro .adorno-b{ filter:brightness(1.3); }
+  .mensaje p{ font-size:21px; color:#fff; }
+
+  /* ---------- cuenta regresiva destacada ---------- */
+  .cuenta{ max-width:380px; margin:0 auto; padding:26px 14px 24px; z-index:2; }
+  .cuenta .eyebrow{ font-size:12px; color:#E0E0E4; margin-bottom:2px; }
+  .cuenta .titulo{ font-size:clamp(36px,10vw,48px); }
+  .cuenta .contador{ max-width:340px; gap:8px; margin:16px auto 0; }
+  .cuenta .celda{ max-width:84px; padding:14px 0 11px; background:#08080a; border:1px solid rgba(232,232,236,.6); box-shadow:0 0 16px rgba(255,255,255,.07); }
+  .cuenta .celda::before{ display:none; }
+  .cuenta .celda-num{ font-size:clamp(26px,8vw,38px); filter:drop-shadow(0 0 7px rgba(255,255,255,.4)); }
+  .cuenta .celda-label{ font-size:10.5px; color:#C6C6CB; }
+
+  /* ---------- fotos ---------- */
+  .foto-sec{ padding-top:36px; padding-bottom:36px; }
+  .foto-bloque{ position:relative; margin:0 auto; z-index:2; }
+  .foto-bloque.v{ width:min(72vw,290px); }
+  .foto-bloque.h{ width:min(100%,380px); }
+  .foto-marco{ position:relative; padding:8px; background:var(--panel); border:1px solid var(--linea); box-shadow:0 16px 36px rgba(0,0,0,.65); }
+  .foto-marco::before{ content:''; position:absolute; inset:3px; border:1px solid rgba(205,205,210,0.3); pointer-events:none; z-index:3; }
+  .foto-marco::after{ content:''; position:absolute; inset:-2.4px; pointer-events:none; z-index:3;
+    background-image:url("/invitacion-lola/esquina-superior-derecha.png"), url("/invitacion-lola/esquina-inferior-izquierda.png");
+    background-position:right top, left bottom; background-size:40px 40px; background-repeat:no-repeat; }
+  .foto-caja{ position:relative; overflow:hidden; background:#101012; }
+  .foto-caja.v{ aspect-ratio:4/5; }
+  .foto-caja.h{ aspect-ratio:3/2; }
+  .foto-caja img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .foto-caja .ph{ position:absolute; inset:0; margin:auto; width:34px; height:34px; opacity:.4; }
+  .lirio-foto{ position:absolute; z-index:4; pointer-events:none; filter:drop-shadow(0 0 8px #070707); }
+  .foto-bloque.a .tl{ top:-34px; left:-30px; width:104px; }
+  .foto-bloque.a .br{ bottom:-36px; right:-28px; width:84px; }
+  .foto-bloque.b .tr{ top:-34px; right:-30px; width:104px; transform:scaleX(-1); }
+  .foto-bloque.b .bl{ bottom:-36px; left:-28px; width:84px; transform:scaleX(-1); }
+  @media (prefers-reduced-motion:reduce){ .nombre{ animation:none; } }
+
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .9s ease, transform .9s ease; }
   .reveal.is-visible{ opacity:1; transform:none; }
   @media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
@@ -181,23 +221,45 @@
   <img class="ornamento inv" src="/invitacion-lola/adorno-arriba.png" alt="" style="margin-top:18px;">
 </section>
 
-<!-- CONTADOR -->
-<section class="reveal is-visible" style="padding-top:24px;">
-  <div class="eyebrow">Falta poco</div>
-  <div class="titulo brillo">22 de noviembre</div>
-  <div class="contador">
-    <div class="celda"><div class="celda-num plata" id="cd-dias">--</div><div class="celda-label">Días</div></div>
-    <div class="celda"><div class="celda-num plata" id="cd-horas">--</div><div class="celda-label">Hs</div></div>
-    <div class="celda"><div class="celda-num plata" id="cd-min">--</div><div class="celda-label">Min</div></div>
-    <div class="celda"><div class="celda-num plata" id="cd-seg">--</div><div class="celda-label">Seg</div></div>
+<section class="reveal foto-sec">
+  <div class="foto-bloque v b">
+    <img class="lirio-foto tr" src="/invitacion-lola/lirio-superior.png" alt=""><img class="lirio-foto bl" src="/invitacion-lola/lirio-inferior.png" alt="">
+    <div class="foto-marco">
+      <div class="foto-caja v">
+        <img src="/invitacion-lola/foto-1.jpg" alt="Lola" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()">
+        <svg class="ph" viewBox="0 0 24 24" fill="none" stroke="#C9C9CD" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="banda">
-  <img class="b-izq" src="/invitacion-lola/lirio-superior.png" alt="">
-  <img class="b-der" src="/invitacion-lola/lirio-superior.png" alt="">
-  <img class="b-centro" src="/invitacion-lola/adorno-arriba.png" alt="">
-</div>
+<!-- CONTADOR -->
+<section class="reveal is-visible" style="padding-top:20px; padding-bottom:30px;">
+  <div class="cuenta tarjeta">
+    <div class="eyebrow">Falta poco</div>
+    <div class="titulo brillo">22 de noviembre</div>
+    <div class="contador">
+      <div class="celda"><div class="celda-num plata" id="cd-dias">--</div><div class="celda-label">Días</div></div>
+      <div class="celda"><div class="celda-num plata" id="cd-horas">--</div><div class="celda-label">Hs</div></div>
+      <div class="celda"><div class="celda-num plata" id="cd-min">--</div><div class="celda-label">Min</div></div>
+      <div class="celda"><div class="celda-num plata" id="cd-seg">--</div><div class="celda-label">Seg</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTO HORIZONTAL -->
+<section class="reveal foto-sec">
+  <div class="foto-bloque h a">
+    <img class="lirio-foto tl" src="/invitacion-lola/lirio-superior.png" alt=""><img class="lirio-foto br" src="/invitacion-lola/lirio-inferior.png" alt="">
+    <div class="foto-marco">
+      <div class="foto-caja h">
+        <img src="/invitacion-lola/foto-3.jpg" alt="Lola" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()">
+        <svg class="ph" viewBox="0 0 24 24" fill="none" stroke="#C9C9CD" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- FIESTA -->
 <section class="reveal" style="overflow:hidden;">
@@ -223,11 +285,19 @@
   </div>
 </section>
 
-<div class="banda">
-  <img class="b-izq" src="/invitacion-lola/lirio-superior.png" alt="">
-  <img class="b-der" src="/invitacion-lola/lirio-superior.png" alt="">
-  <img class="b-centro" src="/invitacion-lola/adorno-arriba.png" alt="">
-</div>
+<!-- FOTO VERTICAL 2 -->
+<section class="reveal foto-sec">
+  <div class="foto-bloque v b">
+    <img class="lirio-foto tr" src="/invitacion-lola/lirio-superior.png" alt=""><img class="lirio-foto bl" src="/invitacion-lola/lirio-inferior.png" alt="">
+    <div class="foto-marco">
+      <div class="foto-caja v">
+        <img src="/invitacion-lola/foto-2.jpg" alt="Lola" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()">
+        <svg class="ph" viewBox="0 0 24 24" fill="none" stroke="#C9C9CD" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- CONFIRMACIÓN -->
 <section class="rsvp reveal">
