@@ -1,1 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MILAR — Invitación Digital · Tizi 15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600;1,700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --negro:#050505; --panel:#0c0c0e;
+    --plata:#C9C9CD; --plata-clara:#F1F1F3; --plata-media:#9B9BA1;
+    --texto:#DCDCE0; --linea:rgba(205,205,210,0.55);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--negro); color:var(--texto); font-family:'Montserrat',sans-serif; font-weight:400; font-size:15px; overflow-x:hidden; }
+  img{ display:block; max-width:100%; }
+  .eyebrow{ text-transform:uppercase; letter-spacing:.24em; font-size:11.5px; color:#C6C6CB; font-weight:600; text-align:center; }
+  .titulo{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; text-align:center; line-height:1.1; color:#fff; font-size:clamp(32px,9vw,42px); margin-top:2px; }
 
+  /* ---------- estrellitas que titilan ---------- */
+  .estrellas{ position:fixed; top:0; left:0; width:2px; height:2px; border-radius:50%; background:transparent; pointer-events:none; z-index:0; }
+    .estrellas.a{ box-shadow:68vw 55vh 0 0 rgba(255,255,255,0.75),48vw 39vh 0 0 rgba(255,255,255,0.55),92vw 92vh 0 0 rgba(255,255,255,0.75),16vw 5vh 0 0 rgba(255,255,255,0.55),51vw 97vh 0 0 rgba(255,255,255,0.9),34vw 66vh 0 0 rgba(255,255,255,0.75),83vw 89vh 0 0 rgba(255,255,255,0.9),19vw 72vh 0 0 rgba(255,255,255,0.4),19vw 27vh 0 0 rgba(255,255,255,0.55),92vw 70vh 0 0 rgba(255,255,255,0.55),44vw 71vh 0 0 rgba(255,255,255,0.4),93vw 83vh 0 0 rgba(255,255,255,0.4),41vw 54vh 0 0 rgba(255,255,255,0.4),66vw 62vh 0 0 rgba(255,255,255,0.55),89vw 54vh 0 0 rgba(255,255,255,0.75),4vw 57vh 0 0 rgba(255,255,255,0.75),75vw 8vh 0 0 rgba(255,255,255,0.75),8vw 63vh 0 0 rgba(255,255,255,0.75),76vw 2vh 0 0 rgba(255,255,255,0.9),32vw 16vh 0 0 rgba(255,255,255,0.55),33vw 69vh 0 0 rgba(255,255,255,0.75),9vw 36vh 0 0 rgba(255,255,255,0.4),37vw 26vh 0 0 rgba(255,255,255,0.55),34vw 86vh 0 0 rgba(255,255,255,0.75),46vw 42vh 0 0 rgba(255,255,255,0.55),44vw 14vh 0 0 rgba(255,255,255,0.75),44vw 3vh 0 0 rgba(255,255,255,0.4),98vw 46vh 0 0 rgba(255,255,255,0.4),61vw 97vh 0 0 rgba(255,255,255,0.75),62vw 83vh 0 0 rgba(255,255,255,0.4),95vw 27vh 0 0 rgba(255,255,255,0.75),35vw 11vh 0 0 rgba(255,255,255,0.9),4vw 81vh 0 0 rgba(255,255,255,0.55),53vw 64vh 0 0 rgba(255,255,255,0.9); animation:titila 4.4s ease-in-out infinite; }
+  .estrellas.b{ box-shadow:25vw 27vh 0 0 rgba(255,255,255,0.7),21vw 88vh 0 0 rgba(255,255,255,0.35),29vw 8vh 0 0 rgba(255,255,255,0.7),42vw 42vh 0 0 rgba(255,255,255,0.35),22vw 55vh 0 0 rgba(255,255,255,0.35),90vw 41vh 0 0 rgba(255,255,255,0.7),86vw 53vh 0 0 rgba(255,255,255,0.85),11vw 71vh 0 0 rgba(255,255,255,0.35),71vw 83vh 0 0 rgba(255,255,255,0.5),30vw 70vh 0 0 rgba(255,255,255,0.7),75vw 22vh 0 0 rgba(255,255,255,0.7),8vw 94vh 0 0 rgba(255,255,255,0.85),77vw 52vh 0 0 rgba(255,255,255,0.85),30vw 72vh 0 0 rgba(255,255,255,0.85),68vw 82vh 0 0 rgba(255,255,255,0.85),11vw 60vh 0 0 rgba(255,255,255,0.5),31vw 63vh 0 0 rgba(255,255,255,0.7),26vw 48vh 0 0 rgba(255,255,255,0.35),97vw 75vh 0 0 rgba(255,255,255,0.85),8vw 44vh 0 0 rgba(255,255,255,0.5),73vw 31vh 0 0 rgba(255,255,255,0.7),49vw 24vh 0 0 rgba(255,255,255,0.5),40vw 57vh 0 0 rgba(255,255,255,0.7),59vw 77vh 0 0 rgba(255,255,255,0.35),68vw 15vh 0 0 rgba(255,255,255,0.35),26vw 75vh 0 0 rgba(255,255,255,0.5),59vw 61vh 0 0 rgba(255,255,255,0.85),66vw 19vh 0 0 rgba(255,255,255,0.85); animation:titila 6s ease-in-out infinite 1.6s; }
+  @keyframes titila{ 0%,100%{opacity:.12} 50%{opacity:1} }
+  .chispa{ position:absolute; width:16px; height:16px; fill:#f4f4f8; pointer-events:none; z-index:4; animation:destello 3.4s ease-in-out infinite; }
+  @keyframes destello{ 0%,100%{opacity:.1; transform:scale(.45) rotate(0deg)} 50%{opacity:1; transform:scale(1) rotate(22deg)} }
+
+  /* ---------- mariposas ---------- */
+  @keyframes aletea{ 0%,100%{transform:scaleX(1)} 50%{transform:scaleX(.68)} }
+  .ala-i,.ala-d{ transform-origin:22px 16px; animation:aletea 1.5s ease-in-out infinite; }
+  .ala-d{ animation-delay:.07s; }
+  .ga-i,.ga-d{ transform-origin:75px 55px; animation:aletea 2.2s ease-in-out infinite; }
+  .ga-d{ animation-delay:.1s; }
+  @keyframes vuela{ 0%,100%{transform:translate(0,0) rotate(0)} 25%{transform:translate(10px,-14px) rotate(8deg)} 50%{transform:translate(-4px,-22px) rotate(-6deg)} 75%{transform:translate(-14px,-8px) rotate(4deg)} }
+  .mariposa{ position:absolute; width:38px; height:28px; z-index:3; pointer-events:none; filter:drop-shadow(0 0 7px rgba(232,236,242,.5)); }
+  .mariposa.vuela{ animation:vuela 7s ease-in-out infinite; }
+  .mariposa-guia{ position:fixed; width:48px; height:35px; z-index:50; pointer-events:none; filter:drop-shadow(0 0 8px rgba(232,236,242,.55)); animation:recorre 18s ease-in-out infinite; }
+  @keyframes recorre{
+    0%{ top:10%; left:8%; transform:rotate(0deg) scaleX(1); }
+    15%{ top:26%; left:78%; transform:rotate(6deg) scaleX(-1); }
+    30%{ top:52%; left:12%; transform:rotate(-8deg) scaleX(1); }
+    45%{ top:38%; left:84%; transform:rotate(5deg) scaleX(-1); }
+    60%{ top:70%; left:28%; transform:rotate(-5deg) scaleX(1); }
+    75%{ top:84%; left:74%; transform:rotate(8deg) scaleX(-1); }
+    90%{ top:18%; left:48%; transform:rotate(-4deg) scaleX(1); }
+    100%{ top:10%; left:8%; transform:rotate(0deg) scaleX(1); }
+  }
+
+  /* ---------- brillo plateado en títulos ---------- */
+  .brillo{ background-image:linear-gradient(105deg, transparent 38%, rgba(255,255,255,.95) 50%, transparent 62%), linear-gradient(180deg,#ffffff 0%,#d3d8e1 45%,#ffffff 60%,#98a0ad 100%);
+    background-size:260% 100%, 100% 100%; background-repeat:no-repeat; background-position:160% 0, 0 0;
+    -webkit-background-clip:text; background-clip:text; color:transparent !important; animation:barrido 6.5s ease-in-out infinite; }
+  @keyframes barrido{ 0%{background-position:160% 0, 0 0} 55%,100%{background-position:-60% 0, 0 0} }
+
+  /* ---------- portada ---------- */
+  .portada{ position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:56px 24px; overflow:hidden; }
+  .esquina{ position:absolute; width:44px; height:44px; opacity:.75; }
+  .esquina.tl{ top:18px; left:18px; } .esquina.tr{ top:18px; right:18px; transform:scaleX(-1); }
+  .esquina.bl{ bottom:18px; left:18px; transform:scaleY(-1); } .esquina.br{ bottom:18px; right:18px; transform:scale(-1,-1); }
+  .emblema{ position:relative; z-index:3; width:128px; height:94px; margin:0 auto 10px; filter:drop-shadow(0 0 14px rgba(232,236,242,.5)); }
+  .bienvenida{ position:relative; z-index:3; font-size:13px; letter-spacing:.08em; color:#C9C9CD; margin-bottom:2px; }
+  .nombre{ position:relative; z-index:3; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:clamp(76px,24vw,110px); line-height:1.02; filter:drop-shadow(0 0 14px rgba(232,236,242,.35)); }
+  .quince{ position:relative; z-index:3; display:flex; align-items:center; justify-content:center; gap:10px; margin-top:6px; font-size:13px; letter-spacing:.24em; text-transform:uppercase; font-weight:600; color:#E0E0E4; }
+  .quince svg{ width:14px; height:14px; fill:#E8ECF2; }
+  .musica-opciones{ position:relative; z-index:3; margin-top:26px; display:flex; flex-direction:column; gap:10px; width:100%; max-width:205px; }
+  .musica-opciones button{ font-family:'Montserrat',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; padding:14px 8px; cursor:pointer; white-space:nowrap; border:1px solid var(--plata); background:rgba(5,5,5,.7); color:var(--plata-clara); border-radius:999px; }
+  .musica-opciones button.solido{ background:linear-gradient(180deg,#f7f7f9,#b3b3b9); color:#0a0a0a; border-color:#d9d9de; box-shadow:0 8px 22px rgba(255,255,255,.12); }
+
+  /* ---------- secciones ---------- */
+  section{ position:relative; padding:46px 24px; text-align:center; }
+  .divisor{ display:flex; align-items:center; justify-content:center; gap:10px; margin:14px auto; }
+  .divisor::before,.divisor::after{ content:''; width:38px; height:1px; background:linear-gradient(90deg,transparent,var(--plata)); }
+  .divisor::after{ background:linear-gradient(270deg,transparent,var(--plata)); }
+  .divisor svg{ width:30px; height:22px; filter:drop-shadow(0 0 5px rgba(232,236,242,.45)); }
+
+  .frase{ max-width:340px; margin:0 auto; position:relative; z-index:2; }
+  .frase .mariposa-frase{ width:58px; height:42px; margin:0 auto 14px; filter:drop-shadow(0 0 10px rgba(232,236,242,.5)); }
+  .frase p{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:25px; line-height:1.4; color:#fff; }
+
+  .tarjeta{ position:relative; max-width:360px; margin:0 auto; padding:24px 16px; border:1px solid var(--linea); border-radius:16px; background:var(--panel); z-index:2; }
+  .tarjeta::before{ content:''; position:absolute; inset:4px; border:1px solid rgba(205,205,210,.22); border-radius:12px; pointer-events:none; }
+  .tarjetas{ display:flex; flex-direction:column; gap:16px; max-width:360px; margin:20px auto 0; position:relative; z-index:2; }
+  .tarjeta .eyebrow{ margin-bottom:5px; }
+  .tarjeta-titulo{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:27px; line-height:1.12; color:#fff; }
+  .tarjeta-texto{ font-size:15px; line-height:1.5; color:var(--texto); margin-top:6px; }
+  .tarjeta-texto strong{ color:#fff; font-weight:600; }
+  .enlace{ display:inline-block; margin-top:14px; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--plata-clara); text-decoration:none; background:none; border:none; border-bottom:1px solid var(--plata); padding-bottom:3px; cursor:pointer; }
+  button.tarjeta{ width:100%; font-family:inherit; color:inherit; appearance:none; -webkit-appearance:none; cursor:pointer; }
+  .perch{ position:absolute; width:34px; height:25px; z-index:5; pointer-events:none; filter:drop-shadow(0 0 6px rgba(232,236,242,.5)); }
+
+  /* cuenta regresiva (números nítidos) */
+  .cuenta{ padding:26px 14px 24px; }
+  .cuenta .eyebrow{ font-size:12px; color:#E0E0E4; }
+  .cuenta .titulo{ font-size:clamp(38px,10.4vw,50px); }
+  .contador{ display:flex; justify-content:center; gap:8px; max-width:340px; margin:16px auto 0; }
+  .celda{ flex:1 1 0; min-width:0; max-width:84px; padding:14px 0 11px; background:#050505; border:1px solid rgba(232,232,236,.7); border-radius:12px; }
+  .celda-num{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:clamp(30px,9vw,40px); line-height:1; color:#fff; font-variant-numeric:lining-nums tabular-nums; text-rendering:geometricPrecision; }
+  .celda-label{ font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:#C6C6CB; margin-top:4px; }
+
+  /* fotos */
+  .foto-sec{ padding-top:30px; padding-bottom:30px; }
+  .foto-bloque{ position:relative; width:min(76vw,300px); margin:0 auto; z-index:2; }
+  .foto-bloque.rot-a{ transform:rotate(-1.6deg); } .foto-bloque.rot-b{ transform:rotate(1.4deg); }
+  .foto-marco{ position:relative; padding:7px; background:#050505; border:1px solid var(--linea); border-radius:12px; box-shadow:0 16px 36px rgba(0,0,0,.7); }
+  .foto-marco::before{ content:''; position:absolute; inset:3px; border:1px solid rgba(205,205,210,.25); border-radius:9px; pointer-events:none; z-index:3; }
+  .foto-caja{ position:relative; overflow:hidden; border-radius:7px; background:#111; aspect-ratio:4/5; }
+  .foto-caja img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .foto-caja .ph{ position:absolute; inset:0; margin:auto; width:34px; height:34px; opacity:.4; }
+
+  /* confirmación */
+  .rsvp{ border-top:1px solid var(--linea); border-bottom:1px solid var(--linea); background:rgba(0,0,0,.35); }
+  .rsvp-sub{ font-size:15px; line-height:1.55; max-width:320px; margin:8px auto 20px; color:var(--texto); }
+  .btn-rsvp{ display:inline-block; background:linear-gradient(180deg,#f7f7f9,#b3b3b9); color:#0a0a0a; padding:15px 32px; font-size:12.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; border-radius:999px; box-shadow:0 10px 26px rgba(255,255,255,.14); }
+  .rsvp-nota{ font-size:14.5px; line-height:1.55; max-width:320px; margin:18px auto 0; color:var(--texto); }
+  .rsvp-nota a.wsp{ display:inline-block; margin-top:10px; color:#fff; font-weight:600; text-decoration:none; border-bottom:1px solid var(--plata); padding-bottom:2px; white-space:nowrap; }
+
+  footer{ position:relative; padding:24px 24px 56px; text-align:center; overflow:hidden; }
+  .pie-mariposa{ width:84px; height:62px; margin:0 auto 6px; filter:drop-shadow(0 0 10px rgba(232,236,242,.45)); }
+  .pie-nombre{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:38px; line-height:1.1; }
+  .pie-tag{ margin-top:8px; font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--plata-media); font-weight:600; }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; transition:none; } .estrellas,.chispa,.mariposa-guia,.mariposa.vuela,.brillo,.ala-i,.ala-d,.ga-i,.ga-d{ animation:none; } .mariposa-guia{ display:none; } }
+  @media (min-width:720px){ section{ padding:90px 60px; } }
+
+  /* ---------- modal de canciones ---------- */
+  .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.65); display:none; align-items:center; justify-content:center; padding:24px; z-index:100; }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{ background:#0e0e11; max-width:400px; width:100%; padding:38px 28px; position:relative; border:1px solid var(--linea); border-radius:16px; text-align:center; max-height:85vh; overflow-y:auto; }
+  .modal-close{ position:absolute; top:12px; right:16px; background:none; border:none; font-size:24px; color:#fff; cursor:pointer; line-height:1; }
+  .modal-title{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:28px; color:#fff; margin:8px 0 20px; }
+  .form-field{ text-align:left; margin-bottom:18px; }
+  .form-field label{ display:block; font-size:11px; text-transform:uppercase; letter-spacing:.12em; font-weight:600; color:#E0E0E4; margin-bottom:6px; }
+  .form-field input{ width:100%; border:none; border-bottom:1px solid rgba(232,236,242,.45); background:transparent; padding:9px 2px; font-family:'Montserrat',sans-serif; font-size:16px; color:#fff; }
+  .form-field input::placeholder{ color:rgba(228,234,245,.5); }
+  .form-field input:focus{ outline:none; border-bottom-color:#fff; }
+  .form-submit{ width:100%; margin-top:8px; background:linear-gradient(180deg,#f7f7f9,#b3b3b9); color:#0a0a0a; border:none; padding:15px; border-radius:999px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px; letter-spacing:.16em; text-transform:uppercase; cursor:pointer; }
+  .form-status{ margin-top:14px; font-size:14px; min-height:18px; text-align:center; color:#E0E0E4; }
+</style>
+</head>
+<body>
+<div class="estrellas a"></div><div class="estrellas b"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="alaPlata" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="55%" stop-color="#C9CED6"/><stop offset="100%" stop-color="#8E96A3"/></linearGradient>
+    <symbol id="chispa" viewBox="0 0 24 24"><path d="M12 0 L13.7 10.3 L24 12 L13.7 13.7 L12 24 L10.3 13.7 L0 12 L10.3 10.3 Z"/></symbol>
+    <symbol id="mariposa" viewBox="0 0 44 32">
+      <g class="ala-i" fill="url(#alaPlata)" fill-opacity=".95" stroke="#E8ECF2" stroke-width=".7">
+        <path d="M22 16 C10 2 0 4 3 13 C5 19 15 20 22 16 Z"/><path d="M22 16 C13 17 8 25 15 29 C19 30 22 23 22 16 Z"/>
+      </g>
+      <g class="ala-d" fill="url(#alaPlata)" fill-opacity=".95" stroke="#E8ECF2" stroke-width=".7">
+        <path d="M22 16 C34 2 44 4 41 13 C39 19 29 20 22 16 Z"/><path d="M22 16 C31 17 36 25 29 29 C25 30 22 23 22 16 Z"/>
+      </g>
+      <line x1="22" y1="8" x2="22" y2="24" stroke="#E8ECF2" stroke-width="1.1"/>
+    </symbol>
+    <symbol id="mariposaGrande" viewBox="0 0 150 110">
+      <g class="ga-i" fill="url(#alaPlata)" fill-opacity=".95" stroke="#F4F6FA" stroke-width="1.2">
+        <path d="M75 55 C35 5 0 12 8 46 C15 66 48 68 75 55 Z"/><path d="M75 55 C42 58 26 84 48 98 C62 102 75 78 75 55 Z"/>
+        <path d="M75 55 C52 38 30 30 14 38 M75 55 C54 50 34 50 16 52" fill="none" stroke="#6F7785" stroke-width=".8" opacity=".7"/>
+      </g>
+      <g class="ga-d" fill="url(#alaPlata)" fill-opacity=".95" stroke="#F4F6FA" stroke-width="1.2">
+        <path d="M75 55 C115 5 150 12 142 46 C135 66 102 68 75 55 Z"/><path d="M75 55 C108 58 124 84 102 98 C88 102 75 78 75 55 Z"/>
+        <path d="M75 55 C98 38 120 30 136 38 M75 55 C96 50 116 50 134 52" fill="none" stroke="#6F7785" stroke-width=".8" opacity=".7"/>
+      </g>
+      <line x1="75" y1="30" x2="75" y2="82" stroke="#F4F6FA" stroke-width="2"/>
+      <path d="M75 32 C70 24 65 21 62 23 M75 32 C80 24 85 21 88 23" fill="none" stroke="#F4F6FA" stroke-width="1.2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- PANTALLA 1: PORTADA + ELECCIÓN DE MÚSICA -->
+<section class="portada" id="landing" style="padding:56px 24px;">
+  <svg class="esquina tl" viewBox="0 0 50 50" fill="none" stroke="#C9C9CD"><path d="M2 20 V2 H20" stroke-width="1"/><circle cx="2" cy="2" r="2.2" fill="#C9C9CD" stroke="none"/></svg>
+  <svg class="esquina tr" viewBox="0 0 50 50" fill="none" stroke="#C9C9CD"><path d="M2 20 V2 H20" stroke-width="1"/><circle cx="2" cy="2" r="2.2" fill="#C9C9CD" stroke="none"/></svg>
+  <svg class="esquina bl" viewBox="0 0 50 50" fill="none" stroke="#C9C9CD"><path d="M2 20 V2 H20" stroke-width="1"/><circle cx="2" cy="2" r="2.2" fill="#C9C9CD" stroke="none"/></svg>
+  <svg class="esquina br" viewBox="0 0 50 50" fill="none" stroke="#C9C9CD"><path d="M2 20 V2 H20" stroke-width="1"/><circle cx="2" cy="2" r="2.2" fill="#C9C9CD" stroke="none"/></svg>
+
+  <svg class="mariposa vuela" style="top:13%; right:12%;" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+  <svg class="mariposa vuela" style="bottom:15%; left:10%; width:30px; height:22px; animation-delay:1.8s;" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+  <svg class="mariposa vuela" style="top:30%; left:7%; width:24px; height:18px; animation-delay:3.4s;" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+  <svg class="chispa" style="left:22%; top:16%;" viewBox="0 0 24 24"><use href="#chispa"/></svg>
+  <svg class="chispa" style="right:20%; bottom:24%; width:12px; height:12px; animation-delay:1.3s;" viewBox="0 0 24 24"><use href="#chispa"/></svg>
+
+  <svg class="emblema" viewBox="0 0 150 110"><use href="#mariposaGrande"/></svg>
+  <div class="bienvenida">Bienvenidos a la invitación de</div>
+  <h1 class="nombre brillo">Tizi</h1>
+  <div class="quince">
+    <svg viewBox="0 0 24 24"><use href="#chispa"/></svg>Mis quince años<svg viewBox="0 0 24 24"><use href="#chispa"/></svg>
+  </div>
+  <div class="musica-opciones">
+    <button class="solido" id="withMusic">Ingresar con música</button>
+    <button id="withoutMusic">Sin música</button>
+  </div>
+</section>
+
+<audio id="bgMusic" loop>
+  <source src="/invitacion-tizi/musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA 2 -->
+<div id="mainContent" style="display:none;">
+
+<svg class="mariposa-guia" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+
+<!-- FRASE -->
+<section class="reveal is-visible" style="padding-top:56px; padding-bottom:20px;">
+  <div class="frase">
+    <svg class="mariposa-frase" style="display:block;" viewBox="0 0 150 110"><use href="#mariposaGrande"/></svg>
+    <p>Vení con toda la energía, que la vergüenza se queda en tu casa; te esperoo</p>
+  </div>
+</section>
+
+<!-- FOTO (4) -->
+<section class="reveal foto-sec">
+  <div class="foto-bloque rot-a">
+    <svg class="perch" style="top:-16px; right:-6px; width:40px; height:29px; transform:rotate(16deg);" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+    <svg class="chispa" style="left:-12px; bottom:30px; width:12px; height:12px; animation-delay:1s;" viewBox="0 0 24 24"><use href="#chispa"/></svg>
+    <div class="foto-marco">
+      <div class="foto-caja">
+        <img data-foto="FOTO (4)" alt="Tizi">
+        <svg class="ph" viewBox="0 0 24 24" fill="none" stroke="#C9C9CD" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUENTA REGRESIVA -->
+<section class="reveal is-visible" style="padding-top:22px;">
+  <div class="cuenta tarjeta">
+    <svg class="perch" style="top:-15px; right:14px; transform:rotate(14deg);" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+    <div class="eyebrow">Falta poco</div>
+    <div class="titulo">5 de diciembre</div>
+    <div class="contador">
+      <div class="celda"><div class="celda-num" id="cd-dias">--</div><div class="celda-label">Días</div></div>
+      <div class="celda"><div class="celda-num" id="cd-horas">--</div><div class="celda-label">Hs</div></div>
+      <div class="celda"><div class="celda-num" id="cd-min">--</div><div class="celda-label">Min</div></div>
+      <div class="celda"><div class="celda-num" id="cd-seg">--</div><div class="celda-label">Seg</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTO (1) -->
+<section class="reveal foto-sec">
+  <div class="foto-bloque rot-b">
+    <svg class="perch" style="bottom:-14px; left:-8px; width:40px; height:29px; transform:rotate(-14deg) scaleX(-1);" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+    <svg class="chispa" style="right:-12px; top:24px; width:13px; height:13px; animation-delay:1.7s;" viewBox="0 0 24 24"><use href="#chispa"/></svg>
+    <div class="foto-marco">
+      <div class="foto-caja">
+        <img data-foto="FOTO (1)" alt="Tizi">
+        <svg class="ph" viewBox="0 0 24 24" fill="none" stroke="#C9C9CD" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIESTA -->
+<section class="reveal">
+  <div class="eyebrow">La fiesta</div>
+  <div class="titulo brillo">Todos los detalles</div>
+  <div class="divisor"><svg viewBox="0 0 44 32"><use href="#mariposa"/></svg></div>
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <svg class="perch" style="top:-14px; left:16px; transform:rotate(-12deg);" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+      <div class="eyebrow">Día</div>
+      <div class="tarjeta-titulo">Sábado 5 de diciembre</div>
+      <div class="tarjeta-texto">Desde las 21:00 hs</div>
+      <button class="enlace" data-cal type="button">Agendar</button>
+    </div>
+    <div class="tarjeta">
+      <div class="eyebrow">Lugar</div>
+      <div class="tarjeta-titulo">77 Eventos</div>
+      <div class="tarjeta-texto">Juan B. Azopardo 1677, Castelar / Morón</div>
+      <a class="enlace" href="https://www.google.com/maps/search/?api=1&query=77+Eventos+Juan+B.+Azopardo+1677+Castelar+Mor%C3%B3n" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="tarjeta">
+      <svg class="perch" style="bottom:-14px; right:18px; transform:rotate(10deg) scaleX(-1);" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+      <div class="eyebrow">Dress code</div>
+      <div class="tarjeta-titulo">Elegante sport</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTO (2) -->
+<section class="reveal foto-sec">
+  <div class="foto-bloque rot-a">
+    <svg class="perch" style="top:-16px; left:-6px; width:40px; height:29px; transform:rotate(-16deg) scaleX(-1);" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+    <svg class="chispa" style="right:-12px; bottom:36px; width:12px; height:12px; animation-delay:.6s;" viewBox="0 0 24 24"><use href="#chispa"/></svg>
+    <div class="foto-marco">
+      <div class="foto-caja">
+        <img data-foto="FOTO (2)" alt="Tizi">
+        <svg class="ph" viewBox="0 0 24 24" fill="none" stroke="#C9C9CD" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRMACIÓN -->
+<section class="rsvp reveal">
+  <div class="eyebrow">Confirmación</div>
+  <div class="titulo brillo">¿Vas a acompañarme?</div>
+  <p class="rsvp-sub">Contanos si vas a estar esa noche con nosotros.</p>
+  <a class="btn-rsvp" id="rsvpBtn" href="#" target="_blank" rel="noopener">Confirmar asistencia</a>
+  <p class="rsvp-nota">Cualquier consulta, escribile a Tizi:<br><a class="wsp" href="https://wa.me/5491121651393?text=Hola%20Tizi!" target="_blank" rel="noopener">WhatsApp · 11 2165-1393</a></p>
+</section>
+
+<!-- FOTO (3) -->
+<section class="reveal foto-sec">
+  <div class="foto-bloque rot-b">
+    <svg class="perch" style="bottom:-14px; right:-8px; width:40px; height:29px; transform:rotate(14deg);" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+    <svg class="chispa" style="left:-12px; top:28px; width:13px; height:13px; animation-delay:2.2s;" viewBox="0 0 24 24"><use href="#chispa"/></svg>
+    <div class="foto-marco">
+      <div class="foto-caja">
+        <img data-foto="FOTO (3)" alt="Tizi">
+        <svg class="ph" viewBox="0 0 24 24" fill="none" stroke="#C9C9CD" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M3 16 L9 12 L13 15 L21 9"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="reveal">
+  <div class="eyebrow">Para tener en cuenta</div>
+  <div class="titulo brillo">Antes de venir</div>
+  <div class="divisor"><svg viewBox="0 0 44 32"><use href="#mariposa"/></svg></div>
+  <div class="tarjetas">
+    <button class="tarjeta" data-modal="cancion" type="button">
+      <svg class="perch" style="top:-14px; right:16px; transform:rotate(12deg);" viewBox="0 0 44 32"><use href="#mariposa"/></svg>
+      <div class="tarjeta-titulo" style="font-size:24px;">¿Qué canción no puede faltar?</div>
+      <div class="tarjeta-texto">Sugerime una canción para la playlist</div>
+    </button>
+    <div class="tarjeta">
+      <div class="tarjeta-titulo">Regalos</div>
+      <div class="tarjeta-texto">Tu presencia esa noche ya es el mejor regalo. Si además querés tener un gesto conmigo — Alias: <strong>tizizabala36</strong></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="pie-mariposa" style="display:block;" viewBox="0 0 150 110"><use href="#mariposaGrande"/></svg>
+  <div class="pie-nombre brillo">Tizi · Mis 15</div>
+  <div class="pie-tag">Hecho con MILAR</div>
+</footer>
+
+</div>
+
+<!-- MODAL: sugerencia de canción -->
+<div class="modal-overlay" id="modal-cancion">
+  <div class="modal-box">
+    <button class="modal-close" data-close type="button">&times;</button>
+    <div class="eyebrow">Playlist</div>
+    <div class="modal-title">Sugerí una canción</div>
+    <form id="cancionForm">
+      <div class="form-field"><label>Tu nombre</label><input type="text" id="cancionNombre" required></div>
+      <div class="form-field"><label>Canción y artista</label><input type="text" id="cancionTema" placeholder="Ej: Coldplay — Título" required></div>
+      <button type="submit" class="form-submit">Enviar sugerencia</button>
+      <div class="form-status" id="cancionStatus"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ====== ACÁ VA EL LINK DE TU FORMULARIO DE RSVP ======
+  const RSVP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeP4GbXmkPDAJykjCSIS3ZwWTfCALfVvBM6zXVTQwchjDB_yA/viewform?usp=publish-editor';
+  document.getElementById('rsvpBtn').setAttribute('href', RSVP_FORM_URL);
+
+  // Cuenta regresiva
+  const target = new Date('2026-12-05T21:00:00');
+  function tick(){
+    let diff = target - new Date();
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-dias').textContent = d;
+    document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Portada → invitación (elección de música)
+  const audio = document.getElementById('bgMusic');
+  const landing = document.getElementById('landing');
+  const mainContent = document.getElementById('mainContent');
+  function entrarALaInvitacion(conMusica){
+    if(conMusica){ audio.play().catch(()=>{}); }
+    landing.style.display = 'none';
+    mainContent.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  document.getElementById('withMusic').addEventListener('click', () => entrarALaInvitacion(true));
+  document.getElementById('withoutMusic').addEventListener('click', () => entrarALaInvitacion(false));
+
+  // Agendar (.ics)
+  const calBtn = document.querySelector('[data-cal]');
+  if(calBtn){
+    calBtn.addEventListener('click', () => {
+      const ics = ['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','DTSTART:20261205T210000','DTEND:20261206T050000','SUMMARY:Mis 15 — Tizi','LOCATION:77 Eventos, Juan B. Azopardo 1677, Castelar, Morón','END:VEVENT','END:VCALENDAR'].join('\n');
+      const blob = new Blob([ics], {type:'text/calendar'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'mis-15-tizi.ics';
+      link.click();
+    });
+  }
+
+  // Fotos: se llaman FOTO (4), FOTO (1), FOTO (2), FOTO (3). Prueba las extensiones más comunes.
+  const EXTS = ['jpg','jpeg','png','webp','JPG','JPEG','PNG','WEBP'];
+  document.querySelectorAll('img[data-foto]').forEach(img => {
+    const base = img.getAttribute('data-foto');
+    const caja = img.closest('.foto-caja');
+    let i = 0;
+    function probar(){
+      if(i >= EXTS.length){ img.remove(); return; }
+      img.src = '/invitacion-tizi/' + encodeURIComponent(base) + '.' + EXTS[i++];
+    }
+    img.addEventListener('error', probar);
+    img.addEventListener('load', () => {
+      caja.classList.add('lista');
+      const ph = caja.querySelector('.ph'); if(ph) ph.style.display = 'none';
+    });
+    probar();
+  });
+
+  // Modal de canción
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('modal-' + btn.getAttribute('data-modal')).classList.add('open');
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => { btn.closest('.modal-overlay').classList.remove('open'); });
+  });
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('open'); });
+  });
+
+  // ====== Envío de la canción a un Apps Script (guarda en la hoja "Canciones") ======
+  const CANCION_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwDtAtKyoeZglswUP3qwKd-vnvPYXGliVpuwWJD2wkLZzQflB-Oo7wZGcD7KVbunjWn/exec';
+  document.getElementById('cancionForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const statusEl = document.getElementById('cancionStatus');
+    const payload = {
+      nombre: document.getElementById('cancionNombre').value,
+      tema: document.getElementById('cancionTema').value
+    };
+    try {
+      fetch(CANCION_APPS_SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors', body: JSON.stringify(payload), headers: {'Content-Type': 'text/plain'}
+      }).catch(() => {});
+    } catch (err) {}
+    statusEl.textContent = 'Gracias por la sugerencia.';
+    setTimeout(() => {
+      document.getElementById('modal-cancion').classList.remove('open');
+      document.getElementById('cancionForm').reset();
+      statusEl.textContent = '';
+    }, 1100);
+  });
+
+  // Aparición al hacer scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => io.observe(r));
+</script>
+
+</body>
+</html>
